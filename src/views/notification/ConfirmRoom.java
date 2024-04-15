@@ -31,10 +31,10 @@ public class ConfirmRoom extends javax.swing.JDialog {
         setAlwaysOnTop(true);
         getContentPane().setLayout(new java.awt.CardLayout());
 
-        panelRound1.setBackground(new java.awt.Color(35, 45, 63));
+        panelRound1.setBackground(new java.awt.Color(17, 144, 119));
         panelRound1.setLayout(new java.awt.CardLayout(5, 5));
 
-        jPanel1.setBackground(new java.awt.Color(35, 45, 63));
+        jPanel1.setBackground(new java.awt.Color(17, 144, 119));
         jPanel1.setLayout(new java.awt.BorderLayout(0, 5));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -44,7 +44,7 @@ public class ConfirmRoom extends javax.swing.JDialog {
         jLabel4.setText("THÔNG BÁO");
         jPanel1.add(jLabel4, java.awt.BorderLayout.PAGE_START);
 
-        panelRound3.setBackground(new java.awt.Color(35, 45, 63));
+        panelRound3.setBackground(new java.awt.Color(17, 144, 119));
         panelRound3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 25, 5));
 
         panelRound4.setBackground(new java.awt.Color(255, 255, 255));

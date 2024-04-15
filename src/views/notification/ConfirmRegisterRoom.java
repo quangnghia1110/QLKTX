@@ -38,16 +38,16 @@ public class ConfirmRegisterRoom extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
 
-        panelRound1.setBackground(new java.awt.Color(35, 45, 63));
+        panelRound1.setBackground(new java.awt.Color(17, 144, 119));
 
-        panelRound7.setBackground(new java.awt.Color(35, 45, 63));
+        panelRound7.setBackground(new java.awt.Color(17, 144, 119));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("THÔNG BÁO");
 
-        panelRound6.setBackground(new java.awt.Color(35, 45, 63));
+        panelRound6.setBackground(new java.awt.Color(17, 144, 119));
         panelRound6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 25, 5));
 
         panelRound4.setBackground(new java.awt.Color(255, 255, 255));

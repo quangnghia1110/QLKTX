@@ -41,13 +41,13 @@ public class SuceessfulSignUp extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        panelRound1.setBackground(new java.awt.Color(35, 45, 63));
+        panelRound1.setBackground(new java.awt.Color(17, 144, 119));
         panelRound1.setLayout(new java.awt.CardLayout(5, 5));
 
-        jPanel1.setBackground(new java.awt.Color(35, 45, 63));
+        jPanel1.setBackground(new java.awt.Color(17, 144, 119));
         jPanel1.setLayout(new java.awt.BorderLayout(0, 5));
 
-        jPanel2.setBackground(new java.awt.Color(2, 45, 63));
+        jPanel2.setBackground(new java.awt.Color(17, 144, 119));
 
         panelRound3.setBackground(new java.awt.Color(255, 255, 255));
         panelRound3.setRoundBottomLeft(20);

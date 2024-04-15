@@ -11,6 +11,7 @@ import views.user.MyProfile;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.FlowLayout;
+import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
@@ -29,7 +30,8 @@ import models.User;
 import models.UserDAO;
 import views.admin.MainAdmin;
 import views.user.MainUser;
-
+import javax.swing.JFrame;
+import views.Login.Signup;
 
 /**
  *
@@ -56,6 +58,12 @@ public class Login extends javax.swing.JDialog {
         getContentPane().setBackground(new java.awt.Color(153, 0, 51));
         initComponents();
         setLocationRelativeTo(null);
+         setFullScreen();
+
+    }
+    private void setFullScreen() {
+        GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        setBounds(env.getMaximumWindowBounds());
     }
 
     public void animationClick (PanelRound panel, String beforeColor) {
@@ -86,11 +94,8 @@ public class Login extends javax.swing.JDialog {
         jPanel5 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jPanel8 = new javax.swing.JPanel();
         panelRound3 = new Handle.PanelRound();
         panelRound2 = new Handle.PanelRound();
         usernameField = new javax.swing.JTextField();
@@ -104,6 +109,8 @@ public class Login extends javax.swing.JDialog {
         panelRound4 = new Handle.PanelRound();
         jLabel8 = new javax.swing.JLabel();
         showPasswordCheckBox = new javax.swing.JCheckBox();
+        pictureBox1 = new Util.PictureBox();
+        jPanel6 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -113,63 +120,18 @@ public class Login extends javax.swing.JDialog {
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setLayout(new java.awt.CardLayout(5, 5));
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new java.awt.BorderLayout());
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1151, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        jPanel3.add(jPanel4, java.awt.BorderLayout.PAGE_START);
-
-        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1151, Short.MAX_VALUE)
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        jPanel3.add(jPanel6, java.awt.BorderLayout.PAGE_END);
-
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setPreferredSize(new java.awt.Dimension(500, 425));
         jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 50, 30));
-
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/LogoSPKT.png"))); // NOI18N
-        jPanel1.add(jLabel4);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new java.awt.BorderLayout(0, 10));
         jPanel1.add(jPanel2);
-
-        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(jPanel8);
 
         panelRound3.setBackground(new java.awt.Color(17, 144, 119));
         panelRound3.setForeground(new java.awt.Color(255, 255, 255));
@@ -349,7 +311,46 @@ public class Login extends javax.swing.JDialog {
 
         jPanel1.add(panelRound3);
 
-        jPanel3.add(jPanel1, java.awt.BorderLayout.CENTER);
+        pictureBox1.setImage(new javax.swing.ImageIcon(getClass().getResource("/img/Login.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addComponent(pictureBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 976, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pictureBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 861, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(149, 149, 149))
+        );
+
+        jPanel3.add(jPanel4, java.awt.BorderLayout.PAGE_START);
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jPanel3.add(jPanel6, java.awt.BorderLayout.PAGE_END);
 
         jPanel5.add(jPanel3, "card2");
 
@@ -529,7 +530,6 @@ public class Login extends javax.swing.JDialog {
     private javax.swing.JLabel forgotPassword;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
@@ -538,13 +538,13 @@ public class Login extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel8;
     private Handle.PanelRound loginBtn;
     private javax.swing.JLabel loginLabel;
     private Handle.PanelRound panelRound2;
     private Handle.PanelRound panelRound3;
     private Handle.PanelRound panelRound4;
     private javax.swing.JPasswordField passwordField;
+    private Util.PictureBox pictureBox1;
     private javax.swing.JCheckBox showPasswordCheckBox;
     private javax.swing.JTextField usernameField;
     // End of variables declaration//GEN-END:variables

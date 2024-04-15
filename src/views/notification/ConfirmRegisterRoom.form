@@ -41,7 +41,7 @@
     <Container class="Handle.PanelRound" name="panelRound1">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="3f" green="2d" red="23" type="rgb"/>
+          <Color blue="77" green="90" red="11" type="rgb"/>
         </Property>
       </Properties>
 
@@ -68,7 +68,7 @@
         <Container class="Handle.PanelRound" name="panelRound7">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="3f" green="2d" red="23" type="rgb"/>
+              <Color blue="77" green="90" red="11" type="rgb"/>
             </Property>
           </Properties>
 
@@ -113,7 +113,7 @@
             <Container class="Handle.PanelRound" name="panelRound6">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="3f" green="2d" red="23" type="rgb"/>
+                  <Color blue="77" green="90" red="11" type="rgb"/>
                 </Property>
               </Properties>
 

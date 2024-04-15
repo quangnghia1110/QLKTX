@@ -2,9 +2,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
-package views.authentication;
+package views.Login;
 
-import views.notification.SuceessfulSignUp;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -18,6 +17,7 @@ import models.Student;
 import models.StudentDAO;
 import models.User;
 import models.UserDAO;
+import views.notification.SuceessfulSignUp;
 
 /**
  *
@@ -109,11 +109,11 @@ public class Signup extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new java.awt.CardLayout());
 
-        panelRound7.setBackground(new java.awt.Color(17, 144, 119));
+        panelRound7.setBackground(new java.awt.Color(35, 45, 63));
         panelRound7.setPreferredSize(new java.awt.Dimension(958, 290));
         panelRound7.setLayout(new java.awt.CardLayout(5, 5));
 
-        panelRound1.setBackground(new java.awt.Color(17, 144, 119));
+        panelRound1.setBackground(new java.awt.Color(35, 45, 63));
         panelRound1.setPreferredSize(new java.awt.Dimension(380, 560));
         panelRound1.setLayout(new java.awt.BorderLayout(0, 5));
 
@@ -123,7 +123,7 @@ public class Signup extends javax.swing.JDialog {
         jLabel1.setText("TẠO TÀI KHOẢN");
         panelRound1.add(jLabel1, java.awt.BorderLayout.PAGE_START);
 
-        jPanel2.setBackground(new java.awt.Color(17, 144, 119));
+        jPanel2.setBackground(new java.awt.Color(35, 45, 63));
         jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 100, 5));
 
         panelRound3.setBackground(new java.awt.Color(255, 255, 255));

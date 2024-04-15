@@ -30,7 +30,7 @@
     <Container class="Handle.PanelRound" name="panelRound7">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="77" green="90" red="11" type="rgb"/>
+          <Color blue="3f" green="2d" red="23" type="rgb"/>
         </Property>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[958, 290]"/>
@@ -50,7 +50,7 @@
         <Container class="Handle.PanelRound" name="panelRound1">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="77" green="90" red="11" type="rgb"/>
+              <Color blue="3f" green="2d" red="23" type="rgb"/>
             </Property>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[380, 560]"/>
@@ -86,7 +86,7 @@
             <Container class="javax.swing.JPanel" name="jPanel2">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="77" green="90" red="11" type="rgb"/>
+                  <Color blue="3f" green="2d" red="23" type="rgb"/>
                 </Property>
               </Properties>
               <Constraints>

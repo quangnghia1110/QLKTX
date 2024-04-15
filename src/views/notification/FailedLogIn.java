@@ -52,13 +52,13 @@ public class FailedLogIn extends javax.swing.JDialog {
 
         jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.LINE_AXIS));
 
-        jPanel1.setBackground(new java.awt.Color(35, 45, 63));
+        jPanel1.setBackground(new java.awt.Color(17, 144, 119));
         jPanel1.setLayout(new java.awt.CardLayout(5, 5));
 
-        jPanel4.setBackground(new java.awt.Color(35, 45, 63));
+        jPanel4.setBackground(new java.awt.Color(17, 144, 119));
         jPanel4.setLayout(new java.awt.BorderLayout(0, 5));
 
-        jPanel2.setBackground(new java.awt.Color(35, 45, 63));
+        jPanel2.setBackground(new java.awt.Color(17, 144, 119));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -68,7 +68,7 @@ public class FailedLogIn extends javax.swing.JDialog {
 
         jPanel4.add(jPanel2, java.awt.BorderLayout.PAGE_START);
 
-        okButton.setBackground(new java.awt.Color(35, 45, 63));
+        okButton.setBackground(new java.awt.Color(17, 144, 119));
         okButton.setRoundBottomLeft(20);
         okButton.setRoundBottomRight(20);
         okButton.setRoundTopLeft(20);

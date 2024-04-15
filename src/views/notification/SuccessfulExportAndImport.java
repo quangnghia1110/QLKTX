@@ -64,11 +64,11 @@ public class SuccessfulExportAndImport extends javax.swing.JDialog {
         setAlwaysOnTop(true);
         getContentPane().setLayout(new java.awt.CardLayout());
 
-        jPanel1.setBackground(new java.awt.Color(35, 45, 63));
+        jPanel1.setBackground(new java.awt.Color(17, 144, 119));
         jPanel1.setPreferredSize(new java.awt.Dimension(300, 180));
         jPanel1.setLayout(new java.awt.CardLayout(5, 5));
 
-        panelRound2.setBackground(new java.awt.Color(35, 45, 63));
+        panelRound2.setBackground(new java.awt.Color(17, 144, 119));
         panelRound2.setPreferredSize(new java.awt.Dimension(130, 130));
         panelRound2.setLayout(new java.awt.BorderLayout(0, 5));
 
@@ -79,7 +79,7 @@ public class SuccessfulExportAndImport extends javax.swing.JDialog {
         jLabel1.setText("THÔNG BÁO");
         panelRound2.add(jLabel1, java.awt.BorderLayout.PAGE_START);
 
-        jPanel2.setBackground(new java.awt.Color(35, 45, 63));
+        jPanel2.setBackground(new java.awt.Color(17, 144, 119));
 
         okButton.setBackground(new java.awt.Color(255, 255, 255));
         okButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N

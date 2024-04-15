@@ -47,10 +47,10 @@ public class ConfirmRefuseRegisterRoom extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
 
-        jPanel1.setBackground(new java.awt.Color(35, 45, 63));
+        jPanel1.setBackground(new java.awt.Color(17, 144, 119));
         jPanel1.setLayout(new java.awt.CardLayout(5, 5));
 
-        jPanel3.setBackground(new java.awt.Color(35, 45, 63));
+        jPanel3.setBackground(new java.awt.Color(17, 144, 119));
         jPanel3.setLayout(new java.awt.BorderLayout(0, 5));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -59,7 +59,7 @@ public class ConfirmRefuseRegisterRoom extends javax.swing.JDialog {
         jLabel1.setText("XÁC NHẬN");
         jPanel3.add(jLabel1, java.awt.BorderLayout.PAGE_START);
 
-        jPanel2.setBackground(new java.awt.Color(35, 45, 63));
+        jPanel2.setBackground(new java.awt.Color(17, 144, 119));
         jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 25, 5));
 
         panelRound2.setBackground(new java.awt.Color(255, 255, 255));

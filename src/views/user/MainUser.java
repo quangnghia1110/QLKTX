@@ -10,6 +10,7 @@ import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.Timer;
 import models.Room;
 import models.RoomDAO;
@@ -36,6 +37,8 @@ public class MainUser extends javax.swing.JFrame {
         initComponents();
         setForm();
         setLocationRelativeTo(null);
+                setExtendedState(JFrame.MAXIMIZED_BOTH);
+
     }
 
     
@@ -482,9 +485,13 @@ public class MainUser extends javax.swing.JFrame {
 
     private void pnActive2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnActive2MouseClicked
         // TODO add your handling code here:
-        pnActive2.setBackground(new Color(129,143,180));
-        pnActive3.setBackground(new Color(35,45,63));
-        pnActive4.setBackground(new Color(35,45,63));
+        pnActive2.setBackground(new Color(204,153,102));
+        pnActive3.setBackground(new Color(17,144,119));
+        pnActive4.setBackground(new Color(17,144,119));
+        pnActive5.setBackground(new Color(17,144,119));
+        pnActive6.setBackground(new Color(17,144,119));
+        pnActive7.setBackground(new Color(17,144,119));
+        pnActive8.setBackground(new Color(17,144,119));
         pnContainer.removeAll();
         pnContainer.add(pnHome);
         pnContainer.revalidate();
@@ -493,9 +500,13 @@ public class MainUser extends javax.swing.JFrame {
 
     private void pnActive4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnActive4MouseClicked
         // TODO add your handling code here:
-        pnActive4.setBackground(new Color(129,143,180));
-        pnActive3.setBackground(new Color(35,45,63));
-        pnActive2.setBackground(new Color(35,45,63));
+        pnActive4.setBackground(new Color(204,153,102));
+        pnActive3.setBackground(new Color(17,144,119));
+        pnActive2.setBackground(new Color(17,144,119));
+        pnActive5.setBackground(new Color(17,144,119));
+        pnActive6.setBackground(new Color(17,144,119));
+        pnActive7.setBackground(new Color(17,144,119));
+        pnActive8.setBackground(new Color(17,144,119));
         pnContainer.removeAll();
         Student st = new StudentDAO().getStudentById(student.getId());
         registerRoom = new RegisterRoom(st);
@@ -508,9 +519,13 @@ public class MainUser extends javax.swing.JFrame {
 
     private void pnActive3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnActive3MouseClicked
         // TODO add your handling code here:
-        pnActive3.setBackground(new Color(129,143,180));
-        pnActive2.setBackground(new Color(35,45,63));
-        pnActive4.setBackground(new Color(35,45,63));
+        pnActive3.setBackground(new Color(204,153,102));
+        pnActive2.setBackground(new Color(17,144,119));
+        pnActive4.setBackground(new Color(17,144,119));
+        pnActive5.setBackground(new Color(17,144,119));
+        pnActive6.setBackground(new Color(17,144,119));
+        pnActive7.setBackground(new Color(17,144,119));
+        pnActive8.setBackground(new Color(17,144,119));
         pnContainer.removeAll();
         Student st = new StudentDAO().getStudentById(student.getId());
         myRoom = new MyRoom(st);        
@@ -535,18 +550,46 @@ public class MainUser extends javax.swing.JFrame {
 
     private void pnActive5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnActive5MouseClicked
         // TODO add your handling code here:
+         pnActive5.setBackground(new Color(204,153,102));
+        pnActive3.setBackground(new Color(17,144,119));
+        pnActive4.setBackground(new Color(17,144,119));
+        pnActive2.setBackground(new Color(17,144,119));
+        pnActive6.setBackground(new Color(17,144,119));
+        pnActive7.setBackground(new Color(17,144,119));
+        pnActive8.setBackground(new Color(17,144,119));
     }//GEN-LAST:event_pnActive5MouseClicked
 
     private void pnActive6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnActive6MouseClicked
         // TODO add your handling code here:
+        pnActive6.setBackground(new Color(204,153,102));
+        pnActive3.setBackground(new Color(17,144,119));
+        pnActive4.setBackground(new Color(17,144,119));
+        pnActive2.setBackground(new Color(17,144,119));
+        pnActive5.setBackground(new Color(17,144,119));
+        pnActive7.setBackground(new Color(17,144,119));
+        pnActive8.setBackground(new Color(17,144,119));
     }//GEN-LAST:event_pnActive6MouseClicked
 
     private void pnActive7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnActive7MouseClicked
         // TODO add your handling code here:
+        pnActive7.setBackground(new Color(204,153,102));
+        pnActive3.setBackground(new Color(17,144,119));
+        pnActive4.setBackground(new Color(17,144,119));
+        pnActive2.setBackground(new Color(17,144,119));
+        pnActive6.setBackground(new Color(17,144,119));
+        pnActive5.setBackground(new Color(17,144,119));
+        pnActive8.setBackground(new Color(17,144,119));
     }//GEN-LAST:event_pnActive7MouseClicked
 
     private void pnActive8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnActive8MouseClicked
         // TODO add your handling code here:
+        pnActive8.setBackground(new Color(204,153,102));
+        pnActive3.setBackground(new Color(17,144,119));
+        pnActive4.setBackground(new Color(17,144,119));
+        pnActive2.setBackground(new Color(17,144,119));
+        pnActive6.setBackground(new Color(17,144,119));
+        pnActive7.setBackground(new Color(17,144,119));
+        pnActive5.setBackground(new Color(17,144,119));
     }//GEN-LAST:event_pnActive8MouseClicked
 
     /**

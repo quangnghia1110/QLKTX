@@ -41,10 +41,10 @@ public class FailedSignUp extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new java.awt.CardLayout());
 
-        panelRound1.setBackground(new java.awt.Color(35, 45, 63));
+        panelRound1.setBackground(new java.awt.Color(17, 144, 119));
         panelRound1.setLayout(new java.awt.CardLayout(5, 5));
 
-        jPanel1.setBackground(new java.awt.Color(35, 45, 63));
+        jPanel1.setBackground(new java.awt.Color(17, 144, 119));
         jPanel1.setLayout(new java.awt.BorderLayout(0, 5));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
@@ -53,7 +53,7 @@ public class FailedSignUp extends javax.swing.JDialog {
         jLabel2.setText("THÔNG BÁO");
         jPanel1.add(jLabel2, java.awt.BorderLayout.PAGE_START);
 
-        jPanel2.setBackground(new java.awt.Color(35, 45, 63));
+        jPanel2.setBackground(new java.awt.Color(17, 144, 119));
 
         panelRound3.setBackground(new java.awt.Color(255, 255, 255));
         panelRound3.setRoundBottomLeft(20);
