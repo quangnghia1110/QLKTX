@@ -5,6 +5,7 @@
 package Model;
 
 
+import Service.ThongKeService;
 import java.awt.CardLayout;
 //import java.awt.Dimension;
 import java.util.List;
@@ -27,12 +28,12 @@ import org.jfree.data.general.DefaultPieDataset;
  *
  * @author hoang
  */
-public class QuanLyThongKeController {
+public class ThongKe {
         
         private ThongKeService thongKeService = null;
 
-        public QuanLyThongKeController() {
-            this.thongKeService = new ThongKeServiceImpl();
+        public ThongKe() {
+            this.thongKeService = new ThongKeService();
         }
         
         public void setDataToChart1(JPanel jpnItem) {

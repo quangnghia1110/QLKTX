@@ -2,31 +2,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Model;
+package Service;
 
 /**
  *
  * @author hoang
  */
-import Dao.ThongKeDAOImpl;
 import Dao.ThongKeDAO;
+import Model.Student;
 import java.util.List;
 
-public class ThongKeServiceImpl implements ThongKeService {
+public class ThongKeService {
 
     private ThongKeDAO thongKeDAO = null;
 
-    public ThongKeServiceImpl() {
-        this.thongKeDAO = new ThongKeDAOImpl();
+    public ThongKeService() {
+        this.thongKeDAO = new ThongKeDAO();
     }
-
-    @Override
     public List<Student> getListByStudent() {
         return thongKeDAO.getListByStudent();
     }
-    
-    /*public List<Student> getListByStudentForPie() {
-        return thongKeDAO.getListByStudent();
-    }*/
-
 }

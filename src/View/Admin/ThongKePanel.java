@@ -4,7 +4,7 @@
  */
 package View.Admin;
 
-import Model.QuanLyThongKeController;
+import Model.ThongKe;
 
 /**
  *
@@ -18,7 +18,7 @@ public class ThongKePanel extends javax.swing.JPanel {
     public ThongKePanel() {
         initComponents();
         
-        QuanLyThongKeController controller = new QuanLyThongKeController();
+        ThongKe controller = new ThongKe();
         controller.setDataToChart1(Bieudocot);
         controller.setDataToChart2(Bieudotron);
     }
