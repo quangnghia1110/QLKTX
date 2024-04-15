@@ -5,6 +5,7 @@
 package views.authentication;
 import Handle.PanelRound;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import models.*;
@@ -68,28 +69,29 @@ public class ChangingPassword extends javax.swing.JDialog {
         panelRound1 = new Handle.PanelRound();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        roundPanel = new Handle.PanelRound();
-        okButton = new Handle.PanelRound();
-        okLabel = new javax.swing.JLabel();
+        panelRound3 = new Handle.PanelRound();
+        jPanel2 = new javax.swing.JPanel();
+        pictureBox1 = new Util.PictureBox();
         cancelButton = new Handle.PanelRound();
         panelRound4 = new Handle.PanelRound();
         jLabel6 = new javax.swing.JLabel();
-        panelRound3 = new Handle.PanelRound();
+        roundPanel = new Handle.PanelRound();
+        okButton = new Handle.PanelRound();
+        okLabel = new javax.swing.JLabel();
+        panelRound5 = new Handle.PanelRound();
         panelRound2 = new Handle.PanelRound();
-        jPanel5 = new javax.swing.JPanel();
+        inputOldPasword = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        inputOldPasword = new javax.swing.JPasswordField();
-        jPanel6 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        inputNewPassword = new javax.swing.JPasswordField();
-        jPanel7 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
         reinputNewPassword = new javax.swing.JPasswordField();
-        showWrongPassword = new javax.swing.JLabel();
-        showWrongReinput = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        panelRound6 = new Handle.PanelRound();
+        jLabel8 = new javax.swing.JLabel();
         showPassword = new javax.swing.JCheckBox();
+        jLabel4 = new javax.swing.JLabel();
+        inputNewPassword = new javax.swing.JPasswordField();
+        showWrongReinput = new javax.swing.JLabel();
 
         javax.swing.GroupLayout panelRound1Layout = new javax.swing.GroupLayout(panelRound1);
         panelRound1.setLayout(panelRound1Layout);
@@ -106,56 +108,30 @@ public class ChangingPassword extends javax.swing.JDialog {
         setAlwaysOnTop(true);
         getContentPane().setLayout(new java.awt.CardLayout());
 
-        jPanel1.setBackground(new java.awt.Color(35, 45, 63));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new java.awt.CardLayout(5, 5));
 
-        jPanel3.setBackground(new java.awt.Color(35, 45, 63));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new java.awt.BorderLayout());
 
-        jLabel1.setBackground(new java.awt.Color(35, 45, 63));
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("ĐỔI MẬT KHẨU");
-        jPanel3.add(jLabel1, java.awt.BorderLayout.PAGE_START);
-
-        jPanel4.setBackground(new java.awt.Color(35, 45, 63));
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 25, 5));
+        jPanel3.add(jPanel4, java.awt.BorderLayout.PAGE_END);
 
-        roundPanel.setEnabled(false);
-        roundPanel.setPreferredSize(new java.awt.Dimension(80, 40));
-        roundPanel.setRoundBottomLeft(20);
-        roundPanel.setRoundBottomRight(20);
-        roundPanel.setRoundTopLeft(20);
-        roundPanel.setRoundTopRight(20);
-        roundPanel.setLayout(new java.awt.CardLayout(5, 5));
+        panelRound3.setBackground(new java.awt.Color(255, 255, 255));
+        panelRound3.setRoundBottomLeft(20);
+        panelRound3.setRoundBottomRight(20);
+        panelRound3.setRoundTopLeft(20);
+        panelRound3.setRoundTopRight(20);
+        panelRound3.setLayout(new java.awt.CardLayout());
+        jPanel3.add(panelRound3, java.awt.BorderLayout.LINE_END);
 
-        okButton.setBackground(new java.awt.Color(35, 45, 63));
-        okButton.setEnabled(false);
-        okButton.setRoundBottomLeft(10);
-        okButton.setRoundBottomRight(10);
-        okButton.setRoundTopLeft(10);
-        okButton.setRoundTopRight(10);
-        okButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                okButtonMouseClicked(evt);
-            }
-        });
-        okButton.setLayout(new java.awt.CardLayout());
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setAutoscrolls(true);
 
-        okLabel.setBackground(new java.awt.Color(255, 255, 255));
-        okLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        okLabel.setForeground(new java.awt.Color(255, 255, 255));
-        okLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        okLabel.setText("OK");
-        okLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        okLabel.setEnabled(false);
-        okButton.add(okLabel, "card2");
+        pictureBox1.setImage(new javax.swing.ImageIcon(getClass().getResource("/img/ChangePassword.png"))); // NOI18N
 
-        roundPanel.add(okButton, "card2");
-
-        jPanel4.add(roundPanel);
-
+        cancelButton.setBackground(new java.awt.Color(255, 255, 255));
         cancelButton.setPreferredSize(new java.awt.Dimension(80, 40));
         cancelButton.setRoundBottomLeft(20);
         cancelButton.setRoundBottomRight(20);
@@ -183,86 +159,113 @@ public class ChangingPassword extends javax.swing.JDialog {
 
         cancelButton.add(panelRound4, "card2");
 
-        jPanel4.add(cancelButton);
+        roundPanel.setBackground(new java.awt.Color(255, 255, 255));
+        roundPanel.setEnabled(false);
+        roundPanel.setPreferredSize(new java.awt.Dimension(80, 40));
+        roundPanel.setRoundBottomLeft(20);
+        roundPanel.setRoundBottomRight(20);
+        roundPanel.setRoundTopLeft(20);
+        roundPanel.setRoundTopRight(20);
+        roundPanel.setLayout(new java.awt.CardLayout(5, 5));
 
-        jPanel3.add(jPanel4, java.awt.BorderLayout.PAGE_END);
+        okButton.setBackground(new java.awt.Color(17, 144, 119));
+        okButton.setEnabled(false);
+        okButton.setRoundBottomLeft(10);
+        okButton.setRoundBottomRight(10);
+        okButton.setRoundTopLeft(10);
+        okButton.setRoundTopRight(10);
+        okButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                okButtonMouseClicked(evt);
+            }
+        });
+        okButton.setLayout(new java.awt.CardLayout());
 
-        panelRound3.setBackground(new java.awt.Color(255, 255, 255));
-        panelRound3.setRoundBottomLeft(20);
-        panelRound3.setRoundBottomRight(20);
-        panelRound3.setRoundTopLeft(20);
-        panelRound3.setRoundTopRight(20);
-        panelRound3.setLayout(new java.awt.CardLayout());
+        okLabel.setBackground(new java.awt.Color(255, 255, 255));
+        okLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        okLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        okLabel.setText("OK");
+        okLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        okLabel.setEnabled(false);
+        okButton.add(okLabel, "card2");
+
+        roundPanel.add(okButton, "card2");
+
+        panelRound5.setBackground(new java.awt.Color(17, 144, 119));
+        panelRound5.setForeground(new java.awt.Color(255, 255, 255));
+        panelRound5.setRoundBottomLeft(20);
+        panelRound5.setRoundBottomRight(20);
+        panelRound5.setRoundTopLeft(20);
+        panelRound5.setRoundTopRight(20);
+        panelRound5.setLayout(new java.awt.CardLayout(4, 4));
 
         panelRound2.setBackground(new java.awt.Color(255, 255, 255));
-        panelRound2.setRoundBottomLeft(20);
-        panelRound2.setRoundBottomRight(20);
-        panelRound2.setRoundTopLeft(20);
-        panelRound2.setRoundTopRight(20);
+        panelRound2.setRoundBottomLeft(15);
+        panelRound2.setRoundBottomRight(15);
+        panelRound2.setRoundTopLeft(15);
+        panelRound2.setRoundTopRight(15);
 
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jPanel5.setLayout(new java.awt.BorderLayout(0, 5));
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel2.setText("Mật khẩu cũ:");
-        jPanel5.add(jLabel2, java.awt.BorderLayout.PAGE_START);
-
-        inputOldPasword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        inputOldPasword.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        inputOldPasword.setForeground(new java.awt.Color(17, 144, 119));
         inputOldPasword.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        inputOldPasword.setOpaque(true);
-        inputOldPasword.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                inputOldPaswordKeyReleased(evt);
+        inputOldPasword.setCaretColor(new java.awt.Color(17, 144, 119));
+        inputOldPasword.setDisabledTextColor(new java.awt.Color(255, 255, 255));
+        inputOldPasword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputOldPaswordActionPerformed(evt);
             }
         });
-        jPanel5.add(inputOldPasword, java.awt.BorderLayout.CENTER);
 
-        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel6.setLayout(new java.awt.BorderLayout(0, 5));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setText("Mật khẩu cũ");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel3.setText("Mật khẩu mới:");
-        jPanel6.add(jLabel3, java.awt.BorderLayout.PAGE_START);
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setText("Nhập lại mật khẩu mới");
 
-        inputNewPassword.setEditable(false);
-        inputNewPassword.setBackground(new java.awt.Color(255, 255, 255));
-        inputNewPassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        inputNewPassword.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        inputNewPassword.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                inputNewPasswordKeyReleased(evt);
-            }
-        });
-        jPanel6.add(inputNewPassword, java.awt.BorderLayout.CENTER);
-
-        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel7.setLayout(new java.awt.BorderLayout(0, 5));
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel4.setText("Nhập lại mật khẩu mới:");
-        jPanel7.add(jLabel4, java.awt.BorderLayout.PAGE_START);
-
-        reinputNewPassword.setEditable(false);
-        reinputNewPassword.setBackground(new java.awt.Color(255, 255, 255));
-        reinputNewPassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        reinputNewPassword.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         reinputNewPassword.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        reinputNewPassword.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                reinputNewPasswordKeyReleased(evt);
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel7MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel7MouseExited(evt);
             }
         });
-        jPanel7.add(reinputNewPassword, java.awt.BorderLayout.CENTER);
 
-        showWrongPassword.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        showWrongPassword.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        showWrongPassword.setText("  ");
+        panelRound6.setBackground(new java.awt.Color(17, 144, 119));
+        panelRound6.setRoundBottomLeft(15);
+        panelRound6.setRoundBottomRight(15);
+        panelRound6.setRoundTopLeft(15);
+        panelRound6.setRoundTopRight(15);
 
-        showWrongReinput.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        showWrongReinput.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("RESET PASSWORD");
+
+        javax.swing.GroupLayout panelRound6Layout = new javax.swing.GroupLayout(panelRound6);
+        panelRound6.setLayout(panelRound6Layout);
+        panelRound6Layout.setHorizontalGroup(
+            panelRound6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRound6Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jLabel8)
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+        panelRound6Layout.setVerticalGroup(
+            panelRound6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRound6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         showPassword.setBackground(new java.awt.Color(255, 255, 255));
-        showPassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         showPassword.setText("Hiển thị mật khẩu");
         showPassword.setBorder(null);
         showPassword.addActionListener(new java.awt.event.ActionListener() {
@@ -271,46 +274,109 @@ public class ChangingPassword extends javax.swing.JDialog {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setText("Mật khẩu mới");
+
+        inputNewPassword.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        inputNewPassword.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+
         javax.swing.GroupLayout panelRound2Layout = new javax.swing.GroupLayout(panelRound2);
         panelRound2.setLayout(panelRound2Layout);
         panelRound2Layout.setHorizontalGroup(
             panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRound2Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(35, 35, 35)
                 .addGroup(panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelRound2Layout.createSequentialGroup()
-                        .addComponent(showPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(92, Short.MAX_VALUE))
+                        .addComponent(showPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panelRound2Layout.createSequentialGroup()
-                        .addGroup(panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(showWrongReinput, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(showWrongPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(17, 17, 17))))
+                        .addGroup(panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(panelRound6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(inputOldPasword, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelRound2Layout.createSequentialGroup()
+                                .addGroup(panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(panelRound2Layout.createSequentialGroup()
+                                .addGroup(panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(reinputNewPassword)
+                                    .addComponent(inputNewPassword)
+                                    .addComponent(showWrongReinput, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel7)))
+                        .addGap(37, 37, 37))
+                    .addGroup(panelRound2Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         panelRound2Layout.setVerticalGroup(
             panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRound2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(panelRound6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(showWrongPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(inputOldPasword, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(inputNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addGroup(panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelRound2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelRound2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(reinputNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(showWrongReinput, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(showWrongReinput, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(showPassword)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addGap(16, 16, 16))
         );
 
-        panelRound3.add(panelRound2, "card2");
+        panelRound5.add(panelRound2, "card2");
 
-        jPanel3.add(panelRound3, java.awt.BorderLayout.LINE_END);
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(pictureBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 823, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(panelRound5, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(65, 65, 65))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(roundPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(96, 96, 96)
+                        .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(pictureBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 696, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(panelRound5, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(roundPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(58, 58, 58)))
+                .addContainerGap())
+        );
+
+        jPanel3.add(jPanel2, java.awt.BorderLayout.CENTER);
 
         jPanel1.add(jPanel3, "card2");
 
@@ -318,12 +384,6 @@ public class ChangingPassword extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cancelButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelButtonMouseClicked
-        // TODO add your handling code here:
-        animationClick(panelRound4, "#cccccc");
-        dispose();
-    }//GEN-LAST:event_cancelButtonMouseClicked
 
     private void okButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_okButtonMouseClicked
         // TODO add your handling code here:
@@ -341,78 +401,51 @@ public class ChangingPassword extends javax.swing.JDialog {
                 showWrongReinput.setForeground(Color.decode("#219C90"));
             }
             Timer timer = new Timer(1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Ẩn dialog
-                dispose();
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    // Ẩn dialog
+                    dispose();
                 }
             });
             timer.start();
         }
     }//GEN-LAST:event_okButtonMouseClicked
 
+    private void cancelButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelButtonMouseClicked
+        // TODO add your handling code here:
+        animationClick(panelRound4, "#cccccc");
+        dispose();
+    }//GEN-LAST:event_cancelButtonMouseClicked
+
     private void showPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showPasswordActionPerformed
         // TODO add your handling code here:
         if(showPassword.isSelected()){
-            inputOldPasword.setEchoChar((char) 0);
-            inputNewPassword.setEchoChar((char) 0);
             reinputNewPassword.setEchoChar((char) 0);
         } else {
-            inputOldPasword.setEchoChar('*');
-            inputNewPassword.setEchoChar('*');
             reinputNewPassword.setEchoChar('*');
         }
     }//GEN-LAST:event_showPasswordActionPerformed
 
-    private void inputOldPaswordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputOldPaswordKeyReleased
+    private void jLabel7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseExited
         // TODO add your handling code here:
-        char[] passwordChars = inputOldPasword.getPassword();
-        String password = new String(passwordChars);
-        if (!(password.equals(getUser.getPassword()))){
-            showWrongPassword.setText("*Mật khẩu không đúng !");
-            showWrongPassword.setForeground(Color.decode("#F05941"));
-            inputNewPassword.setEditable(false);
-            reinputNewPassword.setEditable(false);
-        } else {
-            showWrongPassword.setText("");
-            inputNewPassword.setEditable(true);
-            reinputNewPassword.setEditable(true);
-        }
-    }//GEN-LAST:event_inputOldPaswordKeyReleased
+        jLabel7.setForeground(Color.BLACK);
+    }//GEN-LAST:event_jLabel7MouseExited
 
-    private void reinputNewPasswordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_reinputNewPasswordKeyReleased
+    private void jLabel7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseEntered
         // TODO add your handling code here:
-        char[] newPass = inputNewPassword.getPassword();
-        String newPassword = new String(newPass);
-       
-        char[] reinputNewPass = reinputNewPassword.getPassword();
-        String reinputNewPassword = new String(reinputNewPass);
-        
-        if (!(newPassword.equals(reinputNewPassword))){
-            showWrongReinput.setText("*Mật khẩu mới không khớp !");
-            showWrongReinput.setForeground(Color.decode("#F05941"));
-            okLabel.setEnabled(false);
-        }
-        
-        else {
-            showWrongReinput.setText("");
-            okLabel.setEnabled(true);
-        }
-    }//GEN-LAST:event_reinputNewPasswordKeyReleased
+        jLabel7.setForeground(Color.decode("#00A9FF"));
+        jLabel7.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_jLabel7MouseEntered
 
-    private void inputNewPasswordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputNewPasswordKeyReleased
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
-        char[] newPass = inputNewPassword.getPassword();
-        String newPassword = new String(newPass);
-        if (newPassword.length() < 5){
-            showWrongReinput.setText("*Mật khẩu phải có từ 5 kí tự!");
-            showWrongReinput.setForeground(Color.decode("#F05941"));
-            okLabel.setEnabled(false);
-        } else {
-           showWrongReinput.setText("");
-           reinputNewPassword.setEditable(true);
-        }
-    }//GEN-LAST:event_inputNewPasswordKeyReleased
+        new SignupDialog(this, true).setVisible(true);
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void inputOldPaswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputOldPaswordActionPerformed
+        // TODO add your handling code here:
+        //userName = usernameField.getText();
+    }//GEN-LAST:event_inputOldPaswordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -460,28 +493,29 @@ public class ChangingPassword extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Handle.PanelRound cancelButton;
     private javax.swing.JPasswordField inputNewPassword;
-    private javax.swing.JPasswordField inputOldPasword;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField inputOldPasword;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private Handle.PanelRound okButton;
     private javax.swing.JLabel okLabel;
     private Handle.PanelRound panelRound1;
     private Handle.PanelRound panelRound2;
     private Handle.PanelRound panelRound3;
     private Handle.PanelRound panelRound4;
+    private Handle.PanelRound panelRound5;
+    private Handle.PanelRound panelRound6;
+    private Util.PictureBox pictureBox1;
     private javax.swing.JPasswordField reinputNewPassword;
     private Handle.PanelRound roundPanel;
     private javax.swing.JCheckBox showPassword;
-    private javax.swing.JLabel showWrongPassword;
     private javax.swing.JLabel showWrongReinput;
     // End of variables declaration//GEN-END:variables
 }

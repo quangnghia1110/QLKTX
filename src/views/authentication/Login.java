@@ -31,7 +31,6 @@ import models.UserDAO;
 import views.admin.MainAdmin;
 import views.user.MainUser;
 import javax.swing.JFrame;
-import views.Login.Signup;
 
 /**
  *
@@ -381,7 +380,7 @@ public class Login extends javax.swing.JDialog {
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
-        new Signup(this, true).setVisible(true);
+        new SignupDialog(this, true).setVisible(true);
     }//GEN-LAST:event_jLabel7MouseClicked
 
     private void forgotPasswordMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forgotPasswordMouseExited
@@ -395,13 +394,7 @@ public class Login extends javax.swing.JDialog {
     }//GEN-LAST:event_forgotPasswordMouseEntered
 
     private void forgotPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_forgotPasswordMouseClicked
-        // TODO add your handling code here:
-
-        ForgotPassword forgotpassword = new ForgotPassword(null, true);
-        int x = jPanel5.getX() + jPanel5.getWidth() - forgotpassword.getWidth();
-        int y = jPanel5.getY() + jPanel5.getHeight() - forgotpassword.getHeight();
-        forgotpassword.setLocation(x, y);
-        forgotpassword.setVisible(true);
+        new ForgotPassword(this, true).setVisible(true);
     }//GEN-LAST:event_forgotPasswordMouseClicked
 
     private void loginBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnMouseExited
