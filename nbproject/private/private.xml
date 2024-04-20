@@ -3,26 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/views/notification/ConfirmAcceptRegisterRoom.java</file>
-            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/database/DatabaseHelpper.java</file>
-            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/views/notification/ConfirmRefuseRegisterRoom.java</file>
-            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/views/notification/ConfirmRegisterRoom.java</file>
-            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/views/authentication/ChangingPassword.java</file>
-            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/views/authentication/Login.java</file>
-            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/views/notification/ConfirmRefuseMovingRoom.java</file>
-            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/views/user/MainUser.java</file>
-            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/views/authentication/SignupDialog.java</file>
-            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/views/notification/FailedLogIn.java</file>
-            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/views/notification/ConfirmRoom.java</file>
-            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/views/notification/SuceessfulSignUp.java</file>
-            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/views/notification/ConfirmAcceptMovingRoom.java</file>
-            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/views/notification/SuccessfulExportAndImport.java</file>
-            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/views/notification/SuccessfulRegisterRoom.java</file>
-            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/views/notification/FailedSignUp.java</file>
-            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/views/user/DetailRoomAndRegister.java</file>
-            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/views/notification/NotFoundUser.java</file>
-            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/views/authentication/Logout.java</file>
-            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/views/authentication/ForgotPassword.java</file>
+            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/QLKTX/src/View/Authentication/Login.java</file>
+            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/QLKTX/src/Dao/DutyScheduleDAO.java</file>
+            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/QLKTX/src/View/User/DutySchedule.java</file>
+            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/QLKTX/src/Dao/StudentDAO.java</file>
+            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/QLKTX/src/Model/DutySchedule.java</file>
+            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/QLKTX/src/View/Admin/StudentList.java</file>
+            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/QLKTX/src/View/User/MyProfile.java</file>
+            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/QLKTX/src/Dao/UserDAO.java</file>
         </group>
     </open-files>
 </project-private>

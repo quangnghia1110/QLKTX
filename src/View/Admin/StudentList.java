@@ -254,7 +254,7 @@ public class StudentList extends javax.swing.JPanel {
                 i++;
             }
             
-            File file = new File("C:\\Users\\ADMIN\\Downloads\\DSSV.xlsx");
+            File file = new File("D:\\Download\\DSSV.xlsx");
             try {
                 FileOutputStream exportedFile = new FileOutputStream(file);
                 excelFile.write(exportedFile);

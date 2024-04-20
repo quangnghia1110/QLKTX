@@ -29,11 +29,15 @@ public class MainUser extends javax.swing.JFrame {
     Student student ;
     MyRoom myRoom = null;
     RegisterRoom registerRoom = null;
-      
+    DutySchedule dutySchedule = null;
+    Event event = null;
+
     public MainUser(Student student) {
         this.student = student;
         myRoom = new MyRoom(this.student);
         registerRoom = new RegisterRoom(this.student);
+        dutySchedule = new DutySchedule(this.student);
+        event = new Event(this.student);
         initComponents();
         setForm();
         setLocationRelativeTo(null);
@@ -557,6 +561,12 @@ public class MainUser extends javax.swing.JFrame {
         pnActive6.setBackground(new Color(17,144,119));
         pnActive7.setBackground(new Color(17,144,119));
         pnActive8.setBackground(new Color(17,144,119));
+       pnContainer.removeAll();
+        Student st = new StudentDAO().getStudentById(student.getId());
+        dutySchedule = new DutySchedule(st);        
+        pnContainer.add(dutySchedule);
+        pnContainer.revalidate();
+        pnContainer.repaint();
     }//GEN-LAST:event_pnActive5MouseClicked
 
     private void pnActive6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnActive6MouseClicked
@@ -568,6 +578,7 @@ public class MainUser extends javax.swing.JFrame {
         pnActive5.setBackground(new Color(17,144,119));
         pnActive7.setBackground(new Color(17,144,119));
         pnActive8.setBackground(new Color(17,144,119));
+        
     }//GEN-LAST:event_pnActive6MouseClicked
 
     private void pnActive7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnActive7MouseClicked
@@ -579,6 +590,12 @@ public class MainUser extends javax.swing.JFrame {
         pnActive6.setBackground(new Color(17,144,119));
         pnActive5.setBackground(new Color(17,144,119));
         pnActive8.setBackground(new Color(17,144,119));
+        pnContainer.removeAll();
+        Student st = new StudentDAO().getStudentById(student.getId());
+        event = new Event(st);        
+        pnContainer.add(event);
+        pnContainer.revalidate();
+        pnContainer.repaint();
     }//GEN-LAST:event_pnActive7MouseClicked
 
     private void pnActive8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnActive8MouseClicked
