@@ -1,7 +1,8 @@
 package View.User;
 
-import View.Notification.SuccessfulRegisterRoom;
+import Dao.RoomDAO;
 import Handle.PanelRound;
+import Model.Student;
 import java.awt.BorderLayout;
 import javax.swing.Timer;
 import java.awt.Color;
@@ -32,14 +33,7 @@ import javax.swing.LayoutStyle;
 import javax.swing.border.Border;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import Model.Room;
-import Dao.RoomDAO;
-import Model.Student;
-import View.Admin.RoomList.Message;
-import View.Admin.RoomList.DetailRoom;
-import View.Admin.RoomList.EditRoom;
-import View.Admin.RoomList.RoomList;
-import View.Notification.ConfirmRegisterRoom;
-
+import View.Notification.SuccessfulRegisterRoom;
 public class RegisterRoom extends javax.swing.JPanel {
     private Student studentRef; 
     RoomDAO daoR = new RoomDAO();
@@ -345,8 +339,8 @@ public class RegisterRoom extends javax.swing.JPanel {
         panelRound6.setRoundTopRight(40);
         panelRound6.setLayout(new java.awt.CardLayout(5, 5));
 
-        jLabel5.setBackground(new java.awt.Color(35, 45, 63));
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-filter-50.png"))); // NOI18N
+        jLabel5.setBackground(new java.awt.Color(17, 144, 119));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Filter.png"))); // NOI18N
         jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -382,7 +376,7 @@ public class RegisterRoom extends javax.swing.JPanel {
         panelRound1.setRoundTopRight(40);
         panelRound1.setLayout(new java.awt.BorderLayout());
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-search-50.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Search.png"))); // NOI18N
         panelRound1.add(jLabel2, java.awt.BorderLayout.LINE_START);
 
         panelRound3.setBackground(new java.awt.Color(255, 255, 255));

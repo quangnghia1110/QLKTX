@@ -3,9 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
 package View.User;
-
-import View.Notification.SuccessfulRegisterRoom;
-import View.Notification.ConfirmRegisterRoom;
 import java.awt.Color;
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
@@ -23,6 +20,8 @@ import Model.Room;
 import Model.Student;
 import Dao.StudentDAO;
 import Handle.PanelRound;
+import View.Notification.ConfirmRegisterRoom;
+import View.Notification.SuccessfulRegisterRoom;
 
 /**
  *

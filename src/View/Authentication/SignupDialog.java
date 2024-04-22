@@ -682,12 +682,11 @@ public class SignupDialog extends javax.swing.JDialog {
             return false;
         }
         
-        if(!emailField.getText().contains("@gmail.com")){
-            if (!emailField.getText().contains("@student.ptithcm.edu.vn")){
-                warnLabel.setText("Email không hợp lệ!(@gmail.com hoặc @student.ptithcm.edu.vn)!");
+            if (!emailField.getText().contains("@student.hcmute.edu.vn")){
+                warnLabel.setText("Email không hợp lệ!(@student.hcmute.edu.vn)!");
                 return false;
             }
-        }
+        
         if(phoneField.getText().length() != 10 || !isNumeric(phoneField.getText())){
             warnLabel.setText("Số điện thoại không hợp lệ!(0-9)");
             return false;

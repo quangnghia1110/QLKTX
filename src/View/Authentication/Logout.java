@@ -47,6 +47,7 @@ public class Logout extends javax.swing.JDialog {
         getContentPane().setLayout(new java.awt.CardLayout());
 
         jPanel1.setBackground(new java.awt.Color(17, 144, 119));
+        jPanel1.setPreferredSize(null);
         jPanel1.setLayout(new java.awt.CardLayout(5, 5));
 
         jPanel3.setBackground(new java.awt.Color(17, 144, 119));
