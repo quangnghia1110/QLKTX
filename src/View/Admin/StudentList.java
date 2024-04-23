@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package View.Admin;
 import Model.Room;
 import Dao.RoomDAO;
@@ -133,18 +130,18 @@ public class StudentList extends javax.swing.JPanel {
         showListStudent(listOfOrderedStudentsByID);
     }
     
-    public void orderByRoom() {
-        ArrayList<Student> listOfOrderedStudentsByRoom = new ArrayList<>();
-        listOfOrderedStudentsByRoom = (ArrayList<Student>) list.clone();
-        Comparator<Student> comparatorRoom = new Comparator<Student>() {
-            @Override
-            public int compare(Student o1, Student o2) {
-                return o1.getRoom().compareTo(o2.getRoom());
-            }
-        };
-        Collections.sort(listOfOrderedStudentsByRoom, comparatorRoom);
-        showListStudent(listOfOrderedStudentsByRoom);
-    }
+//    public void orderByRoom() {
+//        ArrayList<Student> listOfOrderedStudentsByRoom = new ArrayList<>();
+//        listOfOrderedStudentsByRoom = (ArrayList<Student>) list.clone();
+//        Comparator<Student> comparatorRoom = new Comparator<Student>() {
+//            @Override
+//            public int compare(Student o1, Student o2) {
+//                return o1.getRoom().compareTo(o2.getRoom());
+//            }
+//        };
+//        Collections.sort(listOfOrderedStudentsByRoom, comparatorRoom);
+//        showListStudent(listOfOrderedStudentsByRoom);
+//    }
     
     public void orderByClass() {
         ArrayList<Student> listOfOrderedStudentByClass = new ArrayList<>();
@@ -161,9 +158,7 @@ public class StudentList extends javax.swing.JPanel {
     
     public void orderedStudentsList() {
         model.setRowCount(0);
-        if (filterComboBox.getSelectedItem().equals("Phòng")){
-            orderByRoom();
-        } else if (filterComboBox.getSelectedItem().equals("Mã lớp")) {
+        if (filterComboBox.getSelectedItem().equals("Mã lớp")) {
            orderByClass();
         } else if (filterComboBox.getSelectedItem().equals("Mã sinh viên")) {
             orderByID();
@@ -254,7 +249,7 @@ public class StudentList extends javax.swing.JPanel {
                 i++;
             }
             
-            File file = new File("D:\\Download\\DSSV.xlsx");
+            File file = new File("D:\\Uploads\\DSSV.xlsx");
             try {
                 FileOutputStream exportedFile = new FileOutputStream(file);
                 excelFile.write(exportedFile);
@@ -471,6 +466,11 @@ public class StudentList extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
+        panelRound3 = new Handle.PanelRound();
+        panelRound7 = new Handle.PanelRound();
+        panelRound11 = new Handle.PanelRound();
+        jLabel3 = new javax.swing.JLabel();
+        searchTextField = new javax.swing.JTextField();
         arrangePanel = new Handle.PanelRound();
         panelRound5 = new Handle.PanelRound();
         borderArrange = new Handle.PanelRound();
@@ -490,21 +490,16 @@ public class StudentList extends javax.swing.JPanel {
         panelRound2 = new Handle.PanelRound();
         jLabel6 = new javax.swing.JLabel();
         comboBoxRoom = new javax.swing.JComboBox<>();
-        exportPanel = new Handle.PanelRound();
-        exportExcelFile = new Handle.PanelRound();
-        roundExportIcon = new Handle.PanelRound();
-        exportFile = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         panelRound4 = new Handle.PanelRound();
-        importExcelFile = new Handle.PanelRound();
+        exportExcelFile = new Handle.PanelRound();
         roundImportIcon = new Handle.PanelRound();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        panelRound3 = new Handle.PanelRound();
-        panelRound7 = new Handle.PanelRound();
-        panelRound11 = new Handle.PanelRound();
-        jLabel3 = new javax.swing.JLabel();
-        searchTextField = new javax.swing.JTextField();
+        exportPanel = new Handle.PanelRound();
+        importExcelFile = new Handle.PanelRound();
+        roundExportIcon = new Handle.PanelRound();
+        exportFile = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -559,6 +554,66 @@ public class StudentList extends javax.swing.JPanel {
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 20, 5));
 
+        panelRound3.setBackground(new java.awt.Color(35, 45, 63));
+        panelRound3.setPreferredSize(new java.awt.Dimension(200, 50));
+        panelRound3.setRoundBottomLeft(50);
+        panelRound3.setRoundBottomRight(50);
+        panelRound3.setRoundTopLeft(50);
+        panelRound3.setRoundTopRight(50);
+        panelRound3.setLayout(new java.awt.CardLayout(6, 6));
+
+        panelRound7.setBackground(new java.awt.Color(255, 255, 255));
+        panelRound7.setRoundBottomLeft(40);
+        panelRound7.setRoundBottomRight(40);
+        panelRound7.setRoundTopLeft(40);
+        panelRound7.setRoundTopRight(40);
+        panelRound7.setLayout(new java.awt.BorderLayout());
+
+        panelRound11.setBackground(new java.awt.Color(255, 255, 255));
+        panelRound11.setRoundBottomLeft(40);
+        panelRound11.setRoundBottomRight(40);
+        panelRound11.setRoundTopLeft(40);
+        panelRound11.setRoundTopRight(40);
+
+        javax.swing.GroupLayout panelRound11Layout = new javax.swing.GroupLayout(panelRound11);
+        panelRound11.setLayout(panelRound11Layout);
+        panelRound11Layout.setHorizontalGroup(
+            panelRound11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 46, Short.MAX_VALUE)
+        );
+        panelRound11Layout.setVerticalGroup(
+            panelRound11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 38, Short.MAX_VALUE)
+        );
+
+        panelRound7.add(panelRound11, java.awt.BorderLayout.LINE_END);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/searchingIcon.png"))); // NOI18N
+        panelRound7.add(jLabel3, java.awt.BorderLayout.LINE_START);
+
+        searchTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        searchTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        searchTextField.setBorder(null);
+        searchTextField.setPreferredSize(new java.awt.Dimension(175, 18));
+        searchTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchTextFieldActionPerformed(evt);
+            }
+        });
+        searchTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchTextFieldKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                searchTextFieldKeyTyped(evt);
+            }
+        });
+        panelRound7.add(searchTextField, java.awt.BorderLayout.CENTER);
+
+        panelRound3.add(panelRound7, "card2");
+
+        jPanel8.add(panelRound3);
+
         arrangePanel.setBackground(new java.awt.Color(35, 45, 63));
         arrangePanel.setPreferredSize(new java.awt.Dimension(173, 50));
         arrangePanel.setRoundBottomLeft(50);
@@ -599,7 +654,7 @@ public class StudentList extends javax.swing.JPanel {
         panelRound8.setRoundTopRight(10);
         panelRound8.setLayout(new java.awt.CardLayout(5, 5));
 
-        filterComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Tên", "Phòng", "Mã sinh viên", "Mã lớp" }));
+        filterComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Tên", "Mã sinh viên", "Mã lớp" }));
         filterComboBox.setBorder(null);
         filterComboBox.setPreferredSize(new java.awt.Dimension(100, 40));
         panelRound8.add(filterComboBox, "card2");
@@ -711,16 +766,15 @@ public class StudentList extends javax.swing.JPanel {
 
         jPanel8.add(panelRound10);
 
-        exportPanel.setBackground(new java.awt.Color(35, 45, 63));
-        exportPanel.setPreferredSize(new java.awt.Dimension(160, 50));
-        exportPanel.setRoundBottomLeft(50);
-        exportPanel.setRoundBottomRight(50);
-        exportPanel.setRoundTopLeft(50);
-        exportPanel.setRoundTopRight(50);
-        exportPanel.setLayout(new java.awt.CardLayout(5, 5));
+        panelRound4.setBackground(new java.awt.Color(35, 45, 63));
+        panelRound4.setPreferredSize(new java.awt.Dimension(158, 50));
+        panelRound4.setRoundBottomLeft(50);
+        panelRound4.setRoundBottomRight(50);
+        panelRound4.setRoundTopLeft(50);
+        panelRound4.setRoundTopRight(50);
+        panelRound4.setLayout(new java.awt.CardLayout(5, 5));
 
         exportExcelFile.setBackground(new java.awt.Color(255, 255, 255));
-        exportExcelFile.setEnabled(false);
         exportExcelFile.setRoundBottomLeft(40);
         exportExcelFile.setRoundBottomRight(40);
         exportExcelFile.setRoundTopLeft(40);
@@ -731,6 +785,50 @@ public class StudentList extends javax.swing.JPanel {
             }
         });
         exportExcelFile.setLayout(new java.awt.BorderLayout());
+
+        roundImportIcon.setBackground(new java.awt.Color(255, 255, 255));
+        roundImportIcon.setRoundBottomLeft(40);
+        roundImportIcon.setRoundBottomRight(40);
+        roundImportIcon.setRoundTopLeft(40);
+        roundImportIcon.setRoundTopRight(40);
+        roundImportIcon.setLayout(new java.awt.CardLayout(5, 4));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/importIcon.png"))); // NOI18N
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        roundImportIcon.add(jLabel1, "card2");
+
+        exportExcelFile.add(roundImportIcon, java.awt.BorderLayout.LINE_START);
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Xuất file Excel");
+        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        exportExcelFile.add(jLabel4, java.awt.BorderLayout.CENTER);
+
+        panelRound4.add(exportExcelFile, "card2");
+
+        jPanel8.add(panelRound4);
+
+        exportPanel.setBackground(new java.awt.Color(35, 45, 63));
+        exportPanel.setPreferredSize(new java.awt.Dimension(160, 50));
+        exportPanel.setRoundBottomLeft(50);
+        exportPanel.setRoundBottomRight(50);
+        exportPanel.setRoundTopLeft(50);
+        exportPanel.setRoundTopRight(50);
+        exportPanel.setLayout(new java.awt.CardLayout(5, 5));
+
+        importExcelFile.setBackground(new java.awt.Color(255, 255, 255));
+        importExcelFile.setEnabled(false);
+        importExcelFile.setRoundBottomLeft(40);
+        importExcelFile.setRoundBottomRight(40);
+        importExcelFile.setRoundTopLeft(40);
+        importExcelFile.setRoundTopRight(40);
+        importExcelFile.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                importExcelFileMouseClicked(evt);
+            }
+        });
+        importExcelFile.setLayout(new java.awt.BorderLayout());
 
         roundExportIcon.setBackground(new java.awt.Color(255, 255, 255));
         roundExportIcon.setRoundBottomLeft(40);
@@ -744,121 +842,18 @@ public class StudentList extends javax.swing.JPanel {
         exportFile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         roundExportIcon.add(exportFile, "card2");
 
-        exportExcelFile.add(roundExportIcon, java.awt.BorderLayout.LINE_START);
+        importExcelFile.add(roundExportIcon, java.awt.BorderLayout.LINE_START);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(35, 45, 63));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Xuất file Excel");
+        jLabel2.setText("Nhập file Excel");
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        exportExcelFile.add(jLabel2, java.awt.BorderLayout.CENTER);
+        importExcelFile.add(jLabel2, java.awt.BorderLayout.CENTER);
 
-        exportPanel.add(exportExcelFile, "card2");
+        exportPanel.add(importExcelFile, "card2");
 
         jPanel8.add(exportPanel);
-
-        panelRound4.setBackground(new java.awt.Color(35, 45, 63));
-        panelRound4.setPreferredSize(new java.awt.Dimension(158, 50));
-        panelRound4.setRoundBottomLeft(50);
-        panelRound4.setRoundBottomRight(50);
-        panelRound4.setRoundTopLeft(50);
-        panelRound4.setRoundTopRight(50);
-        panelRound4.setLayout(new java.awt.CardLayout(5, 5));
-
-        importExcelFile.setBackground(new java.awt.Color(255, 255, 255));
-        importExcelFile.setRoundBottomLeft(40);
-        importExcelFile.setRoundBottomRight(40);
-        importExcelFile.setRoundTopLeft(40);
-        importExcelFile.setRoundTopRight(40);
-        importExcelFile.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                importExcelFileMouseClicked(evt);
-            }
-        });
-        importExcelFile.setLayout(new java.awt.BorderLayout());
-
-        roundImportIcon.setBackground(new java.awt.Color(255, 255, 255));
-        roundImportIcon.setRoundBottomLeft(40);
-        roundImportIcon.setRoundBottomRight(40);
-        roundImportIcon.setRoundTopLeft(40);
-        roundImportIcon.setRoundTopRight(40);
-        roundImportIcon.setLayout(new java.awt.CardLayout(5, 4));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/importIcon.png"))); // NOI18N
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        roundImportIcon.add(jLabel1, "card2");
-
-        importExcelFile.add(roundImportIcon, java.awt.BorderLayout.LINE_START);
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Nhập file Excel");
-        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        importExcelFile.add(jLabel4, java.awt.BorderLayout.CENTER);
-
-        panelRound4.add(importExcelFile, "card2");
-
-        jPanel8.add(panelRound4);
-
-        panelRound3.setBackground(new java.awt.Color(35, 45, 63));
-        panelRound3.setPreferredSize(new java.awt.Dimension(258, 50));
-        panelRound3.setRoundBottomLeft(50);
-        panelRound3.setRoundBottomRight(50);
-        panelRound3.setRoundTopLeft(50);
-        panelRound3.setRoundTopRight(50);
-        panelRound3.setLayout(new java.awt.CardLayout(6, 6));
-
-        panelRound7.setBackground(new java.awt.Color(255, 255, 255));
-        panelRound7.setRoundBottomLeft(40);
-        panelRound7.setRoundBottomRight(40);
-        panelRound7.setRoundTopLeft(40);
-        panelRound7.setRoundTopRight(40);
-        panelRound7.setLayout(new java.awt.BorderLayout());
-
-        panelRound11.setBackground(new java.awt.Color(255, 255, 255));
-        panelRound11.setRoundBottomLeft(40);
-        panelRound11.setRoundBottomRight(40);
-        panelRound11.setRoundTopLeft(40);
-        panelRound11.setRoundTopRight(40);
-
-        javax.swing.GroupLayout panelRound11Layout = new javax.swing.GroupLayout(panelRound11);
-        panelRound11.setLayout(panelRound11Layout);
-        panelRound11Layout.setHorizontalGroup(
-            panelRound11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 46, Short.MAX_VALUE)
-        );
-        panelRound11Layout.setVerticalGroup(
-            panelRound11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 38, Short.MAX_VALUE)
-        );
-
-        panelRound7.add(panelRound11, java.awt.BorderLayout.LINE_END);
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/searchingIcon.png"))); // NOI18N
-        panelRound7.add(jLabel3, java.awt.BorderLayout.LINE_START);
-
-        searchTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        searchTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        searchTextField.setBorder(null);
-        searchTextField.setPreferredSize(new java.awt.Dimension(175, 18));
-        searchTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchTextFieldActionPerformed(evt);
-            }
-        });
-        searchTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                searchTextFieldKeyReleased(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                searchTextFieldKeyTyped(evt);
-            }
-        });
-        panelRound7.add(searchTextField, java.awt.BorderLayout.CENTER);
-
-        panelRound3.add(panelRound7, "card2");
-
-        jPanel8.add(panelRound3);
 
         jPanel4.add(jPanel8, java.awt.BorderLayout.CENTER);
 
@@ -882,6 +877,7 @@ public class StudentList extends javax.swing.JPanel {
         jScrollPane1.setViewportBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         jScrollPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jScrollPane1.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(800, 800));
 
         studentsTable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         studentsTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -952,10 +948,18 @@ public class StudentList extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_searchTextFieldActionPerformed
 
+    private void importExcelFileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_importExcelFileMouseClicked
+
+        animationClick(roundImportIcon, "#ffffff");
+        animationClick(exportExcelFile, "#ffffff");
+        importExcelFile();
+        showListStudent(list);
+    }//GEN-LAST:event_importExcelFileMouseClicked
+
     private void exportExcelFileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exportExcelFileMouseClicked
         // TODO add your handling code here:
         animationClick(roundExportIcon, "#ffffff");
-        animationClick(exportExcelFile, "#ffffff");
+        animationClick(importExcelFile, "#ffffff");
         if (list.isEmpty()){
             SuccessfulExportAndImport emptyList = new SuccessfulExportAndImport(null, true, "Danh sách sinh viên trống!");
             emptyList.setVisible(true);
@@ -963,14 +967,6 @@ public class StudentList extends javax.swing.JPanel {
             exportExcelFile();
         }
     }//GEN-LAST:event_exportExcelFileMouseClicked
-
-    private void importExcelFileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_importExcelFileMouseClicked
-        // TODO add your handling code here:
-        animationClick(roundImportIcon, "#ffffff");
-        animationClick(importExcelFile, "#ffffff");
-        importExcelFile();
-        showListStudent(list);
-    }//GEN-LAST:event_importExcelFileMouseClicked
 
     private void filterButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_filterButtonMouseClicked
        // TODO add your handling code here:

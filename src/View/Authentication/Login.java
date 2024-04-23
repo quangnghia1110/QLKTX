@@ -402,7 +402,39 @@ public class Login extends javax.swing.JDialog {
     }//GEN-LAST:event_loginBtnMouseExited
 
     private void loginBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnMouseEntered
-        // TODO add your handling code here:
+        animationClick(loginBtn, "#232D3F");
+        UserDAO userDAO = new UserDAO();
+        char[] passwordChars = passwordField.getPassword();
+        String password = new String(passwordChars);
+        if(usernameField.getText().strip() == "" || password.strip() == ""){
+            shakePanel(panelRound3);
+            return;
+        }
+        //        System.out.println("pass"+password);
+        if(userDAO.checkLogin(usernameField.getText().strip().toUpperCase(), password)== 1){
+            System.out.println("yes");
+            User user = userDAO.getUser(usernameField.getText());
+            if(user.isIsAdmin()){
+                MainAdmin mainAdmin = new MainAdmin();
+                mainAdmin.setUsername(usernameField.getText().strip().toUpperCase());
+                mainAdmin.setVisible(true);
+                mainAdmin.requestFocus();
+
+            }else{
+                StudentDAO studentDAO = new StudentDAO();
+                Student st = studentDAO.getStudentById(usernameField.getText());
+                System.out.println(st.getName() + " " + st.getId());
+                MainUser mainUser = new MainUser(st);
+                mainUser.setVisible(true);
+            }
+            this.dispose();
+        }else if (userDAO.checkLogin(usernameField.getText().strip().toUpperCase(), password)== 2){
+            System.out.println("no");
+            new FailedLogIn(this, true).setVisible(true);
+        }else {
+            System.out.println("no");
+            new NotFoundUser(this, true).setVisible(true);
+        }
         loginBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_loginBtnMouseEntered
 

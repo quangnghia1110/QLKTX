@@ -80,6 +80,9 @@ public class MainAdmin extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(600, 400));
 
         jPanel2.setLayout(new java.awt.BorderLayout());
+
+        menuAdmin1.setBackground(new java.awt.Color(17, 144, 119));
+        menuAdmin1.setForeground(new java.awt.Color(17, 144, 119));
         jPanel2.add(menuAdmin1, java.awt.BorderLayout.LINE_START);
 
         body.setBackground(new java.awt.Color(204, 0, 0));

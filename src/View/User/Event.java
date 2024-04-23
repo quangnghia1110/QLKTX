@@ -336,7 +336,7 @@ public void exportExcelFile() {
             row.createCell(4, CellType.STRING).setCellValue(event.getDescription()); // Mô tả
         }
 
-        File file = new File("D:\\Download\\DANH_SACH_SU_KIEN.xlsx"); // Changed from "DANH_SACH_LICH_TRUC.xlsx" to "DANH_SACH_SU_KIEN.xlsx"
+        File file = new File("D:\\Uploads\\DANH_SACH_SU_KIEN.xlsx"); // Changed from "DANH_SACH_LICH_TRUC.xlsx" to "DANH_SACH_SU_KIEN.xlsx"
         try (FileOutputStream exportedFile = new FileOutputStream(file)) {
             excelFile.write(exportedFile);
             SuccessfulExportAndImport showDialog = new SuccessfulExportAndImport(null, true, "Xuất ra file Excel thành công !");

@@ -321,7 +321,7 @@ private ArrayList<Model.DutySchedule> list;
                 row.createCell(4, CellType.STRING).setCellValue(schedule.getDescription()); // Mô tả
             }
 
-            File file = new File("D:\\Download\\DANH_SACH_LICH_TRUC.xlsx");
+            File file = new File("D:\\Uploads\\DANH_SACH_LICH_TRUC.xlsx");
             try (FileOutputStream exportedFile = new FileOutputStream(file)) {
                 excelFile.write(exportedFile);
                 SuccessfulExportAndImport showDialog = new SuccessfulExportAndImport(null, true, "Xuất ra file Excel thành công !");
