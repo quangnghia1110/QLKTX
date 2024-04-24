@@ -13,6 +13,7 @@ import Model.Room;
 import Dao.RoomDAO;
 import Model.Student;
 import Dao.StudentDAO;
+import Dao.UserDAO;
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -37,12 +38,44 @@ import java.io.File;
  */
 public class DutySchedule extends javax.swing.JPanel {
 private ArrayList<Model.DutySchedule> list;
-    public DutySchedule(Student student) {
-        initComponents();
-        list = new DutyScheduleDAO().getListSchedule(); 
-        
+private Student student;
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
+    public Student getStudent() {
+        return student;
+    }
+    public DutySchedule(Student student) {
+        initComponents();
+              this.student = student;
+
+        list = new DutyScheduleDAO().getListSchedule(); 
+        fitContentOfTable(table);
+    }
+    public void fitContentOfTable(JTable table){
+        for (int col = 0; col < table.getColumnCount(); col++){
+            int maxWid = 0;
+            for (int row = 0; row < table.getRowCount(); row++){
+                int cellWid = table.prepareRenderer(table.getCellRenderer(row, col), row, col).getPreferredSize().width;
+                maxWid = Math.max(maxWid, cellWid);
+            }
+            table.getColumnModel().getColumn(col).setPreferredWidth(maxWid + 10);
+        }
+        table.setBackground(Color.white);
+        table.setPreferredScrollableViewportSize(table.getPreferredSize());
+        table.setFillsViewportHeight(true);
+        DefaultTableCellRenderer headerRenderer = (DefaultTableCellRenderer) table.getTableHeader().getDefaultRenderer();
+        headerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);  
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        int[] column = {0,1,2,3};
+        for (int i = 0; i < column.length; i++) {
+            table.getColumnModel().getColumn(column[i]).setCellRenderer(centerRenderer);
+        }   
+    }
     
 
    
@@ -274,45 +307,73 @@ private ArrayList<Model.DutySchedule> list;
 
     private void btnHienThiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHienThiMouseClicked
         DutyScheduleDAO dutyScheduleDAO = new DutyScheduleDAO();
-        List<Model.DutySchedule> dutySchedules = dutyScheduleDAO.getAll();
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        model.setRowCount(0); 
-        for (Model.DutySchedule dutySchedule : dutySchedules) {
-            Object[] rowData = {
-                dutySchedule.getScheduleId(),
-                dutySchedule.getStudentId(),
-                dutySchedule.getScheduleDate(),
-                dutySchedule.getDescription()
-            };
-            model.addRow(rowData);
+        if (student != null) {
+            String studentId = student.getId();
+            List<Model.DutySchedule> dutySchedules = dutyScheduleDAO.getAll(studentId);
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            model.setRowCount(0);
+            if (dutySchedules.isEmpty()) {
+                Object[] rowData = {"Danh sách trống", "", "", ""};
+                model.addRow(rowData);
+            } else {
+                for (Model.DutySchedule dutySchedule : dutySchedules) {
+                    Object[] rowData = {
+                        dutySchedule.getScheduleId(),
+                        dutySchedule.getStudentId(),
+                        dutySchedule.getScheduleDate(),
+                        dutySchedule.getDescription()
+                    };
+                    model.addRow(rowData);
+                }
+            }
+        } else {
+            // Handle the case when student is null
+            // For example, display an error message
+            System.out.println("Error: Student is null");
         }
     }//GEN-LAST:event_btnHienThiMouseClicked
 
     private void btnExport1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExport1MouseClicked
-        if (list.isEmpty()){
-            SuccessfulExportAndImport emptyList = new SuccessfulExportAndImport(null, true, "Danh sách sinh viên trống!");
-            emptyList.setVisible(true);
-        } else {
-            exportExcelFile();
-        }
-       }//GEN-LAST:event_btnExport1MouseClicked
-    public void exportExcelFile() {
-        try {
-            XSSFWorkbook excelFile = new XSSFWorkbook();
-            XSSFSheet sheet = excelFile.createSheet("DANH SÁCH LỊCH TRỰC");
-
-            // Header row
-            String[] headers = {"STT", "Mã lịch trực", "Mã sinh viên", "Ngày trực", "Mô tả"};
-            Cell cell;
-            org.apache.poi.ss.usermodel.Row row = sheet.createRow(0);
-            for (int i = 0; i < headers.length; i++) {
-                cell = row.createCell(i, CellType.STRING);
-                cell.setCellValue(headers[i]);
+         if (list.isEmpty()) {
+        SuccessfulExportAndImport emptyList = new SuccessfulExportAndImport(null, true, "Danh sách sinh viên trống!");
+        emptyList.setVisible(true);
+    } else {
+        if (student != null) {
+            DutyScheduleDAO dutyScheduleDAO = new DutyScheduleDAO(); // Tạo một thể hiện của DutyScheduleDAO
+            List<Model.DutySchedule> dutySchedules = dutyScheduleDAO.getAll(student.getId());
+            
+            if (!dutySchedules.isEmpty()) {
+                exportExcelFile(student.getId());
+            } else {
+                // Xử lý trường hợp danh sách lịch trực của sinh viên trống
+                SuccessfulExportAndImport emptyScheduleList = new SuccessfulExportAndImport(null, true, "Danh sách lịch trực của sinh viên trống!");
+                emptyScheduleList.setVisible(true);
             }
+        } else {
+            // Xử lý trường hợp khi student là null
+            System.out.println("Error: Student is null");
+        }
+    }
+       }//GEN-LAST:event_btnExport1MouseClicked
+    public void exportExcelFile(String studentId) {
+    try {
+        XSSFWorkbook excelFile = new XSSFWorkbook();
+        XSSFSheet sheet = excelFile.createSheet("DANH SÁCH LỊCH TRỰC");
 
-            // Data rows
-            int rowNum = 1;
-            for (Model.DutySchedule schedule : list) {
+        // Header row
+        String[] headers = {"STT", "Mã lịch trực", "Mã sinh viên", "Ngày trực", "Mô tả"};
+        Cell cell;
+        org.apache.poi.ss.usermodel.Row row = sheet.createRow(0);
+        for (int i = 0; i < headers.length; i++) {
+            cell = row.createCell(i, CellType.STRING);
+            cell.setCellValue(headers[i]);
+        }
+
+        // Data rows
+        int rowNum = 1;
+        for (Model.DutySchedule schedule : list) {
+            // Check if the schedule belongs to the specified studentId
+            if (schedule.getStudentId().equals(studentId)) {
                 row = sheet.createRow(rowNum++);
                 row.createCell(0, CellType.NUMERIC).setCellValue(rowNum - 1); // STT
                 row.createCell(1, CellType.NUMERIC).setCellValue(schedule.getScheduleId()); // Mã lịch trực
@@ -320,20 +381,22 @@ private ArrayList<Model.DutySchedule> list;
                 row.createCell(3, CellType.STRING).setCellValue(schedule.getScheduleDate().toString()); // Ngày trực
                 row.createCell(4, CellType.STRING).setCellValue(schedule.getDescription()); // Mô tả
             }
+        }
 
-            File file = new File("D:\\Download\\DANH_SACH_LICH_TRUC.xlsx");
-            try (FileOutputStream exportedFile = new FileOutputStream(file)) {
-                excelFile.write(exportedFile);
-                SuccessfulExportAndImport showDialog = new SuccessfulExportAndImport(null, true, "Xuất ra file Excel thành công !");
-                showDialog.setVisible(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
+        File file = new File("D:\\Download\\DANH_SACH_LICH_TRUC.xlsx");
+        try (FileOutputStream exportedFile = new FileOutputStream(file)) {
+            excelFile.write(exportedFile);
+            SuccessfulExportAndImport showDialog = new SuccessfulExportAndImport(null, true, "Xuất ra file Excel thành công !");
+            showDialog.setVisible(true);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+    } catch (Exception e) {
+        e.printStackTrace();
     }
+}
+
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

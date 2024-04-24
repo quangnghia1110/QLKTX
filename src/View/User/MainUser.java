@@ -4,6 +4,7 @@
  */
 package View.User;
 
+import Dao.MailSinhVienDAO;
 import Handle.PanelRound;
 import java.awt.Color;
 import java.awt.HeadlessException;
@@ -17,7 +18,7 @@ import Dao.RoomDAO;
 import Model.Student;
 import Dao.StudentDAO;
 import View.Authentication.Logout;
-
+import Dao.UtilityBillDAO;
 /**
  *
  * @author LUUTHANH
@@ -25,18 +26,21 @@ import View.Authentication.Logout;
 public class MainUser extends javax.swing.JFrame {
     StudentDAO daoS = new StudentDAO();
     RoomDAO daoR = new RoomDAO();
+    MailSinhVienDAO mail = new MailSinhVienDAO();
+    UtilityBillDAO billDAO = new UtilityBillDAO();
     Student student ;
     MyRoom myRoom = null;
     RegisterRoom registerRoom = null;
     DutySchedule dutySchedule = null;
-    Event event = null;
-
+    MailSinhVien mailSinhVien = null;
+    UtilityBill utilityBill= null;
     public MainUser(Student student) {
         this.student = student;
         myRoom = new MyRoom(this.student);
         registerRoom = new RegisterRoom(this.student);
         dutySchedule = new DutySchedule(this.student);
-        event = new Event(this.student);
+        mailSinhVien = new MailSinhVien(this.student);
+        utilityBill = new UtilityBill(this.student);
         initComponents();
         setForm();
         setLocationRelativeTo(null);
@@ -109,9 +113,6 @@ public class MainUser extends javax.swing.JFrame {
         pnActive6 = new Handle.PanelRound();
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
-        pnActive7 = new Handle.PanelRound();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
         pnActive8 = new Handle.PanelRound();
         jLabel35 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
@@ -348,30 +349,6 @@ public class MainUser extends javax.swing.JFrame {
         jLabel31.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pnActive6.add(jLabel31);
 
-        pnActive7.setBackground(new java.awt.Color(17, 144, 119));
-        pnActive7.setPreferredSize(new java.awt.Dimension(151, 48));
-        pnActive7.setRoundBottomLeft(15);
-        pnActive7.setRoundBottomRight(15);
-        pnActive7.setRoundTopLeft(15);
-        pnActive7.setRoundTopRight(15);
-        pnActive7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pnActive7MouseClicked(evt);
-            }
-        });
-        pnActive7.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
-
-        jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/myRoomIcon.png"))); // NOI18N
-        jLabel32.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        pnActive7.add(jLabel32);
-
-        jLabel34.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel34.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel34.setText("Sự kiện");
-        jLabel34.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel34.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        pnActive7.add(jLabel34);
-
         pnActive8.setBackground(new java.awt.Color(17, 144, 119));
         pnActive8.setPreferredSize(new java.awt.Dimension(151, 48));
         pnActive8.setRoundBottomLeft(15);
@@ -406,8 +383,7 @@ public class MainUser extends javax.swing.JFrame {
                         .addGap(34, 34, 34)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(pnActive8, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(185, 185, 185)
                                 .addComponent(jLabel11))
                             .addComponent(jLabel5)
                             .addComponent(pnActive4, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -415,7 +391,7 @@ public class MainUser extends javax.swing.JFrame {
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(pnActive5, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(pnActive6, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pnActive7, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(pnActive8, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(20, 20, 20))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
@@ -446,15 +422,10 @@ public class MainUser extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnActive6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnActive7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel11))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pnActive8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addComponent(pnActive8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
         );
@@ -493,7 +464,6 @@ public class MainUser extends javax.swing.JFrame {
         pnActive4.setBackground(new Color(17,144,119));
         pnActive5.setBackground(new Color(17,144,119));
         pnActive6.setBackground(new Color(17,144,119));
-        pnActive7.setBackground(new Color(17,144,119));
         pnActive8.setBackground(new Color(17,144,119));
         pnContainer.removeAll();
         pnContainer.add(pnHome);
@@ -508,7 +478,6 @@ public class MainUser extends javax.swing.JFrame {
         pnActive2.setBackground(new Color(17,144,119));
         pnActive5.setBackground(new Color(17,144,119));
         pnActive6.setBackground(new Color(17,144,119));
-        pnActive7.setBackground(new Color(17,144,119));
         pnActive8.setBackground(new Color(17,144,119));
         pnContainer.removeAll();
         Student st = new StudentDAO().getStudentById(student.getId());
@@ -527,7 +496,6 @@ public class MainUser extends javax.swing.JFrame {
         pnActive4.setBackground(new Color(17,144,119));
         pnActive5.setBackground(new Color(17,144,119));
         pnActive6.setBackground(new Color(17,144,119));
-        pnActive7.setBackground(new Color(17,144,119));
         pnActive8.setBackground(new Color(17,144,119));
         pnContainer.removeAll();
         Student st = new StudentDAO().getStudentById(student.getId());
@@ -558,7 +526,6 @@ public class MainUser extends javax.swing.JFrame {
         pnActive4.setBackground(new Color(17,144,119));
         pnActive2.setBackground(new Color(17,144,119));
         pnActive6.setBackground(new Color(17,144,119));
-        pnActive7.setBackground(new Color(17,144,119));
         pnActive8.setBackground(new Color(17,144,119));
        pnContainer.removeAll();
         Student st = new StudentDAO().getStudentById(student.getId());
@@ -575,27 +542,14 @@ public class MainUser extends javax.swing.JFrame {
         pnActive4.setBackground(new Color(17,144,119));
         pnActive2.setBackground(new Color(17,144,119));
         pnActive5.setBackground(new Color(17,144,119));
-        pnActive7.setBackground(new Color(17,144,119));
-        pnActive8.setBackground(new Color(17,144,119));
-        
-    }//GEN-LAST:event_pnActive6MouseClicked
-
-    private void pnActive7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnActive7MouseClicked
-        // TODO add your handling code here:
-        pnActive7.setBackground(new Color(204,153,102));
-        pnActive3.setBackground(new Color(17,144,119));
-        pnActive4.setBackground(new Color(17,144,119));
-        pnActive2.setBackground(new Color(17,144,119));
-        pnActive6.setBackground(new Color(17,144,119));
-        pnActive5.setBackground(new Color(17,144,119));
         pnActive8.setBackground(new Color(17,144,119));
         pnContainer.removeAll();
         Student st = new StudentDAO().getStudentById(student.getId());
-        event = new Event(st);        
-        pnContainer.add(event);
+        mailSinhVien = new MailSinhVien(st);        
+        pnContainer.add(mailSinhVien);
         pnContainer.revalidate();
         pnContainer.repaint();
-    }//GEN-LAST:event_pnActive7MouseClicked
+    }//GEN-LAST:event_pnActive6MouseClicked
 
     private void pnActive8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnActive8MouseClicked
         // TODO add your handling code here:
@@ -604,8 +558,13 @@ public class MainUser extends javax.swing.JFrame {
         pnActive4.setBackground(new Color(17,144,119));
         pnActive2.setBackground(new Color(17,144,119));
         pnActive6.setBackground(new Color(17,144,119));
-        pnActive7.setBackground(new Color(17,144,119));
         pnActive5.setBackground(new Color(17,144,119));
+        pnContainer.removeAll();
+        Student st = new StudentDAO().getStudentById(student.getId());
+        utilityBill = new UtilityBill(st);        
+        pnContainer.add(utilityBill);
+        pnContainer.revalidate();
+        pnContainer.repaint();
     }//GEN-LAST:event_pnActive8MouseClicked
 
     /**
@@ -657,8 +616,6 @@ public class MainUser extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel4;
@@ -680,12 +637,12 @@ public class MainUser extends javax.swing.JFrame {
     private Handle.PanelRound pnActive4;
     private Handle.PanelRound pnActive5;
     private Handle.PanelRound pnActive6;
-    private Handle.PanelRound pnActive7;
     private Handle.PanelRound pnActive8;
     private javax.swing.JPanel pnContainer;
     private Handle.PanelRound pnHome;
     private javax.swing.JPanel pnMenu;
     private javax.swing.JLabel profileButton;
     // End of variables declaration//GEN-END:variables
+
 
 }
