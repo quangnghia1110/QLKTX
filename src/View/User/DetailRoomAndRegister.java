@@ -442,9 +442,18 @@ public class DetailRoomAndRegister extends javax.swing.JDialog {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable2.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         jTable2.setAutoscrolls(false);
+        jTable2.setEnabled(false);
         jTable2.setGridColor(new java.awt.Color(0, 0, 0));
         jTable2.setRowHeight(25);
         jTable2.setShowGrid(true);
