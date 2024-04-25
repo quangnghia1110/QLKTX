@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package View.Admin;
 
 import View.Admin.RoomList.RoomList;
@@ -11,10 +8,6 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-/**
- *
- * @author ADMIN
- */
 public class MainAdmin extends javax.swing.JFrame {
     RoomList roomList = new RoomList();
     ApprovingMoveAndRegister approvingPn = new ApprovingMoveAndRegister();
@@ -146,9 +139,6 @@ public class MainAdmin extends javax.swing.JFrame {
         return username;
     }
 
-    /**
-     * @param username the username to set
-     */
     public void setUsername(String username) {
         
         this.username = username;

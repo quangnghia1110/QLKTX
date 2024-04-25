@@ -24,10 +24,6 @@ import java.awt.Dimension;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
-/**
- *
- * @author hoang
- */
 public class ThongKe {
         
         private ThongKeService thongKeService = null;
