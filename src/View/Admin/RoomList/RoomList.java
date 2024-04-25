@@ -31,13 +31,16 @@ import View.Notification.ConfirmRoom;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.Timer;
+import View.Admin.RoomList.Message;
 import Handle.PanelRound;
 
 public class RoomList extends javax.swing.JPanel {
+
     RoomDAO daoR = new RoomDAO();
     private List<Room> lR = daoR.getAll();
+
     public RoomList() {
-        initComponents();  
+        initComponents();
         loadingRoom(lR);
         JScrollPane scrollPane = new JScrollPane(roomContainer);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -45,6 +48,7 @@ public class RoomList extends javax.swing.JPanel {
         scrollPane.getVerticalScrollBar().setUI(new ThinnerScrollBarUI());
         add(scrollPane);
     }
+
     class ThinnerScrollBarUI extends BasicScrollBarUI {
 
         @Override
@@ -87,7 +91,7 @@ public class RoomList extends javax.swing.JPanel {
             }
         }
     }
-    
+
     public void loadingRoom(List<Room> lR) {
         roomContainer.removeAll();
         roomContainer.setLayout(new BoxLayout(roomContainer, BoxLayout.Y_AXIS));
@@ -99,8 +103,8 @@ public class RoomList extends javax.swing.JPanel {
             roomPanel.setBackground(Color.white);
             rowPanel.add(roomPanel);
             if (rowPanel.getComponentCount() % 5 == 0) {
-                roomContainer.add(rowPanel); 
-                rowPanel = createRowPanel(); 
+                roomContainer.add(rowPanel);
+                rowPanel = createRowPanel();
             }
         }
         if (rowPanel.getComponentCount() > 0) {
@@ -109,7 +113,7 @@ public class RoomList extends javax.swing.JPanel {
         roomContainer.revalidate();
         roomContainer.repaint();
     }
-    
+
     private JPanel createRowPanel() {
         JPanel rowPanel = new JPanel();
         rowPanel.setBackground(Color.white);
@@ -128,7 +132,7 @@ public class RoomList extends javax.swing.JPanel {
         editRoom.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                EditRoom dialogRoom = new EditRoom(null,true, room, RoomList.this);
+                EditRoom dialogRoom = new EditRoom(null, true, room, RoomList.this);
                 dialogRoom.setVisible(true);
             }
 
@@ -141,8 +145,8 @@ public class RoomList extends javax.swing.JPanel {
             public void mouseExited(MouseEvent e) {
                 editRoom.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             }
-        });   
-        
+        });
+
         deleteRoom.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -152,22 +156,22 @@ public class RoomList extends javax.swing.JPanel {
                 confirm.setVisible(true);
                 Boolean isConfirm = confirm.isConfirmed();
                 confirm.dispose();
-                if(isConfirm){
+                if (isConfirm) {
                     if (daoR.delete(room.getName()) > 0) {
-                            loadingRoom(daoR.getAll());
-                            msgString = "Thành công";
-                            type = "succes";
-                            Message msg = new Message(null, true, msgString, type);
-                            msg.setVisible(true);
-                        } else {
-                            msgString = "Không thể xóa vì có người ở";
-                            type = "err";
-                            Message msg = new Message(null, true, msgString, type);
-                            msg.setVisible(true);
-                        }
+                        loadingRoom(daoR.getAll());
+                        msgString = "Thành công";
+                        type = "succes";
+                        Message msg = new Message(null, true, msgString, type);
+                        msg.setVisible(true);
+                    } else {
+                        msgString = "Không thể xóa vì có người ở";
+                        type = "err";
+                        Message msg = new Message(null, true, msgString, type);
+                        msg.setVisible(true);
+                    }
                 }
             }
-             
+
             @Override
             public void mouseEntered(MouseEvent e) {
                 deleteRoom.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -178,8 +182,7 @@ public class RoomList extends javax.swing.JPanel {
                 deleteRoom.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             }
         });
-        
-        
+
         iconRoom.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -197,17 +200,14 @@ public class RoomList extends javax.swing.JPanel {
                 iconRoom.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             }
         });
-        
 
-        
-        
         iconRoom.setIcon(new ImageIcon(getClass().getResource("/img/roomListIcon120x120.png")));
         panelRound1.setBackground(null);
         panelRound1.setRoundBottomLeft(25);
         panelRound1.setRoundBottomRight(25);
         panelRound1.setRoundTopLeft(25);
         panelRound1.setRoundTopRight(25);
-        panelRoundC.setBackground(new Color(35, 45, 63));
+        panelRoundC.setBackground(new Color(17,144,119));
         panelRoundC.setRoundBottomLeft(15);
         panelRoundC.setRoundBottomRight(15);
         panelRoundC.setRoundTopLeft(15);
@@ -217,75 +217,75 @@ public class RoomList extends javax.swing.JPanel {
         nameRoom.setText(room.getName().toUpperCase());
         deleteRoom.setIcon(new ImageIcon(getClass().getResource("/img/deleteRoomIcon.png")));
         editRoom.setIcon(new ImageIcon(getClass().getResource("/img/editRoomIcon.png")));
-        
+
         GroupLayout panelCLayout = new GroupLayout(panelRoundC);
         panelRoundC.setLayout(panelCLayout);
         panelCLayout.setHorizontalGroup(
-            panelCLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(panelCLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(editRoom)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(deleteRoom)
-                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                panelCLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(panelCLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(editRoom)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(deleteRoom)
+                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelCLayout.setVerticalGroup(
-            panelCLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(panelCLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(panelCLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addComponent(editRoom, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(deleteRoom, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addContainerGap())
+                panelCLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(panelCLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(panelCLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                        .addComponent(editRoom, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(deleteRoom, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap())
         );
-        
+
         GroupLayout panelRound1Layout = new GroupLayout(panelRound1);
         panelRound1.setLayout(panelRound1Layout);
         panelRound1Layout.setHorizontalGroup(
-            panelRound1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(panelRound1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(nameRoom)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(panelRoundC, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                panelRound1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(panelRound1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(nameRoom)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(panelRoundC, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelRound1Layout.setVerticalGroup(
-            panelRound1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(panelRound1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(nameRoom, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap())
-                .addGroup(panelRound1Layout.createSequentialGroup()
-                    .addComponent(panelRoundC, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(0, 0, Short.MAX_VALUE))
+                panelRound1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(panelRound1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(nameRoom, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())
+                        .addGroup(panelRound1Layout.createSequentialGroup()
+                                .addComponent(panelRoundC, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         GroupLayout roomPanelLayout = new GroupLayout(roomPanel);
         roomPanel.setLayout(roomPanelLayout);
         roomPanelLayout.setHorizontalGroup(
-            roomPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(roomPanelLayout.createSequentialGroup()
-                    .addContainerGap(18, Short.MAX_VALUE)
-                    .addGroup(roomPanelLayout.createParallelGroup(GroupLayout.Alignment.CENTER)
-                        .addComponent(iconRoom)
-                        .addComponent(panelRound1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap())
+                roomPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(roomPanelLayout.createSequentialGroup()
+                                .addContainerGap(18, Short.MAX_VALUE)
+                                .addGroup(roomPanelLayout.createParallelGroup(GroupLayout.Alignment.CENTER)
+                                        .addComponent(iconRoom)
+                                        .addComponent(panelRound1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap())
         );
         roomPanelLayout.setVerticalGroup(
-            roomPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(roomPanelLayout.createSequentialGroup()
-                    .addContainerGap(18, Short.MAX_VALUE)
-                    .addComponent(iconRoom, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(panelRound1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap())
+                roomPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(roomPanelLayout.createSequentialGroup()
+                                .addContainerGap(18, Short.MAX_VALUE)
+                                .addComponent(iconRoom, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(panelRound1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
         );
 
         return roomPanel;
     }
-    
-    public void animationClick (PanelRound panel, String beforeColor) {
+
+    public void animationClick(PanelRound panel, String beforeColor) {
         panel.setBackground(new Color(221, 242, 253, 128));
         Timer timer = new Timer(250, new ActionListener() {
             @Override
@@ -297,6 +297,7 @@ public class RoomList extends javax.swing.JPanel {
         timer.setRepeats(false);
         timer.start();
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -319,7 +320,7 @@ public class RoomList extends javax.swing.JPanel {
 
         header.setBackground(new java.awt.Color(255, 255, 255));
 
-        panelRound4.setBackground(new java.awt.Color(35, 45, 63));
+        panelRound4.setBackground(new java.awt.Color(17, 144, 119));
         panelRound4.setRoundBottomLeft(50);
         panelRound4.setRoundBottomRight(50);
         panelRound4.setRoundTopLeft(50);
@@ -358,10 +359,13 @@ public class RoomList extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 searchBtnMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                searchBtnMouseEntered(evt);
+            }
         });
         panelRound4.add(searchBtn);
 
-        panelRound5.setBackground(new java.awt.Color(35, 45, 63));
+        panelRound5.setBackground(new java.awt.Color(17, 144, 119));
         panelRound5.setRoundBottomLeft(50);
         panelRound5.setRoundBottomRight(50);
         panelRound5.setRoundTopLeft(50);
@@ -397,7 +401,7 @@ public class RoomList extends javax.swing.JPanel {
 
         panelRound5.add(addingRoomPanel);
 
-        panelRound2.setBackground(new java.awt.Color(35, 45, 63));
+        panelRound2.setBackground(new java.awt.Color(17, 144, 119));
         panelRound2.setRoundBottomLeft(20);
         panelRound2.setRoundBottomRight(20);
         panelRound2.setRoundTopLeft(20);
@@ -466,8 +470,16 @@ public class RoomList extends javax.swing.JPanel {
         lRn = daoR.getRoomsName(txtSearch.getText().toLowerCase());
         roomContainer.removeAll();
         roomContainer.revalidate();
-        loadingRoom(lRn);
-        roomContainer.repaint();
+        if (lRn.isEmpty()) {
+            Message messageDialog = new Message((java.awt.Frame) null, true, "Không tìm thấy!", "err");
+            messageDialog.setVisible(true);
+            roomContainer.repaint();
+        } else {
+            loadingRoom(lRn);
+            roomContainer.repaint();
+        }
+
+        
     }//GEN-LAST:event_searchBtnMouseClicked
 
     private void addingRoomPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addingRoomPanelMouseClicked
@@ -476,6 +488,10 @@ public class RoomList extends javax.swing.JPanel {
         CreateRoom dialog = new CreateRoom(null, true, this);
         dialog.setVisible(true);
     }//GEN-LAST:event_addingRoomPanelMouseClicked
+
+    private void searchBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBtnMouseEntered
+
+    }//GEN-LAST:event_searchBtnMouseEntered
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addBtn;

@@ -75,10 +75,10 @@ public class CreateRoom extends javax.swing.JDialog {
         setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(new java.awt.CardLayout());
 
-        panelRound5.setBackground(new java.awt.Color(35, 45, 63));
+        panelRound5.setBackground(new java.awt.Color(17, 144, 119));
         panelRound5.setLayout(new java.awt.CardLayout(5, 5));
 
-        panelRound1.setBackground(new java.awt.Color(35, 45, 63));
+        panelRound1.setBackground(new java.awt.Color(17, 144, 119));
         panelRound1.setLayout(new java.awt.BorderLayout(0, 5));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -87,7 +87,7 @@ public class CreateRoom extends javax.swing.JDialog {
         jLabel1.setText("THÔNG TIN PHÒNG CẦN THÊM");
         panelRound1.add(jLabel1, java.awt.BorderLayout.PAGE_START);
 
-        panelRound3.setBackground(new java.awt.Color(35, 45, 63));
+        panelRound3.setBackground(new java.awt.Color(17, 144, 119));
         panelRound3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 30, 5));
 
         createBtn.setBackground(new java.awt.Color(255, 255, 255));

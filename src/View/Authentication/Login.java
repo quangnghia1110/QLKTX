@@ -402,8 +402,7 @@ public class Login extends javax.swing.JDialog {
     }//GEN-LAST:event_loginBtnMouseExited
 
     private void loginBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnMouseEntered
-        // TODO add your handling code here:
-        loginBtn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+       
     }//GEN-LAST:event_loginBtnMouseEntered
 
     private void loginBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnMouseClicked

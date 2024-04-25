@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package View.Admin;
 
 import View.Admin.RoomList.RoomList;
@@ -9,12 +6,9 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-/**
- *
- * @author ADMIN
- */
 public class MainAdmin extends javax.swing.JFrame {
     RoomList roomList = new RoomList();
     ApprovingMoveAndRegister approvingPn = new ApprovingMoveAndRegister();
@@ -27,6 +21,7 @@ public class MainAdmin extends javax.swing.JFrame {
         setMinimumSize(new Dimension(600, 600));
         setLocationRelativeTo(null);
         requestFocus();
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
     public void addRoomListToBody() {
         body.removeAll();
@@ -80,6 +75,9 @@ public class MainAdmin extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(600, 400));
 
         jPanel2.setLayout(new java.awt.BorderLayout());
+
+        menuAdmin1.setBackground(new java.awt.Color(17, 144, 119));
+        menuAdmin1.setForeground(new java.awt.Color(17, 144, 119));
         jPanel2.add(menuAdmin1, java.awt.BorderLayout.LINE_START);
 
         body.setBackground(new java.awt.Color(204, 0, 0));
@@ -143,9 +141,6 @@ public class MainAdmin extends javax.swing.JFrame {
         return username;
     }
 
-    /**
-     * @param username the username to set
-     */
     public void setUsername(String username) {
         
         this.username = username;

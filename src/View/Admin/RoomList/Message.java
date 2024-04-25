@@ -63,6 +63,7 @@ public class Message extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         container = new Handle.PanelRound();
         label = new javax.swing.JLabel();
 
@@ -78,10 +79,10 @@ public class Message extends javax.swing.JDialog {
         container.setRoundTopRight(5);
         container.setLayout(new java.awt.CardLayout(5, 5));
 
-        label.setBackground(new java.awt.Color(255, 255, 255));
+        label.setBackground(new java.awt.Color(102, 204, 255));
         label.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label.setText("jLabel1");
+        label.setText("Không tìm thấy!");
         container.add(label, "card2");
 
         getContentPane().add(container, "card2");
@@ -133,6 +134,7 @@ public class Message extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Handle.PanelRound container;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel label;
     // End of variables declaration//GEN-END:variables
 }

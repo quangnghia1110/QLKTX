@@ -135,10 +135,10 @@ public class DetailRoom extends javax.swing.JDialog {
         setAlwaysOnTop(true);
         getContentPane().setLayout(new java.awt.CardLayout());
 
-        panelRound8.setBackground(new java.awt.Color(35, 45, 63));
+        panelRound8.setBackground(new java.awt.Color(17, 144, 119));
         panelRound8.setLayout(new java.awt.CardLayout(5, 5));
 
-        panelRound7.setBackground(new java.awt.Color(35, 45, 63));
+        panelRound7.setBackground(new java.awt.Color(17, 144, 119));
         panelRound7.setLayout(new java.awt.BorderLayout(0, 10));
 
         jLabel4.setBackground(new java.awt.Color(35, 45, 63));
@@ -148,17 +148,17 @@ public class DetailRoom extends javax.swing.JDialog {
         jLabel4.setText("THÔNG TIN VỀ PHÒNG");
         panelRound7.add(jLabel4, java.awt.BorderLayout.PAGE_START);
 
-        panelRound6.setBackground(new java.awt.Color(35, 45, 63));
+        panelRound6.setBackground(new java.awt.Color(17, 144, 119));
         panelRound6.setLayout(new java.awt.BorderLayout(0, 10));
 
-        panelRound2.setBackground(new java.awt.Color(35, 45, 63));
+        panelRound2.setBackground(new java.awt.Color(17, 144, 119));
         panelRound2.setRoundBottomLeft(20);
         panelRound2.setRoundBottomRight(20);
         panelRound2.setRoundTopLeft(20);
         panelRound2.setRoundTopRight(20);
         panelRound2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 15, 5));
 
-        panelRound10.setBackground(new java.awt.Color(35, 45, 63));
+        panelRound10.setBackground(new java.awt.Color(17, 144, 119));
         panelRound10.setRoundBottomLeft(20);
         panelRound10.setRoundBottomRight(20);
         panelRound10.setRoundTopLeft(20);
@@ -189,7 +189,7 @@ public class DetailRoom extends javax.swing.JDialog {
         nameLabel.setText("2A16");
         panelRound9.add(nameLabel);
 
-        panelRound3.setBackground(new java.awt.Color(35, 45, 63));
+        panelRound3.setBackground(new java.awt.Color(17, 144, 119));
         panelRound3.setRoundBottomLeft(10);
         panelRound3.setRoundBottomRight(10);
         panelRound3.setRoundTopLeft(10);
@@ -207,7 +207,7 @@ public class DetailRoom extends javax.swing.JDialog {
 
         panelRound9.add(panelRound3);
 
-        panelRound5.setBackground(new java.awt.Color(35, 45, 63));
+        panelRound5.setBackground(new java.awt.Color(17, 144, 119));
         panelRound5.setRoundBottomLeft(10);
         panelRound5.setRoundBottomRight(10);
         panelRound5.setRoundTopLeft(10);
@@ -225,7 +225,7 @@ public class DetailRoom extends javax.swing.JDialog {
 
         panelRound9.add(panelRound5);
 
-        panelRound4.setBackground(new java.awt.Color(35, 45, 63));
+        panelRound4.setBackground(new java.awt.Color(17, 144, 119));
         panelRound4.setRoundBottomLeft(10);
         panelRound4.setRoundBottomRight(10);
         panelRound4.setRoundTopLeft(10);
@@ -245,7 +245,7 @@ public class DetailRoom extends javax.swing.JDialog {
 
         panelRound2.add(panelRound9);
 
-        panelRound11.setBackground(new java.awt.Color(35, 45, 63));
+        panelRound11.setBackground(new java.awt.Color(17, 144, 119));
         panelRound11.setRoundBottomLeft(20);
         panelRound11.setRoundBottomRight(20);
         panelRound11.setRoundTopLeft(20);
@@ -266,7 +266,7 @@ public class DetailRoom extends javax.swing.JDialog {
 
         panelRound6.add(panelRound2, java.awt.BorderLayout.PAGE_START);
 
-        panelRound1.setBackground(new java.awt.Color(35, 45, 63));
+        panelRound1.setBackground(new java.awt.Color(17, 144, 119));
         panelRound1.setLayout(new java.awt.BorderLayout(0, 5));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N

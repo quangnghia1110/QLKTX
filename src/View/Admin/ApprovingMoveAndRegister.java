@@ -30,7 +30,6 @@ import javax.swing.table.TableCellRenderer;
 import Model.Student;
 import Dao.StudentDAO;
 import Dao.UserDAO;
-import View.Admin.MainAdmin;
 
 /**
  *
@@ -267,7 +266,7 @@ public class ApprovingMoveAndRegister extends javax.swing.JPanel {
         jPanel14.setBackground(new java.awt.Color(255, 255, 255));
         jPanel14.setLayout(new java.awt.GridLayout(2, 1, 5, 40));
 
-        panelRound4.setBackground(new java.awt.Color(35, 45, 63));
+        panelRound4.setBackground(new java.awt.Color(17, 144, 119));
         panelRound4.setPreferredSize(new java.awt.Dimension(330, 890));
         panelRound4.setRoundBottomLeft(10);
         panelRound4.setRoundBottomRight(10);
@@ -277,10 +276,10 @@ public class ApprovingMoveAndRegister extends javax.swing.JPanel {
 
         jPanel4.setLayout(new java.awt.BorderLayout());
 
-        jPanel5.setBackground(new java.awt.Color(35, 45, 63));
+        jPanel5.setBackground(new java.awt.Color(17, 144, 119));
         jPanel5.setLayout(new javax.swing.BoxLayout(jPanel5, javax.swing.BoxLayout.Y_AXIS));
 
-        jPanel6.setBackground(new java.awt.Color(35, 45, 63));
+        jPanel6.setBackground(new java.awt.Color(17, 144, 119));
         jPanel6.setPreferredSize(new java.awt.Dimension(30, 104));
         jPanel6.setRequestFocusEnabled(false);
 
@@ -297,7 +296,7 @@ public class ApprovingMoveAndRegister extends javax.swing.JPanel {
 
         jPanel5.add(jPanel6);
 
-        jPanel2.setBackground(new java.awt.Color(35, 45, 63));
+        jPanel2.setBackground(new java.awt.Color(17, 144, 119));
         jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.Y_AXIS));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -317,7 +316,7 @@ public class ApprovingMoveAndRegister extends javax.swing.JPanel {
 
         jPanel5.add(jPanel2);
 
-        jPanel7.setBackground(new java.awt.Color(35, 45, 63));
+        jPanel7.setBackground(new java.awt.Color(17, 144, 119));
         jPanel7.setPreferredSize(new java.awt.Dimension(30, 104));
         jPanel7.setRequestFocusEnabled(false);
 
@@ -386,7 +385,7 @@ public class ApprovingMoveAndRegister extends javax.swing.JPanel {
 
         jPanel14.add(panelRound4);
 
-        panelRound2.setBackground(new java.awt.Color(35, 45, 63));
+        panelRound2.setBackground(new java.awt.Color(17, 144, 119));
         panelRound2.setPreferredSize(new java.awt.Dimension(330, 890));
         panelRound2.setRoundBottomLeft(10);
         panelRound2.setRoundBottomRight(10);
@@ -397,10 +396,10 @@ public class ApprovingMoveAndRegister extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(35, 45, 63));
         jPanel1.setLayout(new java.awt.BorderLayout());
 
-        jPanel8.setBackground(new java.awt.Color(35, 45, 63));
+        jPanel8.setBackground(new java.awt.Color(17, 144, 119));
         jPanel8.setLayout(new javax.swing.BoxLayout(jPanel8, javax.swing.BoxLayout.Y_AXIS));
 
-        jPanel9.setBackground(new java.awt.Color(35, 45, 63));
+        jPanel9.setBackground(new java.awt.Color(17, 144, 119));
         jPanel9.setPreferredSize(new java.awt.Dimension(30, 71));
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -416,7 +415,7 @@ public class ApprovingMoveAndRegister extends javax.swing.JPanel {
 
         jPanel8.add(jPanel9);
 
-        jPanel3.setBackground(new java.awt.Color(35, 45, 63));
+        jPanel3.setBackground(new java.awt.Color(17, 144, 119));
         jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.Y_AXIS));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -436,7 +435,7 @@ public class ApprovingMoveAndRegister extends javax.swing.JPanel {
 
         jPanel8.add(jPanel3);
 
-        jPanel10.setBackground(new java.awt.Color(35, 45, 63));
+        jPanel10.setBackground(new java.awt.Color(17, 144, 119));
         jPanel10.setPreferredSize(new java.awt.Dimension(30, 55));
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
