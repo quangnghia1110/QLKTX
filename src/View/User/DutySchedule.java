@@ -32,6 +32,8 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 /**
  *
  * @author ADMIN
@@ -383,7 +385,33 @@ private Student student;
             }
         }
 
-        File file = new File("D:\\Download\\DANH_SACH_LICH_TRUC.xlsx");
+        // File path
+        String filePath;
+        if (studentId.equals("ALL")) {
+            filePath = "D:\\Download\\DANH_SACH_LICH_sTRUC.xlsx";
+        } else {
+            // Get current date
+            Date currentDate = new Date();
+            List<Model.DutySchedule> dutySchedules = new ArrayList<>(); // Initialize dutySchedules
+
+            // Assuming dutySchedules is populated with data here
+            // For demonstration, let's assume dutySchedules is populated elsewhere in your code
+            
+            // Get date of the last bill payment if dutySchedules is not empty
+            Date scheduleDate = null;
+            if (!dutySchedules.isEmpty()) {
+                scheduleDate = dutySchedules.get(dutySchedules.size() - 1).getScheduleDate();
+            }
+
+            // Format the date to add to the file name
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String formattedDate = dateFormat.format(scheduleDate != null ? scheduleDate : currentDate);
+
+            // Modify the file path to include the studentId and date
+            filePath = "D:\\Download\\DANH_SACH_LICH_TRUC_" + studentId + "_" + formattedDate + ".xlsx";
+        }
+
+        File file = new File(filePath);
         try (FileOutputStream exportedFile = new FileOutputStream(file)) {
             excelFile.write(exportedFile);
             SuccessfulExportAndImport showDialog = new SuccessfulExportAndImport(null, true, "Xuất ra file Excel thành công !");
@@ -396,6 +424,7 @@ private Student student;
         e.printStackTrace();
     }
 }
+
 
 
     public static void main(String args[]) {

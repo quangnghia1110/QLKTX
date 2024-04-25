@@ -268,7 +268,7 @@ public class MyRoom extends javax.swing.JPanel {
 
         panelRound9.add(jPanel8, java.awt.BorderLayout.LINE_START);
 
-        jPanel2.setBackground(new java.awt.Color(35, 45, 63));
+        jPanel2.setBackground(new java.awt.Color(17, 144, 119));
         jPanel2.setLayout(new java.awt.BorderLayout(0, 1));
 
         jPanel7.setBackground(new java.awt.Color(17, 144, 119));

@@ -27,7 +27,6 @@ public class ThongKePanel extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         panelRound1 = new Handle.PanelRound();
         Bieudocot = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         Bieudotron = new javax.swing.JPanel();
 
@@ -49,31 +48,15 @@ public class ThongKePanel extends javax.swing.JPanel {
 
         Bieudocot.setBackground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout BieudocotLayout = new javax.swing.GroupLayout(Bieudocot);
         Bieudocot.setLayout(BieudocotLayout);
         BieudocotLayout.setHorizontalGroup(
             BieudocotLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BieudocotLayout.createSequentialGroup()
-                .addContainerGap(617, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGap(0, 723, Short.MAX_VALUE)
         );
         BieudocotLayout.setVerticalGroup(
             BieudocotLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BieudocotLayout.createSequentialGroup()
-                .addGap(0, 81, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(0, 181, Short.MAX_VALUE)
         );
 
         panelRound1.add(Bieudocot);
@@ -120,7 +103,6 @@ public class ThongKePanel extends javax.swing.JPanel {
     private javax.swing.JPanel Bieudotron;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private Handle.PanelRound panelRound1;
     // End of variables declaration//GEN-END:variables
 }
