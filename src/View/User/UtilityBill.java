@@ -28,7 +28,9 @@ import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.RowFilter;
 import javax.swing.table.TableRowSorter;
 
@@ -458,53 +460,73 @@ exportExcelFile(utilityBills);
     }
     }//GEN-LAST:event_btnExportMouseClicked
     public void exportExcelFile(List<Model.UtilityBill> utilityBills) {
-    try {
-        if (utilityBills.isEmpty()) {
-            System.out.println("Error: Empty list");
-            return;
-        }
+        try {
+            if (utilityBills.isEmpty()) {
+                System.out.println("Error: Empty list");
+                return;
+            }
 
-        XSSFWorkbook excelFile = new XSSFWorkbook();
-        XSSFSheet sheet = excelFile.createSheet("DANH SÁCH HÓA ĐƠN");
+            XSSFWorkbook excelFile = new XSSFWorkbook();
+            XSSFSheet sheet = excelFile.createSheet("DANH SÁCH HÓA ĐƠN");
 
-        // Header row
-        String[] headers = {"STT", "Mã hóa đơn", "Tên phòng", "Tiền điện", "Tiền nước", "Ngày thanh toán"};
-        Cell cell;
-        org.apache.poi.ss.usermodel.Row row = sheet.createRow(0);
-        for (int i = 0; i < headers.length; i++) {
-            cell = row.createCell(i, CellType.STRING);
-            cell.setCellValue(headers[i]);
-        }
+            // Header row
+            String[] headers = {"STT", "Mã hóa đơn", "Tên phòng", "Tiền điện", "Tiền nước", "Ngày thanh toán"};
+            Cell cell;
+            org.apache.poi.ss.usermodel.Row row = sheet.createRow(0);
+            for (int i = 0; i < headers.length; i++) {
+                cell = row.createCell(i, CellType.STRING);
+                cell.setCellValue(headers[i]);
+            }
 
-        // Data rows
-        int rowNum = 1;
-        for (Model.UtilityBill bill : utilityBills) {
-            row = sheet.createRow(rowNum++);
-            row.createCell(0, CellType.NUMERIC).setCellValue(rowNum - 1); // STT
-            row.createCell(1, CellType.NUMERIC).setCellValue(bill.getBillId()); // Mã hóa đơn
-            row.createCell(2, CellType.STRING).setCellValue(bill.getRoomName()); // Tên phòng
-            row.createCell(3, CellType.NUMERIC).setCellValue(bill.getElectricityCost()); // Tiền điện
-            row.createCell(4, CellType.NUMERIC).setCellValue(bill.getWaterCost()); // Tiền nước
-            row.createCell(5, CellType.STRING).setCellValue(bill.getDateOfPayment().toString()); // Ngày thanh toán
-        }
+            // Data rows
+            int rowNum = 1;
+            for (Model.UtilityBill bill : utilityBills) {
+                row = sheet.createRow(rowNum++);
+                row.createCell(0, CellType.NUMERIC).setCellValue(rowNum - 1); // STT
+                row.createCell(1, CellType.NUMERIC).setCellValue(bill.getBillId()); // Mã hóa đơn
+                row.createCell(2, CellType.STRING).setCellValue(bill.getRoomName()); // Tên phòng
+                row.createCell(3, CellType.NUMERIC).setCellValue(bill.getElectricityCost()); // Tiền điện
+                row.createCell(4, CellType.NUMERIC).setCellValue(bill.getWaterCost()); // Tiền nước
+                row.createCell(5, CellType.STRING).setCellValue(bill.getDateOfPayment().toString()); // Ngày thanh toán
+            }
 
-        // Determine file path dynamically
-        String filePath = "D:\\Download\\DANH_SACH_HOA_DON.xlsx";
+            // Determine file name
+            String fileName;
+            String selectedDate = (String) cbRooms.getSelectedItem();    
+            if (selectedDate.equals("ALL")) {
+                 fileName = "TOAN_BO_DANH_SACH_HOA_DON.xlsx";
+            } else {
+                // Get current date
+                Date currentDate = new Date();
 
-        // Write to the file
-        try (FileOutputStream exportedFile = new FileOutputStream(filePath)) {
-            excelFile.write(exportedFile);
-            excelFile.close(); // Close the Excel file after writing
-            SuccessfulExportAndImport showDialog = new SuccessfulExportAndImport(null, true, "Xuất ra file Excel thành công !");
-            showDialog.setVisible(true);
+                // Get date of the last bill payment
+                Date lastPaymentDate = utilityBills.get(utilityBills.size() - 1).getDateOfPayment();
+
+                // Format the date to add to the file name
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                String formattedDate = dateFormat.format(lastPaymentDate);
+
+                // Modify the file path to include the date
+                fileName = "DANH_SACH_HOA_DON_" + formattedDate + ".xlsx";
+            }
+
+            // File path
+            String filePath = "D:\\Download\\" + fileName;
+
+            // Write to the file
+            try (FileOutputStream exportedFile = new FileOutputStream(filePath)) {
+                excelFile.write(exportedFile);
+                excelFile.close(); // Close the Excel file after writing
+                SuccessfulExportAndImport showDialog = new SuccessfulExportAndImport(null, true, "Xuất ra file Excel thành công !");
+                showDialog.setVisible(true);
+            } catch (Exception e) {
+                System.out.println("Error writing to file: " + e.getMessage());
+            }
+
         } catch (Exception e) {
-            System.out.println("Error writing to file: " + e.getMessage());
+            System.out.println("Error exporting Excel file: " + e.getMessage());
         }
-
-    } catch (Exception e) {
-        System.out.println("Error exporting Excel file: " + e.getMessage());
     }
-}
 
     private void loadTable(List<Model.UtilityBill> list) {
     cbRooms.removeAllItems();
