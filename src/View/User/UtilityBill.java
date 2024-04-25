@@ -49,6 +49,8 @@ private Student student;
     }
     Room myR;
     RoomDAO daoR = new RoomDAO();
+    List<Student> listSofR;
+    StudentDAO daoS = new StudentDAO();
     public UtilityBill(Student student) {
         initComponents();
     this.student = student;
@@ -57,12 +59,10 @@ private Student student;
     fitContentOfTable(table);
     myR = daoR.getRoomByName(student.getRoom());
     lblName1.setText(myR.getName());
-    
-    Object selectedValue = cbRooms.getSelectedItem();
-    if (selectedValue != null) {
-        lblDateOfPayment.setText(selectedValue.toString());
-    }
-    
+    listSofR = daoS.getStudentsByRoom(myR.getName().toLowerCase());
+    int total = listSofR.size();
+    int temp = total;
+    jLabel10.setText(""+ temp);
     loadTable(list);
 }
 
@@ -107,14 +107,12 @@ private Student student;
         lblName1 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        lblMem = new javax.swing.JLabel();
+        lblSum = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        lblDateOfPayment = new javax.swing.JLabel();
         panelRound12 = new Handle.PanelRound();
         panelRound4 = new Handle.PanelRound();
         cbRooms = new javax.swing.JComboBox<>();
@@ -201,16 +199,16 @@ private Student student;
         jLabel8.setText("Tổng tiền:");
         jPanel6.add(jLabel8);
 
-        lblMem.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblMem.setForeground(new java.awt.Color(255, 255, 255));
-        lblMem.setText("1.000.000");
-        jPanel6.add(lblMem);
+        lblSum.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblSum.setForeground(new java.awt.Color(255, 255, 255));
+        lblSum.setText("1.000.000");
+        jPanel6.add(lblSum);
 
         jPanel8.add(jPanel6, java.awt.BorderLayout.PAGE_END);
 
         panelRound9.add(jPanel8, java.awt.BorderLayout.LINE_START);
 
-        jPanel2.setBackground(new java.awt.Color(35, 45, 63));
+        jPanel2.setBackground(new java.awt.Color(17, 144, 119));
         jPanel2.setLayout(new java.awt.BorderLayout(0, 1));
 
         jPanel7.setBackground(new java.awt.Color(17, 144, 119));
@@ -218,29 +216,19 @@ private Student student;
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Ngày xuất đơn:");
+        jLabel9.setText("Tổng sinh viên:");
+        jLabel9.setToolTipText("");
         jPanel7.add(jLabel9);
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("6 tháng");
+        jLabel10.setText("10");
         jPanel7.add(jLabel10);
 
         jPanel2.add(jPanel7, java.awt.BorderLayout.PAGE_START);
 
         jPanel5.setBackground(new java.awt.Color(17, 144, 119));
         jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
-
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Hạn thanh toán: ");
-        jPanel5.add(jLabel7);
-
-        lblDateOfPayment.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblDateOfPayment.setForeground(new java.awt.Color(255, 255, 255));
-        lblDateOfPayment.setText("10");
-        jPanel5.add(lblDateOfPayment);
-
         jPanel2.add(jPanel5, java.awt.BorderLayout.PAGE_END);
 
         panelRound9.add(jPanel2, java.awt.BorderLayout.LINE_END);
@@ -415,20 +403,17 @@ private Student student;
 
     private void btnFilterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFilterMouseClicked
         String selectedDate = (String) cbRooms.getSelectedItem();    
-        if (selectedDate.equals("ALL")) {
-            filterTableByDate(selectedDate);
-        } else {
-            filterTableByDate(selectedDate); // Filter by selected date
-        }
+    filterTableByDate(selectedDate); 
+    
+    double totalCost = 0;
+    List<Model.UtilityBill> filteredBills = filterBillsByDate(selectedDate);
+
+    for(Model.UtilityBill bill : filteredBills) {   
+        totalCost += bill.getElectricityCost() + bill.getWaterCost(); // Cộng dồn tiền điện và tiền nước vào tổng tiền
+    }
+    lblSum.setText(String.valueOf(totalCost));
     }//GEN-LAST:event_btnFilterMouseClicked
 
-private void filterTableByRoom(String selectedDate) {
-    DefaultTableModel model = (DefaultTableModel) table.getModel();
-    TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
-    table.setRowSorter(sorter);    
-    RowFilter<DefaultTableModel, Object> filter = RowFilter.regexFilter(selectedDate, 1); // Filter by the second column which is the room name
-    sorter.setRowFilter(filter);
-}
 
     private void filterTableByDate(String selectedDate) {
     DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -437,25 +422,38 @@ private void filterTableByRoom(String selectedDate) {
     RowFilter<DefaultTableModel, Object> filter = RowFilter.regexFilter(selectedDate, 4); // Filter by the fifth column which is the date of payment
     sorter.setRowFilter(filter);
 }
+    private List<Model.UtilityBill> filterBillsByDate(String selectedDate) {
+    List<Model.UtilityBill> filteredBills = new ArrayList<>();
+    for (Model.UtilityBill bill : list) {
+        if (bill.getDateOfPayment().toString().equals(selectedDate)) {
+            filteredBills.add(bill);
+        }
+    }
+    return filteredBills;
+}
     private void btnExportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExportMouseClicked
          if (list.isEmpty()) {
         SuccessfulExportAndImport emptyList = new SuccessfulExportAndImport(null, true, "Danh sách hóa đơn trống!");
         emptyList.setVisible(true);
     } else {
-        if (student != null) {
-            UtilityBillDAO utilityBillDAO = new UtilityBillDAO(); // Tạo một thể hiện của DutyScheduleDAO
+        String selectedDate = (String) cbRooms.getSelectedItem();    
+
+        if (selectedDate.equals("ALL")) {
+UtilityBillDAO utilityBillDAO = new UtilityBillDAO(); // Tạo một thể hiện của DutyScheduleDAO
             List<Model.UtilityBill> utilityBills = utilityBillDAO.getAllByRoom(student.getRoom());
-            
-            if (!utilityBills.isEmpty()) {
-                exportExcelFile(utilityBills);
-            } else {
-                // Xử lý trường hợp danh sách lịch trực của sinh viên trống
-                SuccessfulExportAndImport emptyBillList = new SuccessfulExportAndImport(null, true, "Danh sách hóa đơn của sinh viên trống!");
-                emptyBillList.setVisible(true);
-            }
+exportExcelFile(utilityBills);
         } else {
-            // Xử lý trường hợp khi student là null
-            System.out.println("Error: Student is null");
+            // Filter bills based on selected date
+            List<Model.UtilityBill> filteredBills = filterBillsByDate(selectedDate);
+
+            if (filteredBills.isEmpty()) {
+                // If the filtered list is empty, show a message
+                SuccessfulExportAndImport emptyList = new SuccessfulExportAndImport(null, true, "Danh sách hóa đơn trống!");
+                emptyList.setVisible(true);
+            } else {
+                // If the filtered list is not empty, proceed with exporting
+                exportExcelFile(filteredBills);
+            }
         }
     }
     }//GEN-LAST:event_btnExportMouseClicked
@@ -512,11 +510,14 @@ private void filterTableByRoom(String selectedDate) {
     cbRooms.removeAllItems();
     UtilityBillDAO utilityBillDAO = new UtilityBillDAO();
     List<Model.UtilityBill> bills = utilityBillDAO.getAllByRoom(student.getRoom());
-    cbRooms.addItem("ALL");
+    
+    double totalCost = 0; // Tổng tiền
+
     // Add utility bill data to the combo box
     for (Model.UtilityBill bill : bills) {
         cbRooms.addItem(bill.getDateOfPayment().toString());
     }
+    cbRooms.addItem("ALL");
     
     DefaultTableModel model = (DefaultTableModel) table.getModel();
     model.setRowCount(0);
@@ -526,6 +527,7 @@ private void filterTableByRoom(String selectedDate) {
         for (Model.UtilityBill bill : list) {
             // Check if the bill belongs to the room associated with the logged-in student
             if (student.isHavingRoom() && bill.getRoomName().equals(student.getRoom())) {
+                totalCost += bill.getElectricityCost() + bill.getWaterCost(); // Cộng dồn tiền điện và tiền nước vào tổng tiền
                 Object[] rowData = {
                     bill.getBillId(),
                     bill.getRoomName(),
@@ -541,7 +543,11 @@ private void filterTableByRoom(String selectedDate) {
         Object[] rowData = {"", "", "Danh sách trống", "", "", ""};
         model.addRow(rowData);
     }
+    
+   
+    lblSum.setText(String.valueOf(totalCost));
 }
+
 
 
 
@@ -584,7 +590,6 @@ public static void main(String args[]) {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -597,9 +602,8 @@ public static void main(String args[]) {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel lblDateOfPayment;
-    private javax.swing.JLabel lblMem;
     private javax.swing.JLabel lblName1;
+    private javax.swing.JLabel lblSum;
     private Handle.PanelRound panelRound1;
     private Handle.PanelRound panelRound10;
     private Handle.PanelRound panelRound11;
