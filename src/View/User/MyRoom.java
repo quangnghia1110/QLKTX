@@ -4,14 +4,11 @@
  */
 package View.User;
 
-import View.Notification.ConfirmRoom;
+import Dao.RoomDAO;
+import Dao.StudentDAO;
 import java.awt.Label;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-import Model.Room;
-import Dao.RoomDAO;
-import Model.Student;
-import Dao.StudentDAO;
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,7 +17,8 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
-
+import Model.*;
+import View.Notification.ConfirmRoom;
 /**
  *
  * @author ADMIN
@@ -324,6 +322,11 @@ public class MyRoom extends javax.swing.JPanel {
 
         cbRooms.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2A32", "2A08", "2E15", "2B32" }));
         cbRooms.setPreferredSize(new java.awt.Dimension(76, 35));
+        cbRooms.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbRoomsActionPerformed(evt);
+            }
+        });
         panelRound4.add(cbRooms);
 
         panelRound7.setBackground(new java.awt.Color(17, 144, 119));
@@ -387,7 +390,6 @@ public class MyRoom extends javax.swing.JPanel {
         panelRound6.setRoundTopLeft(10);
         panelRound6.setRoundTopRight(10);
 
-        btnMove.setBackground(new java.awt.Color(17, 144, 119));
         btnMove.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnMove.setForeground(new java.awt.Color(255, 255, 255));
         btnMove.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -526,6 +528,10 @@ public class MyRoom extends javax.swing.JPanel {
         }else{
         }
     }//GEN-LAST:event_btnMoveMouseClicked
+
+    private void cbRoomsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbRoomsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbRoomsActionPerformed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

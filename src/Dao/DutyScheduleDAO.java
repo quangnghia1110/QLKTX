@@ -14,30 +14,33 @@ public class DutyScheduleDAO {
     private Connection conn = null;
     private PreparedStatement sttm = null;
 
-    public List<DutySchedule> getAll() {
-        List<DutySchedule> dutySchedules = new ArrayList<>();
-        ResultSet rs = null;
-        try {
-            String sSQL = "SELECT * FROM DutySchedule";
-            conn = DatabaseHelpper.getConnection();
-            sttm = conn.prepareStatement(sSQL);
-            rs = sttm.executeQuery();
+    public List<DutySchedule> getAll(String studentId) {
+    List<DutySchedule> dutySchedules = new ArrayList<>();
+    ResultSet rs = null;
+    try {
+        String sSQL = "SELECT * FROM DutySchedule WHERE studentId = ?";
+        conn = DatabaseHelpper.getConnection();
+        sttm = conn.prepareStatement(sSQL);
+        sttm.setString(1, studentId);
+        rs = sttm.executeQuery();
 
-            while (rs.next()) {
-                DutySchedule dutySchedule = new DutySchedule();
-                dutySchedule.setScheduleId(rs.getInt("scheduleId"));
-                dutySchedule.setScheduleDate(rs.getDate("scheduleDate"));
-                dutySchedule.setDescription(rs.getString("description"));
-                dutySchedule.setStudentId(rs.getString("studentId"));
-                dutySchedules.add(dutySchedule);
-            }
-        } catch (SQLException e) {
-            System.out.println("Error: " + e.toString());
-        } finally {
-            closeResources();
+        while (rs.next()) {
+            DutySchedule dutySchedule = new DutySchedule();
+            dutySchedule.setScheduleId(rs.getInt("scheduleId"));
+            dutySchedule.setScheduleDate(rs.getDate("scheduleDate"));
+                        dutySchedule.setStudentId(rs.getString("studentId"));
+
+            dutySchedule.setDescription(rs.getString("description"));
+            dutySchedules.add(dutySchedule);
         }
-        return dutySchedules;
+    } catch (SQLException e) {
+        System.out.println("Error: " + e.toString());
+    } finally {
+        closeResources();
     }
+    return dutySchedules;
+}
+
     public ArrayList<DutySchedule> getListSchedule() {
         String query = "SELECT scheduleId, scheduleDate, description, studentId FROM DutySchedule";
         return getDutyScheduleFromDatabase(query);

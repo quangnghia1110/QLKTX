@@ -76,6 +76,8 @@ public class SuccessfulRegisterRoom extends javax.swing.JDialog {
         getContentPane().setLayout(new java.awt.CardLayout());
 
         jPanel1.setBackground(new java.awt.Color(17, 144, 119));
+        jPanel1.setMinimumSize(new java.awt.Dimension(500, 250));
+        jPanel1.setPreferredSize(new java.awt.Dimension(500, 250));
         jPanel1.setLayout(new java.awt.CardLayout(5, 5));
 
         jPanel3.setBackground(new java.awt.Color(17, 144, 119));
