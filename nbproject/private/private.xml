@@ -3,19 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/Dao/RoomDAO.java</file>
-            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/View/Notification/ConfirmRoom.java</file>
-            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/Dao/DutyScheduleDAO.java</file>
-            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/Model/Room.java</file>
-            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/View/User/DutySchedule.java</file>
-            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/View/User/CreateEmail.java</file>
-            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/Model/StaticVariable.java</file>
-            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/View/User/DetailRoomAndRegister.java</file>
-            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/Model/Student.java</file>
-            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/View/User/RegisterRoom.java</file>
+            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/View/User/MyRoom.java</file>
+            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/View/User/UtilityBill.java</file>
+            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/View/User/MainUser.java</file>
             <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/View/User/MailSinhVien.java</file>
-            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/Dao/StudentDAO.java</file>
-            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/Dao/MailSinhVienDAO.java</file>
+            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/Model/UtilityBill.java</file>
+            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/Dao/UtilityBillDAO.java</file>
+            <file>file:/D:/HCMUTE-K21/Nam_3/HocKy2/NgonNguLapTrinhTienTien/DoAnCuoiKy/QLKTX/src/View/User/DutySchedule.java</file>
         </group>
     </open-files>
 </project-private>

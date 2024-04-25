@@ -56,7 +56,47 @@ public class UtilityBillDAO {
 
         return utilityBills;
     }
+ public List<UtilityBill> getAllByRoom(String roomName) {
+        List<UtilityBill> utilityBills = new ArrayList<>();
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
 
+        try {
+            connection = DatabaseHelpper.getConnection(); // Thay thế YourDatabaseConnection bằng lớp kết nối cơ sở dữ liệu thực tế của bạn
+            String query = "SELECT * FROM UtilityBill WHERE roomName = ?";
+            statement = connection.prepareStatement(query);
+            statement.setString(1, roomName); // Thiết lập tham số tên phòng
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                // Tạo một đối tượng UtilityBill mới và điền các trường từ result set
+                UtilityBill utilityBill = new UtilityBill();
+                utilityBill.setBillId(resultSet.getInt("billId"));
+                utilityBill.setStudentId(resultSet.getString("studentId")); // Lấy studentId
+                utilityBill.setRoomName(resultSet.getString("roomName"));
+                utilityBill.setElectricityCost(resultSet.getDouble("electricityCost"));
+                utilityBill.setWaterCost(resultSet.getDouble("waterCost"));
+                utilityBill.setDateOfPayment(resultSet.getDate("dateOfPayment"));
+
+                // Thêm hóa đơn tiện ích vào danh sách
+                utilityBills.add(utilityBill);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // Đóng kết nối, câu lệnh và result set
+            try {
+                if (resultSet != null) resultSet.close();
+                if (statement != null) statement.close();
+                if (connection != null) connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return utilityBills;
+    }
     // Lấy tất cả các hóa đơn tiện ích từ cơ sở dữ liệu
     public ArrayList<UtilityBill> getAllUtilityBills() {
         String query = "SELECT billId, studentId, roomName, electricityCost, waterCost, dateOfPayment FROM UtilityBill";

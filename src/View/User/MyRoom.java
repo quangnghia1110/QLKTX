@@ -322,6 +322,11 @@ public class MyRoom extends javax.swing.JPanel {
 
         cbRooms.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2A32", "2A08", "2E15", "2B32" }));
         cbRooms.setPreferredSize(new java.awt.Dimension(76, 35));
+        cbRooms.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbRoomsActionPerformed(evt);
+            }
+        });
         panelRound4.add(cbRooms);
 
         panelRound7.setBackground(new java.awt.Color(17, 144, 119));
@@ -523,6 +528,10 @@ public class MyRoom extends javax.swing.JPanel {
         }else{
         }
     }//GEN-LAST:event_btnMoveMouseClicked
+
+    private void cbRoomsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbRoomsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbRoomsActionPerformed
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

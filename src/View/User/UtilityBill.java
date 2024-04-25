@@ -4,6 +4,7 @@
  */
 package View.User;
 
+import Dao.DutyScheduleDAO;
 import Dao.RoomDAO;
 import Dao.StudentDAO;
 import Dao.UtilityBillDAO;
@@ -28,6 +29,8 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.File;
 import java.util.ArrayList;
+import javax.swing.RowFilter;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -44,13 +47,25 @@ private Student student;
     public Student getStudent() {
         return student;
     }
+    Room myR;
+    RoomDAO daoR = new RoomDAO();
     public UtilityBill(Student student) {
         initComponents();
-              this.student = student;
+    this.student = student;
 
-        list = new UtilityBillDAO().getAllUtilityBills(); 
-        fitContentOfTable(table);
+    list = new UtilityBillDAO().getAllUtilityBills(); 
+    fitContentOfTable(table);
+    myR = daoR.getRoomByName(student.getRoom());
+    lblName1.setText(myR.getName());
+    
+    Object selectedValue = cbRooms.getSelectedItem();
+    if (selectedValue != null) {
+        lblDateOfPayment.setText(selectedValue.toString());
     }
+    
+    loadTable(list);
+}
+
 
    public void fitContentOfTable(JTable table){
         for (int col = 0; col < table.getColumnCount(); col++){
@@ -99,12 +114,12 @@ private Student student;
         jLabel10 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        lblSizeRoom = new javax.swing.JLabel();
+        lblDateOfPayment = new javax.swing.JLabel();
         panelRound12 = new Handle.PanelRound();
         panelRound4 = new Handle.PanelRound();
         cbRooms = new javax.swing.JComboBox<>();
         panelRound7 = new Handle.PanelRound();
-        btnChangingRoom = new javax.swing.JLabel();
+        btnFilter = new javax.swing.JLabel();
         panelRound10 = new Handle.PanelRound();
         panelRound2 = new Handle.PanelRound();
         panelRound8 = new Handle.PanelRound();
@@ -221,10 +236,10 @@ private Student student;
         jLabel7.setText("Hạn thanh toán: ");
         jPanel5.add(jLabel7);
 
-        lblSizeRoom.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblSizeRoom.setForeground(new java.awt.Color(255, 255, 255));
-        lblSizeRoom.setText("10");
-        jPanel5.add(lblSizeRoom);
+        lblDateOfPayment.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblDateOfPayment.setForeground(new java.awt.Color(255, 255, 255));
+        lblDateOfPayment.setText("10");
+        jPanel5.add(lblDateOfPayment);
 
         jPanel2.add(jPanel5, java.awt.BorderLayout.PAGE_END);
 
@@ -256,14 +271,14 @@ private Student student;
         panelRound7.setRoundTopLeft(5);
         panelRound7.setRoundTopRight(5);
 
-        btnChangingRoom.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnChangingRoom.setForeground(new java.awt.Color(255, 255, 255));
-        btnChangingRoom.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnChangingRoom.setText("OK");
-        btnChangingRoom.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnChangingRoom.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnFilter.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnFilter.setForeground(new java.awt.Color(255, 255, 255));
+        btnFilter.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnFilter.setText("OK");
+        btnFilter.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnFilter.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnChangingRoomMouseClicked(evt);
+                btnFilterMouseClicked(evt);
             }
         });
 
@@ -271,11 +286,11 @@ private Student student;
         panelRound7.setLayout(panelRound7Layout);
         panelRound7Layout.setHorizontalGroup(
             panelRound7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnChangingRoom, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
+            .addComponent(btnFilter, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
         );
         panelRound7Layout.setVerticalGroup(
             panelRound7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnChangingRoom, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+            .addComponent(btnFilter, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
         );
 
         panelRound4.add(panelRound7);
@@ -360,7 +375,7 @@ private Student student;
 
             },
             new String [] {
-                "Mã hóa đơn", "Tên phòng", "Tiền điện", "Tiền nước", "Ngày thanh toán"
+                "Mã hóa đơn", "Tên phòng", "Tiền điện", "Tiền nước", "Hạn thanh toán"
             }
         ) {
             Class[] types = new Class [] {
@@ -398,35 +413,55 @@ private Student student;
         add(jPanel9, "card2");
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnChangingRoomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChangingRoomMouseClicked
-        
-    }//GEN-LAST:event_btnChangingRoomMouseClicked
+    private void btnFilterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFilterMouseClicked
+        String selectedDate = (String) cbRooms.getSelectedItem();    
+        if (selectedDate.equals("ALL")) {
+            filterTableByDate(selectedDate);
+        } else {
+            filterTableByDate(selectedDate); // Filter by selected date
+        }
+    }//GEN-LAST:event_btnFilterMouseClicked
 
+private void filterTableByRoom(String selectedDate) {
+    DefaultTableModel model = (DefaultTableModel) table.getModel();
+    TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
+    table.setRowSorter(sorter);    
+    RowFilter<DefaultTableModel, Object> filter = RowFilter.regexFilter(selectedDate, 1); // Filter by the second column which is the room name
+    sorter.setRowFilter(filter);
+}
+
+    private void filterTableByDate(String selectedDate) {
+    DefaultTableModel model = (DefaultTableModel) table.getModel();
+    TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
+    table.setRowSorter(sorter);    
+    RowFilter<DefaultTableModel, Object> filter = RowFilter.regexFilter(selectedDate, 4); // Filter by the fifth column which is the date of payment
+    sorter.setRowFilter(filter);
+}
     private void btnExportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExportMouseClicked
-        if (list.isEmpty()) {
-        SuccessfulExportAndImport emptyList = new SuccessfulExportAndImport(null, true, "Danh sách sinh viên trống!");
+         if (list.isEmpty()) {
+        SuccessfulExportAndImport emptyList = new SuccessfulExportAndImport(null, true, "Danh sách hóa đơn trống!");
         emptyList.setVisible(true);
     } else {
         if (student != null) {
             UtilityBillDAO utilityBillDAO = new UtilityBillDAO(); // Tạo một thể hiện của DutyScheduleDAO
-            List<Model.UtilityBill> utilityBills = utilityBillDAO.getAll(student.getId());
+            List<Model.UtilityBill> utilityBills = utilityBillDAO.getAllByRoom(student.getRoom());
             
             if (!utilityBills.isEmpty()) {
-                exportExcelFile(student.getId());
+                exportExcelFile(utilityBills);
             } else {
                 // Xử lý trường hợp danh sách lịch trực của sinh viên trống
-                SuccessfulExportAndImport emptyScheduleList = new SuccessfulExportAndImport(null, true, "Danh sách hóa đơn của sinh viên trống!");
-                emptyScheduleList.setVisible(true);
+                SuccessfulExportAndImport emptyBillList = new SuccessfulExportAndImport(null, true, "Danh sách hóa đơn của sinh viên trống!");
+                emptyBillList.setVisible(true);
             }
         } else {
             // Xử lý trường hợp khi student là null
             System.out.println("Error: Student is null");
-        }  
-}
+        }
+    }
     }//GEN-LAST:event_btnExportMouseClicked
-    public void exportExcelFile(String studentId) {
+    public void exportExcelFile(List<Model.UtilityBill> utilityBills) {
     try {
-        if (list.isEmpty()) {
+        if (utilityBills.isEmpty()) {
             System.out.println("Error: Empty list");
             return;
         }
@@ -445,33 +480,72 @@ private Student student;
 
         // Data rows
         int rowNum = 1;
-        for (Model.UtilityBill bill : list) {
-            // Check if the bill belongs to the specified studentId
-            if (bill.getStudentId() == studentId) {
-                row = sheet.createRow(rowNum++);
-                row.createCell(0, CellType.NUMERIC).setCellValue(rowNum - 1); // STT
-                row.createCell(1, CellType.NUMERIC).setCellValue(bill.getBillId()); // Mã hóa đơn
-                row.createCell(2, CellType.STRING).setCellValue(bill.getRoomName()); // Tên phòng
-                row.createCell(3, CellType.NUMERIC).setCellValue(bill.getElectricityCost()); // Tiền điện
-                row.createCell(4, CellType.NUMERIC).setCellValue(bill.getWaterCost()); // Tiền nước
-                row.createCell(5, CellType.STRING).setCellValue(bill.getDateOfPayment().toString()); // Ngày thanh toán
-            }
+        for (Model.UtilityBill bill : utilityBills) {
+            row = sheet.createRow(rowNum++);
+            row.createCell(0, CellType.NUMERIC).setCellValue(rowNum - 1); // STT
+            row.createCell(1, CellType.NUMERIC).setCellValue(bill.getBillId()); // Mã hóa đơn
+            row.createCell(2, CellType.STRING).setCellValue(bill.getRoomName()); // Tên phòng
+            row.createCell(3, CellType.NUMERIC).setCellValue(bill.getElectricityCost()); // Tiền điện
+            row.createCell(4, CellType.NUMERIC).setCellValue(bill.getWaterCost()); // Tiền nước
+            row.createCell(5, CellType.STRING).setCellValue(bill.getDateOfPayment().toString()); // Ngày thanh toán
         }
 
-        File file = new File("D:\\Download\\DANH_SACH_HOA_DON.xlsx");
-        try (FileOutputStream exportedFile = new FileOutputStream(file)) {
+        // Determine file path dynamically
+        String filePath = "D:\\Download\\DANH_SACH_HOA_DON.xlsx";
+
+        // Write to the file
+        try (FileOutputStream exportedFile = new FileOutputStream(filePath)) {
             excelFile.write(exportedFile);
-            excelFile.close(); // Đóng tệp Excel sau khi ghi xong
+            excelFile.close(); // Close the Excel file after writing
             SuccessfulExportAndImport showDialog = new SuccessfulExportAndImport(null, true, "Xuất ra file Excel thành công !");
             showDialog.setVisible(true);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Error writing to file: " + e.getMessage());
         }
 
     } catch (Exception e) {
-        e.printStackTrace();
+        System.out.println("Error exporting Excel file: " + e.getMessage());
     }
 }
+
+    private void loadTable(List<Model.UtilityBill> list) {
+    cbRooms.removeAllItems();
+    UtilityBillDAO utilityBillDAO = new UtilityBillDAO();
+    List<Model.UtilityBill> bills = utilityBillDAO.getAllByRoom(student.getRoom());
+    cbRooms.addItem("ALL");
+    // Add utility bill data to the combo box
+    for (Model.UtilityBill bill : bills) {
+        cbRooms.addItem(bill.getDateOfPayment().toString());
+    }
+    
+    DefaultTableModel model = (DefaultTableModel) table.getModel();
+    model.setRowCount(0);
+    
+    int stt = 1;
+    if (list != null && !list.isEmpty()) {
+        for (Model.UtilityBill bill : list) {
+            // Check if the bill belongs to the room associated with the logged-in student
+            if (student.isHavingRoom() && bill.getRoomName().equals(student.getRoom())) {
+                Object[] rowData = {
+                    bill.getBillId(),
+                    bill.getRoomName(),
+                    bill.getElectricityCost(),
+                    bill.getWaterCost(),
+                    bill.getDateOfPayment().toString()
+                };
+                model.addRow(rowData);
+                stt++;
+            }
+        }
+    } else {
+        Object[] rowData = {"", "", "Danh sách trống", "", "", ""};
+        model.addRow(rowData);
+    }
+}
+
+
+
+
 public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -504,8 +578,8 @@ public static void main(String args[]) {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel btnChangingRoom;
     private javax.swing.JLabel btnExport;
+    private javax.swing.JLabel btnFilter;
     private javax.swing.JComboBox<String> cbRooms;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -523,9 +597,9 @@ public static void main(String args[]) {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblDateOfPayment;
     private javax.swing.JLabel lblMem;
     private javax.swing.JLabel lblName1;
-    private javax.swing.JLabel lblSizeRoom;
     private Handle.PanelRound panelRound1;
     private Handle.PanelRound panelRound10;
     private Handle.PanelRound panelRound11;
