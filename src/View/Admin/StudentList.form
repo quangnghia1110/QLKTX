@@ -233,7 +233,7 @@
                                 <Component class="javax.swing.JLabel" name="jLabel3">
                                   <Properties>
                                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                                      <Image iconType="3" name="/img/Search.png"/>
+                                      <Image iconType="3" name="/img/findingIcon.png"/>
                                     </Property>
                                   </Properties>
                                   <Constraints>
@@ -334,7 +334,7 @@
                                     <Component class="javax.swing.JLabel" name="arrangeButton">
                                       <Properties>
                                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                                          <Image iconType="3" name="/img/Arrange.png"/>
+                                          <Image iconType="3" name="/img/arrangeIcon.png"/>
                                         </Property>
                                         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                                           <Color id="Hand Cursor"/>
@@ -465,7 +465,7 @@
                                     <Component class="javax.swing.JLabel" name="filterButton">
                                       <Properties>
                                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                                          <Image iconType="3" name="/img/Filter.png"/>
+                                          <Image iconType="3" name="/img/filterIcon.png"/>
                                         </Property>
                                         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                                           <Color id="Hand Cursor"/>
@@ -747,7 +747,7 @@
                                     <Component class="javax.swing.JLabel" name="jLabel1">
                                       <Properties>
                                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                                          <Image iconType="3" name="/img/importIcon.png"/>
+                                          <Image iconType="3" name="/img/exportExcel.png"/>
                                         </Property>
                                         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                                           <Color id="Hand Cursor"/>
@@ -850,7 +850,7 @@
                                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                         </Property>
                                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                                          <Image iconType="3" name="/img/exportIcon.png"/>
+                                          <Image iconType="3" name="/img/importExcel.png"/>
                                         </Property>
                                         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                                           <Color id="Hand Cursor"/>

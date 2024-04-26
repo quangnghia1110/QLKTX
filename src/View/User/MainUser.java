@@ -278,7 +278,7 @@ public class MainUser extends javax.swing.JFrame {
         panelRound5.setRoundTopRight(10);
         panelRound5.setLayout(new java.awt.CardLayout(3, 3));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/profileIcon (1).png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/profileIcon.png"))); // NOI18N
         panelRound5.add(jLabel2, "card2");
 
         panelRound1.add(panelRound5, java.awt.BorderLayout.LINE_START);
@@ -314,7 +314,7 @@ public class MainUser extends javax.swing.JFrame {
         });
         pnActive5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/myRoomIcon.png"))); // NOI18N
+        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/scheduleIcon.png"))); // NOI18N
         jLabel27.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pnActive5.add(jLabel27);
 
@@ -338,7 +338,7 @@ public class MainUser extends javax.swing.JFrame {
         });
         pnActive6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        jLabel30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/myRoomIcon.png"))); // NOI18N
+        jLabel30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/notificationIcon.png"))); // NOI18N
         jLabel30.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pnActive6.add(jLabel30);
 
@@ -362,7 +362,7 @@ public class MainUser extends javax.swing.JFrame {
         });
         pnActive8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        jLabel35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/myRoomIcon.png"))); // NOI18N
+        jLabel35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/billIcon.png"))); // NOI18N
         jLabel35.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pnActive8.add(jLabel35);
 
