@@ -579,7 +579,7 @@ public class MenuAdmin extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Quản trị viên");
 
-        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8-admin-48.png"))); // NOI18N
+        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/adminIcon.png"))); // NOI18N
 
         javax.swing.GroupLayout pn_avatarLayout = new javax.swing.GroupLayout(pn_avatar);
         pn_avatar.setLayout(pn_avatarLayout);

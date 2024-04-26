@@ -44,9 +44,9 @@ public class PanelAction extends javax.swing.JPanel {
         acceptBtn = new Handle.Button.ActionButton();
         refuseBtn = new Handle.Button.ActionButton();
 
-        acceptBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Handle/Button/icons8-check-24.png"))); // NOI18N
+        acceptBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Handle/Button/accept_icon.png"))); // NOI18N
 
-        refuseBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Handle/Button/icons8-x-24.png"))); // NOI18N
+        refuseBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Handle/Button/delete_icon.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
