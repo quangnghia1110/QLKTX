@@ -496,10 +496,17 @@
                                 </Constraint>
                               </Constraints>
                             </Component>
-                            <Component class="javax.swing.JComboBox" name="comboBoxRange">
+                            <Component class="javax.swing.JComboBox" name="comboBoxBlock">
                               <Properties>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                                  <StringArray count="0"/>
+                                  <StringArray count="6">
+                                    <StringItem index="0" value="T&#x1ea5;t c&#x1ea3;"/>
+                                    <StringItem index="1" value="A"/>
+                                    <StringItem index="2" value="B"/>
+                                    <StringItem index="3" value="C"/>
+                                    <StringItem index="4" value="D"/>
+                                    <StringItem index="5" value="E"/>
+                                  </StringArray>
                                 </Property>
                                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                                   <Border info="null"/>
@@ -582,10 +589,14 @@
                                 </Constraint>
                               </Constraints>
                             </Component>
-                            <Component class="javax.swing.JComboBox" name="comboBoxCategory">
+                            <Component class="javax.swing.JComboBox" name="comboBoxType">
                               <Properties>
                                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                                  <StringArray count="0"/>
+                                  <StringArray count="3">
+                                    <StringItem index="0" value="T&#x1ea5;t c&#x1ea3;"/>
+                                    <StringItem index="1" value="Th&#x1b0;&#x1edd;ng"/>
+                                    <StringItem index="2" value="VIP"/>
+                                  </StringArray>
                                 </Property>
                                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                                   <Border info="null"/>

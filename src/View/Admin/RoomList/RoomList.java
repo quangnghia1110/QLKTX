@@ -33,12 +33,15 @@ import java.awt.event.ActionEvent;
 import javax.swing.Timer;
 import View.Admin.RoomList.Message;
 import Handle.PanelRound;
+import Model.Student;
+import View.Notification.SuccessfulExportAndImport;
+import java.util.ArrayList;
 
 public class RoomList extends javax.swing.JPanel {
 
     RoomDAO daoR = new RoomDAO();
     private List<Room> lR = daoR.getAll();
-
+    private ArrayList<Room> list;
     public RoomList() {
         initComponents();
         loadingRoom(lR);
@@ -321,11 +324,11 @@ public class RoomList extends javax.swing.JPanel {
         panelRound15 = new Handle.PanelRound();
         panelRound6 = new Handle.PanelRound();
         jLabel8 = new javax.swing.JLabel();
-        comboBoxRange = new javax.swing.JComboBox<>();
+        comboBoxBlock = new javax.swing.JComboBox<>();
         panelRound14 = new Handle.PanelRound();
         panelRound7 = new Handle.PanelRound();
         jLabel6 = new javax.swing.JLabel();
-        comboBoxCategory = new javax.swing.JComboBox<>();
+        comboBoxType = new javax.swing.JComboBox<>();
         roomContainer = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -497,10 +500,11 @@ public class RoomList extends javax.swing.JPanel {
         jLabel8.setText("Dãy");
         panelRound6.add(jLabel8, java.awt.BorderLayout.LINE_START);
 
-        comboBoxRange.setBorder(null);
-        comboBoxRange.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        comboBoxRange.setPreferredSize(new java.awt.Dimension(50, 23));
-        panelRound6.add(comboBoxRange, java.awt.BorderLayout.CENTER);
+        comboBoxBlock.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "A", "B", "C", "D", "E" }));
+        comboBoxBlock.setBorder(null);
+        comboBoxBlock.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        comboBoxBlock.setPreferredSize(new java.awt.Dimension(50, 23));
+        panelRound6.add(comboBoxBlock, java.awt.BorderLayout.CENTER);
 
         panelRound15.add(panelRound6, "card2");
 
@@ -525,10 +529,11 @@ public class RoomList extends javax.swing.JPanel {
         jLabel6.setText("Loại");
         panelRound7.add(jLabel6, java.awt.BorderLayout.LINE_START);
 
-        comboBoxCategory.setBorder(null);
-        comboBoxCategory.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        comboBoxCategory.setPreferredSize(new java.awt.Dimension(70, 23));
-        panelRound7.add(comboBoxCategory, java.awt.BorderLayout.CENTER);
+        comboBoxType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tất cả", "Thường", "VIP" }));
+        comboBoxType.setBorder(null);
+        comboBoxType.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        comboBoxType.setPreferredSize(new java.awt.Dimension(70, 23));
+        panelRound7.add(comboBoxType, java.awt.BorderLayout.CENTER);
 
         panelRound14.add(panelRound7, "card2");
 
@@ -606,25 +611,55 @@ public class RoomList extends javax.swing.JPanel {
     private void searchBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBtnMouseEntered
 
     }//GEN-LAST:event_searchBtnMouseEntered
-/*
+
+    public List<Room> getListFilter() {
+        List<Room> resultFilter = new ArrayList<>();
+        String selectedBlock = String.valueOf(comboBoxBlock.getSelectedItem());
+        String selectedType = String.valueOf(comboBoxType.getSelectedItem());
+        boolean type = false;
+        if (selectedType.equals("VIP"))
+            type = true;
+        for (Room room : lR) {
+            
+            if (selectedBlock.equals("Tất cả")&& !selectedType.equals("Tất cả")){
+                if (room.getType()== type){
+                    resultFilter.add(room);
+                }
+            }
+            else if (!selectedBlock.equals("Tất cả")&& selectedType.equals("Tất cả")){
+                if (room.getBlock().equalsIgnoreCase(selectedBlock)){
+                    resultFilter.add(room);
+                }
+            }
+            else {
+                if (room.getBlock().equalsIgnoreCase(selectedBlock) && room.getType() == type){
+                    resultFilter.add(room);
+                }
+            }
+        }
+        return resultFilter;
+    }
     private void filterButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_filterButtonMouseClicked
-        // TODO add your handling code here:
         animationClick(borderPanel,"#119077");
-        if (getListFilter().isEmpty()) {
+        if (String.valueOf(comboBoxBlock.getSelectedItem()).equals("Tất cả") && String.valueOf(comboBoxType.getSelectedItem()).equals("Tất cả")){
+            loadingRoom(lR);
+        }
+        else if (getListFilter().isEmpty()) {
             SuccessfulExportAndImport notFound = new SuccessfulExportAndImport(null, true, "Không tìm thấy kết quả phù hợp!");
             notFound.setVisible(true);
-            showListStudent(list);
-        } else {
-            showListStudent(getListFilter());
+            loadingRoom(lR);
+        }
+        else {
+            loadingRoom(getListFilter());
         }
     }//GEN-LAST:event_filterButtonMouseClicked
-*/
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addBtn;
     private Handle.PanelRound addingRoomPanel;
     private Handle.PanelRound borderPanel;
-    private javax.swing.JComboBox<String> comboBoxCategory;
-    private javax.swing.JComboBox<String> comboBoxRange;
+    private javax.swing.JComboBox<String> comboBoxBlock;
+    private javax.swing.JComboBox<String> comboBoxType;
     private javax.swing.JLabel filterButton;
     private javax.swing.JPanel header;
     private javax.swing.JLabel jLabel3;
