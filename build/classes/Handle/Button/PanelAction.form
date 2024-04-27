@@ -36,14 +36,14 @@
     <Component class="Handle.Button.ActionButton" name="acceptBtn">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Handle/Button/icons8-check-24.png"/>
+          <Image iconType="3" name="/Handle/Button/accept_icon.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="Handle.Button.ActionButton" name="refuseBtn">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Handle/Button/icons8-x-24.png"/>
+          <Image iconType="3" name="/Handle/Button/delete_icon.png"/>
         </Property>
       </Properties>
     </Component>

@@ -313,6 +313,19 @@ public class RoomList extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         panelRound2 = new Handle.PanelRound();
         jLabel3 = new javax.swing.JLabel();
+        panelRound10 = new Handle.PanelRound();
+        panelRound1 = new Handle.PanelRound();
+        borderPanel = new Handle.PanelRound();
+        filterButton = new javax.swing.JLabel();
+        panelRound16 = new Handle.PanelRound();
+        panelRound15 = new Handle.PanelRound();
+        panelRound6 = new Handle.PanelRound();
+        jLabel8 = new javax.swing.JLabel();
+        comboBoxRange = new javax.swing.JComboBox<>();
+        panelRound14 = new Handle.PanelRound();
+        panelRound7 = new Handle.PanelRound();
+        jLabel6 = new javax.swing.JLabel();
+        comboBoxCategory = new javax.swing.JComboBox<>();
         roomContainer = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -340,9 +353,9 @@ public class RoomList extends javax.swing.JPanel {
         panelRound3Layout.setHorizontalGroup(
             panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRound3Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addGap(17, 17, 17)
+                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         panelRound3Layout.setVerticalGroup(
             panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -416,7 +429,7 @@ public class RoomList extends javax.swing.JPanel {
         panelRound2.setLayout(panelRound2Layout);
         panelRound2Layout.setHorizontalGroup(
             panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 661, Short.MAX_VALUE)
+            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelRound2Layout.setVerticalGroup(
             panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -426,6 +439,105 @@ public class RoomList extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        panelRound10.setBackground(new java.awt.Color(17, 144, 119));
+        panelRound10.setPreferredSize(new java.awt.Dimension(360, 50));
+        panelRound10.setRoundBottomLeft(50);
+        panelRound10.setRoundBottomRight(20);
+        panelRound10.setRoundTopLeft(50);
+        panelRound10.setRoundTopRight(20);
+        panelRound10.setLayout(new java.awt.CardLayout(5, 5));
+
+        panelRound1.setBackground(new java.awt.Color(17, 144, 119));
+        panelRound1.setRoundBottomLeft(50);
+        panelRound1.setRoundTopLeft(50);
+        panelRound1.setLayout(new java.awt.BorderLayout(5, 0));
+
+        borderPanel.setBackground(new java.awt.Color(17, 144, 119));
+        borderPanel.setRoundBottomLeft(50);
+        borderPanel.setRoundBottomRight(50);
+        borderPanel.setRoundTopLeft(50);
+        borderPanel.setRoundTopRight(50);
+        borderPanel.setLayout(new java.awt.CardLayout(1, 1));
+
+        filterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/filterIcon.png"))); // NOI18N
+        filterButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        filterButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                filterButtonMouseClicked(evt);
+            }
+        });
+        borderPanel.add(filterButton, "card2");
+
+        panelRound1.add(borderPanel, java.awt.BorderLayout.LINE_START);
+
+        panelRound16.setBackground(new java.awt.Color(17, 144, 119));
+        panelRound16.setRoundBottomLeft(10);
+        panelRound16.setRoundBottomRight(10);
+        panelRound16.setRoundTopLeft(10);
+        panelRound16.setRoundTopRight(10);
+        panelRound16.setLayout(new java.awt.BorderLayout(5, 0));
+
+        panelRound15.setBackground(new java.awt.Color(255, 255, 255));
+        panelRound15.setRoundBottomLeft(10);
+        panelRound15.setRoundBottomRight(10);
+        panelRound15.setRoundTopLeft(10);
+        panelRound15.setRoundTopRight(10);
+        panelRound15.setLayout(new java.awt.CardLayout(5, 3));
+
+        panelRound6.setBackground(new java.awt.Color(255, 255, 255));
+        panelRound6.setMinimumSize(new java.awt.Dimension(92, 36));
+        panelRound6.setPreferredSize(new java.awt.Dimension(159, 40));
+        panelRound6.setRoundBottomLeft(10);
+        panelRound6.setRoundBottomRight(10);
+        panelRound6.setRoundTopLeft(10);
+        panelRound6.setRoundTopRight(10);
+        panelRound6.setLayout(new java.awt.BorderLayout(10, 5));
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel8.setText("Dãy");
+        panelRound6.add(jLabel8, java.awt.BorderLayout.LINE_START);
+
+        comboBoxRange.setBorder(null);
+        comboBoxRange.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        comboBoxRange.setPreferredSize(new java.awt.Dimension(50, 23));
+        panelRound6.add(comboBoxRange, java.awt.BorderLayout.CENTER);
+
+        panelRound15.add(panelRound6, "card2");
+
+        panelRound16.add(panelRound15, java.awt.BorderLayout.LINE_START);
+
+        panelRound14.setBackground(new java.awt.Color(255, 255, 255));
+        panelRound14.setRoundBottomLeft(10);
+        panelRound14.setRoundBottomRight(10);
+        panelRound14.setRoundTopLeft(10);
+        panelRound14.setRoundTopRight(10);
+        panelRound14.setLayout(new java.awt.CardLayout(5, 2));
+
+        panelRound7.setBackground(new java.awt.Color(255, 255, 255));
+        panelRound7.setPreferredSize(new java.awt.Dimension(140, 40));
+        panelRound7.setRoundBottomLeft(10);
+        panelRound7.setRoundBottomRight(10);
+        panelRound7.setRoundTopLeft(10);
+        panelRound7.setRoundTopRight(10);
+        panelRound7.setLayout(new java.awt.BorderLayout(10, 5));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel6.setText("Loại");
+        panelRound7.add(jLabel6, java.awt.BorderLayout.LINE_START);
+
+        comboBoxCategory.setBorder(null);
+        comboBoxCategory.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        comboBoxCategory.setPreferredSize(new java.awt.Dimension(70, 23));
+        panelRound7.add(comboBoxCategory, java.awt.BorderLayout.CENTER);
+
+        panelRound14.add(panelRound7, "card2");
+
+        panelRound16.add(panelRound14, java.awt.BorderLayout.CENTER);
+
+        panelRound1.add(panelRound16, java.awt.BorderLayout.CENTER);
+
+        panelRound10.add(panelRound1, "card2");
+
         javax.swing.GroupLayout headerLayout = new javax.swing.GroupLayout(header);
         header.setLayout(headerLayout);
         headerLayout.setHorizontalGroup(
@@ -433,24 +545,26 @@ public class RoomList extends javax.swing.JPanel {
             .addGroup(headerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelRound2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(headerLayout.createSequentialGroup()
-                        .addComponent(panelRound2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(headerLayout.createSequentialGroup()
-                        .addGap(38, 38, 38)
+                        .addGap(44, 44, 44)
                         .addComponent(panelRound5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panelRound4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(panelRound10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 6, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         headerLayout.setVerticalGroup(
             headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, headerLayout.createSequentialGroup()
                 .addComponent(panelRound2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(15, 15, 15)
-                .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panelRound5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelRound4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(14, 14, 14)
+                .addGroup(headerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelRound4, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelRound10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelRound5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(58, Short.MAX_VALUE))
         );
 
@@ -492,17 +606,42 @@ public class RoomList extends javax.swing.JPanel {
     private void searchBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBtnMouseEntered
 
     }//GEN-LAST:event_searchBtnMouseEntered
-
+/*
+    private void filterButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_filterButtonMouseClicked
+        // TODO add your handling code here:
+        animationClick(borderPanel,"#119077");
+        if (getListFilter().isEmpty()) {
+            SuccessfulExportAndImport notFound = new SuccessfulExportAndImport(null, true, "Không tìm thấy kết quả phù hợp!");
+            notFound.setVisible(true);
+            showListStudent(list);
+        } else {
+            showListStudent(getListFilter());
+        }
+    }//GEN-LAST:event_filterButtonMouseClicked
+*/
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addBtn;
     private Handle.PanelRound addingRoomPanel;
+    private Handle.PanelRound borderPanel;
+    private javax.swing.JComboBox<String> comboBoxCategory;
+    private javax.swing.JComboBox<String> comboBoxRange;
+    private javax.swing.JLabel filterButton;
     private javax.swing.JPanel header;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private Handle.PanelRound panelRound1;
+    private Handle.PanelRound panelRound10;
+    private Handle.PanelRound panelRound14;
+    private Handle.PanelRound panelRound15;
+    private Handle.PanelRound panelRound16;
     private Handle.PanelRound panelRound2;
     private Handle.PanelRound panelRound3;
     private Handle.PanelRound panelRound4;
     private Handle.PanelRound panelRound5;
+    private Handle.PanelRound panelRound6;
+    private Handle.PanelRound panelRound7;
     public javax.swing.JPanel roomContainer;
     private javax.swing.JLabel searchBtn;
     private javax.swing.JTextField txtSearch;

@@ -340,7 +340,7 @@ public class RegisterRoom extends javax.swing.JPanel {
         panelRound6.setLayout(new java.awt.CardLayout(5, 5));
 
         jLabel5.setBackground(new java.awt.Color(17, 144, 119));
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Filter.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/filterIcon.png"))); // NOI18N
         jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -376,7 +376,7 @@ public class RegisterRoom extends javax.swing.JPanel {
         panelRound1.setRoundTopRight(40);
         panelRound1.setLayout(new java.awt.BorderLayout());
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Search.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/findingIcon.png"))); // NOI18N
         panelRound1.add(jLabel2, java.awt.BorderLayout.LINE_START);
 
         panelRound3.setBackground(new java.awt.Color(255, 255, 255));
