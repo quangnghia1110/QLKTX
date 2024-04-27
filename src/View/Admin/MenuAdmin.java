@@ -715,6 +715,7 @@ public class MenuAdmin extends javax.swing.JPanel {
     }//GEN-LAST:event_pn_lichtrucMouseClicked
 
     private void pn_thongbaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_thongbaoMouseClicked
+        headerAdmin.addNotificationToBody();
         pn_sinhvien.setBackground(Color.decode("#119077"));
         pn_avatar.setBackground(Color.decode("#119077"));
         pn_dangxuat.setBackground(Color.decode("#119077"));
@@ -725,6 +726,7 @@ public class MenuAdmin extends javax.swing.JPanel {
         pn_thongke.setBackground(Color.decode("#119077"));
         pn_trangchu.setBackground(Color.decode("#119077"));
         pn_xetduyet.setBackground(Color.decode("#119077"));
+        
     }//GEN-LAST:event_pn_thongbaoMouseClicked
 
     private void pn_hoadonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_hoadonMouseClicked

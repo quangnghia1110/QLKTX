@@ -4,14 +4,15 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 public class MailSinhVien {
-    private String content, adminId, studentId;
+    private String idNotification, content, adminId, studentId;
     private Date date;
 
     public MailSinhVien() {
         
     }
 
-    public MailSinhVien(String studentId, String adminId, String content, Date date) {
+    public MailSinhVien(String idNotification, String studentId, String adminId, String content, Date date) {
+        this.idNotification = idNotification;
         this.content = content;
         this.adminId = adminId;
         this.studentId = studentId;
@@ -48,5 +49,12 @@ public class MailSinhVien {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+    public String getIdNotification() {
+        return idNotification;
+    }
+
+    public void setIdNotification(String idNotification) {
+        this.idNotification = idNotification;
     }
 }

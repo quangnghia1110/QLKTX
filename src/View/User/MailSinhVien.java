@@ -14,6 +14,8 @@ import Model.Room;
 import Dao.RoomDAO;
 import Model.Student;
 import Dao.StudentDAO;
+import Dao.ThongBaoCaNhanDAO;
+import Dao.ThongBaoChungDAO;
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,11 +34,19 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+
 /**
  *
  * @author ADMIN
  */
 public class MailSinhVien extends javax.swing.JPanel {
+
     private Student student;
 
     public void setStudent(Student student) {
@@ -47,16 +57,18 @@ public class MailSinhVien extends javax.swing.JPanel {
         return student;
     }
     private ArrayList<Model.MailSinhVien> list;
+
     public MailSinhVien(Student student) {
         initComponents();
-         this.student = student;
-        list = new MailSinhVienDAO().getListMail(); 
+        this.student = student;
+        list = new MailSinhVienDAO().getListMail();
         fitContentOfTable(table);
     }
-    public void fitContentOfTable(JTable table){
-        for (int col = 0; col < table.getColumnCount(); col++){
+
+    public void fitContentOfTable(JTable table) {
+        for (int col = 0; col < table.getColumnCount(); col++) {
             int maxWid = 0;
-            for (int row = 0; row < table.getRowCount(); row++){
+            for (int row = 0; row < table.getRowCount(); row++) {
                 int cellWid = table.prepareRenderer(table.getCellRenderer(row, col), row, col).getPreferredSize().width;
                 maxWid = Math.max(maxWid, cellWid);
             }
@@ -68,18 +80,14 @@ public class MailSinhVien extends javax.swing.JPanel {
         DefaultTableCellRenderer headerRenderer = (DefaultTableCellRenderer) table.getTableHeader().getDefaultRenderer();
         headerRenderer.setHorizontalAlignment(JLabel.CENTER);
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment(JLabel.CENTER);  
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-        int[] column = {0,1,2,3};
+        int[] column = {0, 1, 2, 3};
         for (int i = 0; i < column.length; i++) {
             table.getColumnModel().getColumn(column[i]).setCellRenderer(centerRenderer);
-        }   
+        }
     }
 
-    
-
-   
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -330,14 +338,14 @@ public class MailSinhVien extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã người gửi", "Mã người nhận", "Nội dung", "Ngày gửi"
+                "Mã thông báo", "Mã người gửi", "Mã người nhận", "Nội dung", "Ngày gửi"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -369,57 +377,98 @@ public class MailSinhVien extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHienThiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnHienThiMouseClicked
+
         MailSinhVienDAO mailSinhVienDAO = new MailSinhVienDAO();
+        ThongBaoChungDAO thongBaoChungDAO = new ThongBaoChungDAO();
+        ThongBaoCaNhanDAO thongBaoCaNhanDAO = new ThongBaoCaNhanDAO();
+
         if (student != null) {
             String studentId = student.getId();
+
             List<Model.MailSinhVien> mailSinhViens = mailSinhVienDAO.getAll(studentId);
+            List<Model.ThongBaoChung> thongBaoChungs = thongBaoChungDAO.getByStudentId(studentId);
+            List<Model.ThongBaoCaNhan> thongBaoCaNhans = thongBaoCaNhanDAO.getByStudentId(studentId);
+
             DefaultTableModel model = (DefaultTableModel) table.getModel();
             model.setRowCount(0);
-            if (mailSinhViens.isEmpty()) {
+
+            if (mailSinhViens.isEmpty() && thongBaoChungs.isEmpty() && thongBaoCaNhans.isEmpty()) {
                 Object[] rowData = {"Danh sách trống", "", "", ""};
                 model.addRow(rowData);
             } else {
                 for (Model.MailSinhVien mailSinhVien : mailSinhViens) {
                     Object[] rowData = {
-                        mailSinhVien.getAdminId(),
+                        mailSinhVien.getIdNotification(),
                         mailSinhVien.getStudentId(),
-                        
+                        mailSinhVien.getAdminId(),
                         mailSinhVien.getContent(),
                         mailSinhVien.getDate()
                     };
                     model.addRow(rowData);
                 }
+
+                for (Model.ThongBaoChung thongBaoChung : thongBaoChungs) {
+                    Object[] rowData = {
+                        thongBaoChung.getIdNotification(),
+                        thongBaoChung.getAdminId(),
+                        thongBaoChung.getStudentId(),
+                        thongBaoChung.getContent(),
+                        thongBaoChung.getDate()
+                    };
+                    model.addRow(rowData);
+                }
+
+                for (Model.ThongBaoCaNhan thongBaoCaNhan : thongBaoCaNhans) {
+                    Object[] rowData = {
+                        thongBaoCaNhan.getIdNotification(),
+                        thongBaoCaNhan.getAdminId(),
+                        thongBaoCaNhan.getStudentId(),
+                        thongBaoCaNhan.getContent(),
+                        thongBaoCaNhan.getDate()
+                    };
+                    model.addRow(rowData);
+                }
             }
         } else {
-            // Handle the case when student is null
-            // For example, display an error message
-            System.out.println("Error: Student is null");
+            System.out.println("Lỗi: Student là null");
         }
+
     }//GEN-LAST:event_btnHienThiMouseClicked
 
     private void btnExport1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExport1MouseClicked
         if (list.isEmpty()) {
-        SuccessfulExportAndImport emptyList = new SuccessfulExportAndImport(null, true, "Danh sách sinh viên trống!");
-        emptyList.setVisible(true);
-    } else {
-        if (student != null) {
-            MailSinhVienDAO mailSinhVienDAO = new MailSinhVienDAO(); // Tạo một thể hiện của DutyScheduleDAO
-            List<Model.MailSinhVien> mailSinhViens = mailSinhVienDAO.getAll(student.getId());
-            
-            if (!mailSinhViens.isEmpty()) {
-                exportExcelFile(student.getId());
-            } else {
-                // Xử lý trường hợp danh sách lịch trực của sinh viên trống
-                SuccessfulExportAndImport emptyMailList = new SuccessfulExportAndImport(null, true, "Danh sách thông báo của sinh viên trống!");
-                emptyMailList.setVisible(true);
-            }
+            SuccessfulExportAndImport emptyList = new SuccessfulExportAndImport(null, true, "Danh sách sinh viên trống!");
+            emptyList.setVisible(true);
         } else {
-            // Xử lý trường hợp khi student là null
-            System.out.println("Error: Student is null");
+            if (student != null) {
+                MailSinhVienDAO mailSinhVienDAO = new MailSinhVienDAO();
+                List<Model.MailSinhVien> mailSinhViens = mailSinhVienDAO.getAll(student.getId());
+
+                ThongBaoChungDAO thongBaoChungDAO = new ThongBaoChungDAO();
+                List<Model.ThongBaoChung> thongBaoChungs = thongBaoChungDAO.getByStudentId(student.getId());
+
+                ThongBaoCaNhanDAO thongBaoCaNhanDAO = new ThongBaoCaNhanDAO();
+                List<Model.ThongBaoCaNhan> thongBaoCaNhans = thongBaoCaNhanDAO.getByStudentId(student.getId());
+
+                // Combine the lists into one
+                List<Object> allNotifications = new ArrayList<>();
+                allNotifications.addAll(mailSinhViens);
+                allNotifications.addAll(thongBaoChungs);
+                allNotifications.addAll(thongBaoCaNhans);
+
+                if (!allNotifications.isEmpty()) {
+                    // Call a method to export all notifications to an Excel file
+                    exportToExcel(allNotifications);
+                } else {
+                    SuccessfulExportAndImport emptyList = new SuccessfulExportAndImport(null, true, "Danh sách thông báo của sinh viên trống!");
+                    emptyList.setVisible(true);
+                }
+            } else {
+                System.out.println("Error: Student is null");
+            }
         }
-    }
        }//GEN-LAST:event_btnExport1MouseClicked
-    public void animationClick (PanelRound panel, String beforeColor) {
+    public void animationClick(PanelRound panel, String beforeColor) {
         panel.setBackground(new Color(221, 242, 253, 128));
         Timer timer = new Timer(250, new ActionListener() {
             @Override
@@ -436,43 +485,78 @@ public class MailSinhVien extends javax.swing.JPanel {
         CreateEmail mail = new CreateEmail(null, true, student);
         mail.setVisible(true);
     }//GEN-LAST:event_btnTaoMailMouseClicked
-    public void exportExcelFile(String studentId) {
-        try {
-            XSSFWorkbook excelFile = new XSSFWorkbook();
-            XSSFSheet sheet = excelFile.createSheet("DANH SÁCH THÔNG BÁO");
+    private void exportToExcel(List<Object> notifications) {
+        String studentId = student.getId();
+        Workbook workbookForStudent = new XSSFWorkbook();
+        Sheet sheetForStudent = workbookForStudent.createSheet("THÔNG BÁO GỬI ĐẾN SINH VIÊN");
 
-            // Header row
-            String[] headers = {"STT", "Mã người gửi", "Mã người nhận", "Nội dung", "Ngày gửi"};
-            Cell cell;
-            org.apache.poi.ss.usermodel.Row row = sheet.createRow(0);
-            for (int i = 0; i < headers.length; i++) {
-                cell = row.createCell(i, CellType.STRING);
-                cell.setCellValue(headers[i]);
+        Workbook workbookForAdmin = new XSSFWorkbook();
+        Sheet sheetForAdmin = workbookForAdmin.createSheet("THÔNG BÁO GỬI ĐẾN QUẢN TRỊ VIÊN");
+
+// Create header row for both sheets
+        Row headerRowForStudent = sheetForStudent.createRow(0);
+        headerRowForStudent.createCell(0).setCellValue("Mã thông báo");
+        headerRowForStudent.createCell(1).setCellValue("Mã người gửi");
+        headerRowForStudent.createCell(2).setCellValue("Mã người nhận");
+        headerRowForStudent.createCell(3).setCellValue("Nội dung");
+        headerRowForStudent.createCell(4).setCellValue("Ngày gửi");
+
+        Row headerRowForAdmin = sheetForAdmin.createRow(0);
+        headerRowForAdmin.createCell(0).setCellValue("Mã thông báo");
+        headerRowForAdmin.createCell(1).setCellValue("Mã người gửi");
+        headerRowForAdmin.createCell(2).setCellValue("Mã người nhận");
+        headerRowForAdmin.createCell(3).setCellValue("Nội dung");
+        headerRowForAdmin.createCell(4).setCellValue("Ngày gửi");
+
+// Fill data rows
+        for (Object notification : notifications) {
+            if (notification instanceof Model.MailSinhVien) {
+                Model.MailSinhVien mailSinhVien = (Model.MailSinhVien) notification;
+                Row row = sheetForAdmin.createRow(sheetForAdmin.getLastRowNum() + 1);
+                row.createCell(0).setCellValue(mailSinhVien.getIdNotification());
+                row.createCell(1).setCellValue(mailSinhVien.getStudentId());
+                row.createCell(2).setCellValue(mailSinhVien.getAdminId());
+                row.createCell(3).setCellValue(mailSinhVien.getContent());
+                row.createCell(4).setCellValue(mailSinhVien.getDate().toString()); // Assuming date is stored as java.util.Date
+            } else if (notification instanceof Model.ThongBaoChung || notification instanceof Model.ThongBaoCaNhan) {
+                Row row = sheetForStudent.createRow(sheetForStudent.getLastRowNum() + 1);
+                if (notification instanceof Model.ThongBaoChung) {
+                    Model.ThongBaoChung thongBaoChung = (Model.ThongBaoChung) notification;
+                    row.createCell(0).setCellValue(thongBaoChung.getIdNotification());
+                    row.createCell(1).setCellValue(thongBaoChung.getAdminId());
+                    row.createCell(2).setCellValue(thongBaoChung.getStudentId());
+                    row.createCell(3).setCellValue(thongBaoChung.getContent());
+                    row.createCell(4).setCellValue(thongBaoChung.getDate().toString()); // Assuming date is stored as java.util.Date
+                } else if (notification instanceof Model.ThongBaoCaNhan) {
+                    Model.ThongBaoCaNhan thongBaoCaNhan = (Model.ThongBaoCaNhan) notification;
+                    row.createCell(0).setCellValue(thongBaoCaNhan.getIdNotification());
+                    row.createCell(1).setCellValue(thongBaoCaNhan.getAdminId());
+                    row.createCell(2).setCellValue(thongBaoCaNhan.getStudentId());
+                    row.createCell(3).setCellValue(thongBaoCaNhan.getContent());
+                    row.createCell(4).setCellValue(thongBaoCaNhan.getDate().toString()); // Assuming date is stored as java.util.Date
+                }
             }
+        }
 
-            // Data rows
-            int rowNum = 1;
-            for (Model.MailSinhVien mail : list) {
-                row = sheet.createRow(rowNum++);
-                row.createCell(0, CellType.NUMERIC).setCellValue(rowNum - 1); // STT
-                row.createCell(1, CellType.STRING).setCellValue(mail.getAdminId()); // Mã lịch trực
-                row.createCell(2, CellType.STRING).setCellValue(mail.getStudentId()); // Mã sinh viên
-                row.createCell(3, CellType.STRING).setCellValue(mail.getContent()); // Mô tả
-                row.createCell(4, CellType.STRING).setCellValue(mail.getDate()); // Ngày trực
-            }
+// Save both workbooks to separate files
+        Date currentDate = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = dateFormat.format(currentDate);
+        String filePathForStudent = "D:\\Download\\DANH_SACH_THONG_BAO_GUI_DEN_SINH_VIEN_" + studentId + "_" + formattedDate + ".xlsx";
+        String filePathForAdmin = "D:\\Download\\DANH_SACH_THONG_BAO_GUI_DEN_QUAN_TRI_VIEN_" + studentId + "_" + formattedDate + ".xlsx";
 
-            File file = new File("D:\\Download\\DANH_SACH_THONG_BAO.xlsx");
-            try (FileOutputStream exportedFile = new FileOutputStream(file)) {
-                excelFile.write(exportedFile);
-                SuccessfulExportAndImport showDialog = new SuccessfulExportAndImport(null, true, "Xuất ra file Excel thành công !");
-                showDialog.setVisible(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        File fileForStudent = new File(filePathForStudent);
+        File fileForAdmin = new File(filePathForAdmin);
 
+        try (FileOutputStream exportedFileForStudent = new FileOutputStream(fileForStudent); FileOutputStream exportedFileForAdmin = new FileOutputStream(fileForAdmin)) {
+            workbookForStudent.write(exportedFileForStudent);
+            workbookForAdmin.write(exportedFileForAdmin);
+            SuccessfulExportAndImport showDialog = new SuccessfulExportAndImport(null, true, "Xuất ra file Excel thành công !");
+            showDialog.setVisible(true);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
     public static void main(String args[]) {

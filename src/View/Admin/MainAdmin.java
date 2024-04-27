@@ -11,10 +11,10 @@ import javax.swing.JPanel;
 
 public class MainAdmin extends javax.swing.JFrame {
     RoomList roomList = new RoomList();
+    Notification notification = new Notification();
     ApprovingMoveAndRegister approvingPn = new ApprovingMoveAndRegister();
     StudentList studentList = new StudentList();
     private String username;
-    
     public MainAdmin() {
         initComponents();
         menuAdmin1.setHeaderAdmin(this);
@@ -59,7 +59,14 @@ public class MainAdmin extends javax.swing.JFrame {
         body.revalidate();
         body.repaint();
     }
-
+    public void addNotificationToBody(){
+        body.removeAll();
+        notification = new Notification();
+        body.add(notification);
+        body.revalidate();
+        body.repaint();
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

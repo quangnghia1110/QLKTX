@@ -21,6 +21,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import javax.swing.JOptionPane;
+import java.util.UUID;
 
 /**
  *
@@ -41,9 +42,9 @@ public class CreateEmail extends javax.swing.JFrame {
     /**
      * Creates new form updateProfile
      */
-    public CreateEmail(java.awt.Frame parent, boolean modal, Student std) {
+    public CreateEmail(java.awt.Frame parent, boolean modal, Student student) {
         initComponents();
-this.student = std;
+this.student = student;
         btnGuiMail.setEnabled(false);
                 setLocationRelativeTo(null);
 
@@ -60,7 +61,7 @@ this.student = std;
     String adminId = getAdminId(); // Giả định phương thức này trả về adminId
     
     if (studentId != null && adminId != null) {
-        // Chèn email với studentId và adminId vào cơ sở dữ liệu
+              // Chèn email với studentId và adminId vào cơ sở dữ liệu
         int x = MailSinhVienDAO.insertMail(adminId, studentId, noiDung, new Timestamp(System.currentTimeMillis()));
     
         if (x == 1) {
@@ -374,8 +375,9 @@ this.student = std;
     String adminId = getAdminId(); // Giả định phương thức này trả về adminId
     
     if (studentId != null && adminId != null) {
+    
         // Chèn email với studentId và adminId vào cơ sở dữ liệu
-        int x = MailSinhVienDAO.insertMail(adminId, studentId, noiDung, new Timestamp(System.currentTimeMillis()));
+        int x = MailSinhVienDAO.insertMail( adminId, studentId, noiDung, new Timestamp(System.currentTimeMillis()));
     
         if (x == 1) {
             SuccessfulExportAndImport showDialog = new SuccessfulExportAndImport(null, true, "Gửi Email Thành Công!");
@@ -388,9 +390,15 @@ this.student = std;
     }
     }//GEN-LAST:event_btnGuiMailMouseClicked
     private String getAdminId() {
-    // Thực hiện truy vấn hoặc lấy adminId từ nguồn khác và trả về
-        return StaticVariable.PH_MAADMIN; // Giả định PH_MAADMIN là adminId
+    UserDAO userDAO = new UserDAO(); 
+    User adminUser = userDAO.getAdminUser(); 
+    
+    if(adminUser != null && adminUser.getUsername() != null && adminUser.isIsAdmin()) {
+        return adminUser.getUsername(); 
+    } else {
+        return null; 
     }
+}
     private void jTextArea1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextArea1KeyReleased
         if(jTextArea1.getText().equals("")) {
             btnGuiMail.setEnabled(false);

@@ -155,6 +155,33 @@ public class UserDAO {
         }
         return st;
     }
+    public String getId(String id){
+    String userProfile = "";
+    ResultSet rs = null;
+    try {
+        String SQL = "SELECT [Student].id" +
+                    "FROM [Student] JOIN [User] ON Student.id = [USER].username " +
+                    "WHERE [USER].username =  " + "'" + id + "'" ;
+
+        conn = DatabaseHelpper.getConnection();
+        sttm = conn.prepareStatement(SQL);
+        rs = sttm.executeQuery();
+        while(rs.next()){
+            userProfile += "Name: " + rs.getString("name") + "\n";
+            userProfile += "ID: " + rs.getString("id") + "\n";
+            userProfile += "Class: " + rs.getString("class") + "\n";
+            userProfile += "Birthday: " + rs.getString("birthday") + "\n";
+            userProfile += "Address: " + rs.getString("address") + "\n";
+            userProfile += "Email: " + rs.getString("email") + "\n";
+            userProfile += "Gender: " + (rs.getBoolean("gender") ? "Male" : "Female") + "\n";
+            userProfile += "Phone Number: " + rs.getString("phoneNumber") + "\n";
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return userProfile;
+}
 
     public String getCurrentUserFromDatabase(String username) {
     String currentUser = null;
@@ -241,5 +268,27 @@ public boolean isAdmin(String username) {
 
     return isAdmin;
 }
+public User getAdminUser() {
+    User adminUser = null;
+    String query = "SELECT * FROM [User] WHERE isAdmin = 1";
+
+    try (Connection conn = DatabaseHelpper.getConnection();
+         PreparedStatement pstmt = conn.prepareStatement(query);
+         ResultSet rs = pstmt.executeQuery()) {
+
+        if (rs.next()) {
+            String username = rs.getString("username");
+            String password = rs.getString("password");
+            boolean isAdmin = rs.getBoolean("isAdmin");
+
+            adminUser = new User(username, password, isAdmin);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace(); // Handle the exception properly
+    }
+
+    return adminUser;
+}
+
 
 }
