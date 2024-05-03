@@ -300,7 +300,6 @@ public class DetailRoom extends javax.swing.JDialog {
         });
         jTable1.setAlignmentX(0.0F);
         jTable1.setAlignmentY(0.0F);
-        jTable1.setColumnSelectionAllowed(true);
         jTable1.setEnabled(false);
         jTable1.setGridColor(new java.awt.Color(0, 0, 0));
         jTable1.setOpaque(false);
