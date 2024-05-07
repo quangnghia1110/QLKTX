@@ -46,7 +46,7 @@ public class CreateNotification extends javax.swing.JFrame {
      */
     public CreateNotification(java.awt.Frame parent, boolean modal, Student student) {
         initComponents();
-this.student = student;
+        this.student = student;
         btnGuiMail.setEnabled(false);
                 setLocationRelativeTo(null);
 

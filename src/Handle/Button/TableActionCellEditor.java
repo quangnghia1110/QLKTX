@@ -19,6 +19,9 @@ public class TableActionCellEditor extends DefaultCellEditor{
         super(new JCheckBox());
         this.event = event;
     }
+    public TableActionCellEditor() {
+        super(new JCheckBox());
+    }
 
     @Override
     public Component getTableCellEditorComponent(JTable jtable, Object o, boolean bln, int row, int column) {

@@ -51,6 +51,7 @@ private Student student;
     }
     Room myR;
     RoomDAO daoR = new RoomDAO();
+    
     List<Student> listSofR;
     StudentDAO daoS = new StudentDAO();
     public UtilityBill(Student student) {
@@ -61,11 +62,16 @@ private Student student;
     fitContentOfTable(table);
     myR = daoR.getRoomByName(student.getRoom());
     lblName1.setText(myR.getName());
+    if(myR.getName() != null)
+    {
     listSofR = daoS.getStudentsByRoom(myR.getName().toLowerCase());
     int total = listSofR.size();
     int temp = total;
     jLabel10.setText(""+ temp);
     loadTable(list);
+    }
+    else{}
+    
 }
 
 

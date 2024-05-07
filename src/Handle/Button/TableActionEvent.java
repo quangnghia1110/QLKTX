@@ -4,14 +4,8 @@
  */
 package Handle.Button;
 
-/**
- *
- * @author Thien Duong
- */
 public interface TableActionEvent {
     public void onAccept(int row);
 
     public void onRefuse(int row);
-
-    
 }

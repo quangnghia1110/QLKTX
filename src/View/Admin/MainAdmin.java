@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 public class MainAdmin extends javax.swing.JFrame {
     RoomList roomList = new RoomList();
     Notification notification = new Notification();
+    UtilityBillList utilityBill=new UtilityBillList();
     ApprovingMoveAndRegister approvingPn = new ApprovingMoveAndRegister();
     StudentList studentList = new StudentList();
     private String username;
@@ -63,6 +64,13 @@ public class MainAdmin extends javax.swing.JFrame {
         body.removeAll();
         notification = new Notification();
         body.add(notification);
+        body.revalidate();
+        body.repaint();
+    }
+    public void addUilityBillToBody(){
+        body.removeAll();
+        utilityBill = new UtilityBillList();
+        body.add(utilityBill);
         body.revalidate();
         body.repaint();
     }

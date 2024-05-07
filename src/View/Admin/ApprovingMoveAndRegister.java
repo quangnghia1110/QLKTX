@@ -79,6 +79,8 @@ public class ApprovingMoveAndRegister extends javax.swing.JPanel {
                     }
                 }); // Làm mới bảng sau khi thực hiện sự kiện
             }
+
+          
         };
     }
     private TableActionEvent createTableActionMovingEvent() {
@@ -108,6 +110,8 @@ public class ApprovingMoveAndRegister extends javax.swing.JPanel {
                     }
                 }); // Làm mới bảng sau khi thực hiện sự kiện
             }
+
+            
         };
     }
         

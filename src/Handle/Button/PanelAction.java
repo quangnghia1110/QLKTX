@@ -29,6 +29,7 @@ public class PanelAction extends javax.swing.JPanel {
             public void actionPerformed(ActionEvent ae) {
                 event.onRefuse(row);
             }
+            
         });
         
     }
