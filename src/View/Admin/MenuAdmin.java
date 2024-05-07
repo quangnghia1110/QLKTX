@@ -702,6 +702,7 @@ public class MenuAdmin extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabel15MouseClicked
 
     private void pn_lichtrucMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_lichtrucMouseClicked
+        headerAdmin.addDutyScheduleToBody();
         pn_sinhvien.setBackground(Color.decode("#119077"));
         pn_avatar.setBackground(Color.decode("#119077"));
         pn_dangxuat.setBackground(Color.decode("#119077"));

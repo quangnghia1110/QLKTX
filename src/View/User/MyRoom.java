@@ -469,7 +469,6 @@ public class MyRoom extends javax.swing.JPanel {
             }
         });
         table.setAlignmentY(0.0F);
-        table.setColumnSelectionAllowed(true);
         table.setGridColor(new java.awt.Color(0, 0, 0));
         table.setRowHeight(25);
         table.setRowSelectionAllowed(false);

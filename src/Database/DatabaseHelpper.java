@@ -12,7 +12,8 @@ import java.sql.DriverManager;
  * @author LUUTHANH
  */
 public class DatabaseHelpper {
-    public static String connectionUrl = "jdbc:sqlserver://localhost:1433;databaseName=QLKTX;user=sa;password=111003;encrypt=true;trustServerCertificate=true";
+    public static String connectionUrl = "jdbc:sqlserver://localhost:1433;databaseName=QLKTX;user=sa;password=123;encrypt=true;trustServerCertificate=true";
+
     public static Connection getConnection(){
         Connection conn = null;
         try {

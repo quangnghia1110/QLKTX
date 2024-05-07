@@ -75,6 +75,15 @@ public class MainAdmin extends javax.swing.JFrame {
         body.repaint();
     }
     
+
+    public void addDutyScheduleToBody(){
+        body.removeAll();
+        LichTruc lichtruc = new LichTruc();
+        body.add(lichtruc);
+        body.revalidate();
+        body.repaint();
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
