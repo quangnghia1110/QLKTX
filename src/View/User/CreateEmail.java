@@ -367,28 +367,41 @@ this.student = student;
     private void btnGuiMailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuiMailMouseClicked
     String noiDung = jTextArea1.getText();
     
-    // Truy xuất studentId từ mã sinh viên hiện tại
-    MailSinhVienDAO mailSinhVienDAO = new MailSinhVienDAO();
-    String studentId = mailSinhVienDAO.getId(student.getId()); // Giả sử phương thức getId(student.getId()) trả về một studentId duy nhất
-    
-    // Truy xuất adminId từ một nguồn khác hoặc từ cơ sở dữ liệu
-    String adminId = getAdminId(); // Giả định phương thức này trả về adminId
-    
-    if (studentId != null && adminId != null) {
-    
-        // Chèn email với studentId và adminId vào cơ sở dữ liệu
-        int x = MailSinhVienDAO.insertMail( adminId, studentId, noiDung, new Timestamp(System.currentTimeMillis()));
-    
-        if (x == 1) {
-            SuccessfulExportAndImport showDialog = new SuccessfulExportAndImport(null, true, "Gửi Email Thành Công!");
-            showDialog.setVisible(true);
+    if (!noiDung.isEmpty()) {
+        // Truy xuất studentId từ mã sinh viên hiện tại
+        MailSinhVienDAO mailSinhVienDAO = new MailSinhVienDAO();
+        String studentId = mailSinhVienDAO.getId(student.getId()); // Giả sử phương thức getId(student.getId()) trả về một studentId duy nhất
+        
+        // Truy xuất adminId từ một nguồn khác hoặc từ cơ sở dữ liệu
+        String adminId = getAdminId(); // Giả định phương thức này trả về adminId
+        
+        if (studentId != null && adminId != null) {
+        
+            // Chèn email với studentId và adminId vào cơ sở dữ liệu
+            int x = MailSinhVienDAO.insertMail( adminId, studentId, noiDung, new Timestamp(System.currentTimeMillis()));
+        
+            if (x == 1) {
+                SuccessfulExportAndImport showDialog = new SuccessfulExportAndImport(null, true, "Gửi Email Thành Công!");
+                showDialog.setVisible(true);
+            } else {
+                SuccessfulExportAndImport showDialog = new SuccessfulExportAndImport(null, true, "Gửi Email Thất Bại!");
+                showDialog.setVisible(true);
+            }   
         } else {
-            SuccessfulExportAndImport showDialog = new SuccessfulExportAndImport(null, true, "Gửi Email Thất Bại!");
-            showDialog.setVisible(true);        }   
+            
+            String errorMessage = "Không tìm thấy thông tin sinh viên hoặc admin";
+            showErrorMessage(errorMessage);
+
+        }
     } else {
-        JOptionPane.showMessageDialog(null, "Không tìm thấy thông tin sinh viên hoặc admin", "Thông Báo", JOptionPane.ERROR_MESSAGE);
+        String errorMessage = "Nội dung không được để trống";
+            showErrorMessage(errorMessage);
     }
     }//GEN-LAST:event_btnGuiMailMouseClicked
+    private void showErrorMessage(String errorMessage) {
+    SuccessfulExportAndImport showDialog = new SuccessfulExportAndImport(null, true, errorMessage);
+    showDialog.setVisible(true);
+}
     private String getAdminId() {
     UserDAO userDAO = new UserDAO(); 
     User adminUser = userDAO.getAdminUser(); 

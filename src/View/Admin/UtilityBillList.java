@@ -1,6 +1,5 @@
 package View.Admin;
 
-import Dao.BillDetailDAO;
 import java.util.Calendar;
 import java.util.Date;
 import Dao.UtilityBillDAO;
@@ -11,7 +10,6 @@ import Handle.Button.TableActionCellRender1;
 import Handle.Button.TableActionEvent;
 import Handle.Button.TableActionEvent1;
 import Handle.PanelRound;
-import Model.BillDetail;
 import Model.Student;
 import Model.UtilityBill;
 import View.Admin.RoomList.CreateRoom;
@@ -32,17 +30,19 @@ import javax.swing.table.TableCellEditor;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableCellRenderer;
 import org.apache.commons.math3.analysis.function.Ulp;
 import org.jfree.ui.DateCellRenderer;
+import javax.swing.JLabel;
 
 public class UtilityBillList extends javax.swing.JPanel {
 
     private ArrayList<UtilityBill> list;
     DefaultTableModel model;
-    BillDetailDAO detailDao = new BillDetailDAO();
 
     public UtilityBillList() {
         initComponents();
+        fitContentOfTable(bill_table);
 
         TableActionEvent1 event = new TableActionEvent1() {
             @Override
@@ -191,7 +191,28 @@ public class UtilityBillList extends javax.swing.JPanel {
         timer.setRepeats(false);
         timer.start();
     }
-
+public void fitContentOfTable(JTable table) {
+        for (int col = 0; col < table.getColumnCount(); col++) {
+            int maxWid = 0;
+            for (int row = 0; row < table.getRowCount(); row++) {
+                int cellWid = table.prepareRenderer(table.getCellRenderer(row, col), row, col).getPreferredSize().width;
+                maxWid = Math.max(maxWid, cellWid);
+            }
+            table.getColumnModel().getColumn(col).setPreferredWidth(maxWid + 10);
+        }
+        table.setBackground(Color.white);
+        table.setPreferredScrollableViewportSize(table.getPreferredSize());
+        table.setFillsViewportHeight(true);
+        DefaultTableCellRenderer headerRenderer = (DefaultTableCellRenderer) table.getTableHeader().getDefaultRenderer();
+        headerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        int[] column = {0, 1, 2, 3};
+        for (int i = 0; i < column.length; i++) {
+            table.getColumnModel().getColumn(column[i]).setCellRenderer(centerRenderer);
+        }
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

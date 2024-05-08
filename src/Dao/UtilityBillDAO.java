@@ -81,11 +81,16 @@ public class UtilityBillDAO {
                 // Tạo một đối tượng UtilityBill mới và điền các trường từ result set
                 UtilityBill utilityBill = new UtilityBill();
                 utilityBill.setBillId(resultSet.getInt("billId"));
-                utilityBill.setStudentId(resultSet.getString("studentId")); // Lấy studentId
                 utilityBill.setRoomName(resultSet.getString("roomName"));
-                utilityBill.setElectricityCost(resultSet.getDouble("electricityUsage"), resultSet.getDouble("electricityUnitPrice"));
+                utilityBill.setElectricityUsage(resultSet.getDouble("electricityUsage"));
+                utilityBill.setElectricityUnitPrice(resultSet.getDouble("electricityUnitPrice"));
+                utilityBill.setWaterUseage(resultSet.getDouble("waterUsage"));
+                utilityBill.setWaterUnitPrice(resultSet.getDouble("waterUnitPrice"));
+                 utilityBill.setElectricityCost(resultSet.getDouble("electricityUsage"), resultSet.getDouble("electricityUnitPrice"));
                 utilityBill.setWaterCost(resultSet.getDouble("waterUsage"), resultSet.getDouble("waterUnitPrice"));
-                utilityBill.setDateOfPayment(resultSet.getDate("dateOfPayment"));
+                utilityBill.setStartDate(resultSet.getDate("startDate"));
+                utilityBill.setEndDate(resultSet.getDate("endDate"));
+                utilityBill.setStatus(resultSet.getInt("status"));
 
                 // Thêm hóa đơn tiện ích vào danh sách
                 utilityBills.add(utilityBill);
@@ -132,6 +137,10 @@ public class UtilityBillDAO {
                 utilityBill.setRoomName(resultSet.getString("roomName"));
                 utilityBill.setElectricityCost(resultSet.getDouble("electricityUsage"), resultSet.getDouble("electricityUnitPrice"));
                 utilityBill.setWaterCost(resultSet.getDouble("waterUsage"), resultSet.getDouble("waterUnitPrice"));
+                utilityBill.setElectricityUnitPrice(resultSet.getDouble("electricityUnitPrice"));
+                utilityBill.setElectricityUsage(resultSet.getDouble("electricityUsage"));
+                utilityBill.setWaterUnitPrice(resultSet.getDouble("waterUnitPrice"));
+                utilityBill.setWaterUseage(resultSet.getDouble("waterUsage"));
                 utilityBill.setDateOfPayment(resultSet.getDate("dateOfPayment"));
                 utilityBill.setDateOfBill(resultSet.getDate("dateOfBill"));
                 utilityBill.setStatus(resultSet.getInt("status"));
@@ -142,7 +151,36 @@ public class UtilityBillDAO {
         }
         return listUtilityBills;
     }
+    public ArrayList<UtilityBill> getAllUtilityBill() {
+        String query = "SELECT * FROM UtilityBill";
+        return getUtilityBillsFromDatabase(query);
+    }
 
+    // Lấy tất cả các hóa đơn tiện ích từ cơ sở dữ liệu với câu lệnh truy vấn cụ thể
+    public ArrayList<UtilityBill> getUtilityBillFromDatabase(String queryStatement) {
+        ArrayList<UtilityBill> listUtilityBills = new ArrayList<>();
+        try {
+            Connection conn = DatabaseHelpper.getConnection();
+            PreparedStatement ps = conn.prepareStatement(queryStatement);
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                UtilityBill utilityBill = new UtilityBill();
+                utilityBill.setBillId(resultSet.getInt("billId"));
+                utilityBill.setRoomName(resultSet.getString("roomName"));
+                utilityBill.setElectricityUsage(resultSet.getDouble("electricityUsage"));
+                utilityBill.setElectricityUnitPrice(resultSet.getDouble("electricityUnitPrice"));
+                utilityBill.setWaterUseage(resultSet.getDouble("waterUsage"));
+                utilityBill.setWaterUnitPrice(resultSet.getDouble("waterUnitPrice"));
+                utilityBill.setStartDate(resultSet.getDate("startDate"));
+                utilityBill.setEndDate(resultSet.getDate("endDate"));
+                utilityBill.setStatus(resultSet.getInt("status"));
+                listUtilityBills.add(utilityBill);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listUtilityBills;
+    }
     // Đóng tài nguyên
     private void closeResources() {
         try {

@@ -17,7 +17,7 @@ public class ThongKePanel extends javax.swing.JPanel {
         ThongKe controller = new ThongKe();
         controller.setDataToChart1(Bieudocot);
         controller.setDataToChart2(Bieudotron);
-        controller.setDataToChart3(BieuDoDuong);
+//        controller.setDataToChart3(BieuDoDuong);
 
 
         

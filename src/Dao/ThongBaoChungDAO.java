@@ -55,6 +55,22 @@ public class ThongBaoChungDAO {
     }
     return result;
 }
+public boolean isMaThongBaoChungExist(String idNotification) {
+    String query = "SELECT COUNT(*) FROM ThongBaoChung WHERE idNotification = ?";
+    try (Connection conn = DatabaseHelpper.getConnection();
+         PreparedStatement ps = conn.prepareStatement(query)) {
+        ps.setString(1, idNotification);
+        try (ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                return count > 0;
+            }
+        }
+    } catch (SQLException e) {
+        System.out.println("Lỗi kiểm tra sự tồn tại của Mã Thông Báo: " + e.toString());
+    }
+    return false;
+}
 
     private static List<String> getAllStudentIds() {
         List<String> studentIds = new ArrayList<>();

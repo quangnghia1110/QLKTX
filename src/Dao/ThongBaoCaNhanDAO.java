@@ -39,7 +39,22 @@ public class ThongBaoCaNhanDAO {
         }
         return list;
     }
-
+public boolean isMaThongBaoCaNhanExist(String idNotification) {
+    String query = "SELECT COUNT(*) FROM ThongBaoCaNhan WHERE idNotification = ?";
+    try (Connection conn = DatabaseHelpper.getConnection();
+         PreparedStatement ps = conn.prepareStatement(query)) {
+        ps.setString(1, idNotification);
+        try (ResultSet rs = ps.executeQuery()) {
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                return count > 0;
+            }
+        }
+    } catch (SQLException e) {
+        System.out.println("Lỗi kiểm tra sự tồn tại của Mã Thông Báo: " + e.toString());
+    }
+    return false;
+}
     public static int insertThongBao(String idNotification, String content, Timestamp date, String adminId, String studentId) {
         int result = 0;
         Connection conn = null;

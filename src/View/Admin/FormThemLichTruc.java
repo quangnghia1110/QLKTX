@@ -34,6 +34,7 @@ public class FormThemLichTruc extends javax.swing.JFrame {
         initComponents();
 
         dutyScheduleDAO = new DutyScheduleDAO();
+        setLocationRelativeTo(null);
     }
 
     public void setReferencePanel(LichTruc referencePanel) {

@@ -32,6 +32,7 @@ public class FormSuaLichTruc extends javax.swing.JFrame {
         initComponents();
 
         dutyScheduleDAO = new DutyScheduleDAO();
+        setLocationRelativeTo(null);
     }
 
     /**

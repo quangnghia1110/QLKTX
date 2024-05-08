@@ -28,10 +28,16 @@ import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.File;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.RowFilter;
+import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableRowSorter;
 
 /**
@@ -41,6 +47,7 @@ import javax.swing.table.TableRowSorter;
 public class UtilityBill extends javax.swing.JPanel {
     private ArrayList<Model.UtilityBill> list;
 private Student student;
+    DefaultTableModel model;
 
     public void setStudent(Student student) {
         this.student = student;
@@ -56,10 +63,12 @@ private Student student;
     StudentDAO daoS = new StudentDAO();
     public UtilityBill(Student student) {
         initComponents();
+        fitContentOfTable(table);
     this.student = student;
 
-    list = new UtilityBillDAO().getAllUtilityBills(); 
-    fitContentOfTable(table);
+    list = new UtilityBillDAO().getAllUtilityBills();
+     model = (DefaultTableModel) table.getModel();
+
     myR = daoR.getRoomByName(student.getRoom());
     lblName1.setText(myR.getName());
     if(myR.getName() != null)
@@ -68,14 +77,14 @@ private Student student;
     int total = listSofR.size();
     int temp = total;
     jLabel10.setText(""+ temp);
-    loadTable(list);
+            showListUtility(list);
+
     }
     else{}
     
 }
 
-
-   public void fitContentOfTable(JTable table){
+public void fitContentOfTable(JTable table){
         for (int col = 0; col < table.getColumnCount(); col++){
             int maxWid = 0;
             for (int row = 0; row < table.getRowCount(); row++){
@@ -92,11 +101,13 @@ private Student student;
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(JLabel.CENTER);  
         table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-        int[] column = {0,1,2,3,4};
+        int[] column = {0,1,2,3,4,5,6,7};
         for (int i = 0; i < column.length; i++) {
             table.getColumnModel().getColumn(column[i]).setCellRenderer(centerRenderer);
         }   
     }
+  
+
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -121,6 +132,8 @@ private Student student;
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        tf_thoihan = new javax.swing.JLabel();
         panelRound12 = new Handle.PanelRound();
         panelRound4 = new Handle.PanelRound();
         cbRooms = new javax.swing.JComboBox<>();
@@ -204,7 +217,7 @@ private Student student;
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Tổng tiền:");
+        jLabel8.setText("Tổng tiền các tháng:");
         jPanel6.add(jLabel8);
 
         lblSum.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -238,6 +251,17 @@ private Student student;
         jPanel5.setBackground(new java.awt.Color(17, 144, 119));
         jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
         jPanel2.add(jPanel5, java.awt.BorderLayout.PAGE_END);
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Thời hạn đóng tiền:");
+        jLabel11.setToolTipText("");
+        jPanel2.add(jLabel11, java.awt.BorderLayout.CENTER);
+
+        tf_thoihan.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        tf_thoihan.setForeground(new java.awt.Color(255, 255, 255));
+        tf_thoihan.setText("10");
+        jPanel2.add(tf_thoihan, java.awt.BorderLayout.LINE_END);
 
         panelRound9.add(jPanel2, java.awt.BorderLayout.LINE_END);
 
@@ -371,14 +395,14 @@ private Student student;
 
             },
             new String [] {
-                "Mã hóa đơn", "Tên phòng", "Tiền điện", "Tiền nước", "Hạn thanh toán"
+                "Mã hóa đơn", "Phòng", "Tổng điện", "Giá điện", "Số điện", "Tổng nước", "Giá nước", "Số nước", "Tổng tiền", "Ngày tạo", "Ngày hết hạn", "Trạng thái"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, true, true, true, true, true, true, true, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -410,34 +434,46 @@ private Student student;
 
     private void btnFilterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFilterMouseClicked
         String selectedDate = (String) cbRooms.getSelectedItem();    
-    filterTableByDate(selectedDate); 
+        filterTableByDate(selectedDate); 
     
-    double totalCost = 0;
-    List<Model.UtilityBill> filteredBills = filterBillsByDate(selectedDate);
+        double totalCost = 0;
+        List<Model.UtilityBill> filteredBills = filterBillsByDate(selectedDate);
 
-    for(Model.UtilityBill bill : filteredBills) {   
-        totalCost += bill.getElectricityCost() + bill.getWaterCost(); // Cộng dồn tiền điện và tiền nước vào tổng tiền
-    }
-    lblSum.setText(String.valueOf(totalCost));
+        for(Model.UtilityBill bill : filteredBills) {   
+            totalCost += bill.getElectricityCost() + bill.getWaterCost(); // Cộng dồn tiền điện và tiền nước vào tổng tiền
+        }
+        lblSum.setText(String.valueOf(totalCost));
+        showListUtility(list);
     }//GEN-LAST:event_btnFilterMouseClicked
 
 
-    private void filterTableByDate(String selectedDate) {
-    DefaultTableModel model = (DefaultTableModel) table.getModel();
+private void filterTableAndBillsByDate(String selectedDate) {
+    filterTableByDate(selectedDate);
+    filterBillsAndShowListUtility(selectedDate);
+}
+
+private void filterBillsAndShowListUtility(String selectedDate) {
+   selectedDate = (String) cbRooms.getSelectedItem();    
+    filterTableAndBillsByDate(selectedDate); 
+}
+
+private void filterTableByDate(String selectedDate) {
     TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
     table.setRowSorter(sorter);    
-    RowFilter<DefaultTableModel, Object> filter = RowFilter.regexFilter(selectedDate, 4); // Filter by the fifth column which is the date of payment
+    RowFilter<DefaultTableModel, Object> filter = RowFilter.regexFilter(selectedDate, 11); // Filter by the twelfth column which is the endDate
     sorter.setRowFilter(filter);
 }
-    private List<Model.UtilityBill> filterBillsByDate(String selectedDate) {
+
+private List<Model.UtilityBill> filterBillsByDate(String selectedDate) {
     List<Model.UtilityBill> filteredBills = new ArrayList<>();
     for (Model.UtilityBill bill : list) {
-        if (bill.getDateOfPayment().toString().equals(selectedDate)) {
+        if (bill.getEndDate() != null && bill.getEndDate().toString().equals(selectedDate)) {
             filteredBills.add(bill);
         }
     }
     return filteredBills;
 }
+
     private void btnExportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExportMouseClicked
          if (list.isEmpty()) {
         SuccessfulExportAndImport emptyList = new SuccessfulExportAndImport(null, true, "Danh sách hóa đơn trống!");
@@ -464,7 +500,8 @@ exportExcelFile(utilityBills);
         }
     }
     }//GEN-LAST:event_btnExportMouseClicked
-    public void exportExcelFile(List<Model.UtilityBill> utilityBills) {
+    
+ public void exportExcelFile(List<Model.UtilityBill> utilityBills) {
         try {
             if (utilityBills.isEmpty()) {
                 System.out.println("Error: Empty list");
@@ -475,7 +512,7 @@ exportExcelFile(utilityBills);
             XSSFSheet sheet = excelFile.createSheet("DANH SÁCH HÓA ĐƠN");
 
             // Header row
-            String[] headers = {"STT", "Mã hóa đơn", "Tên phòng", "Tiền điện", "Tiền nước", "Ngày thanh toán"};
+        String[] headers = {"STT", "Mã hóa đơn", "  Phòng", "Tổng điện", "Giá điện", "Số điện", "Tổng nước", "Giá nước","Số nước", "Tổng tiền","Ngày tạo", "Ngày hết hạn", "Trạng thái"};
             Cell cell;
             org.apache.poi.ss.usermodel.Row row = sheet.createRow(0);
             for (int i = 0; i < headers.length; i++) {
@@ -486,13 +523,23 @@ exportExcelFile(utilityBills);
             // Data rows
             int rowNum = 1;
             for (Model.UtilityBill bill : utilityBills) {
-                row = sheet.createRow(rowNum++);
+                                row = sheet.createRow(rowNum++);
+
                 row.createCell(0, CellType.NUMERIC).setCellValue(rowNum - 1); // STT
-                row.createCell(1, CellType.NUMERIC).setCellValue(bill.getBillId()); // Mã hóa đơn
-                row.createCell(2, CellType.STRING).setCellValue(bill.getRoomName()); // Tên phòng
-                row.createCell(3, CellType.NUMERIC).setCellValue(bill.getElectricityCost()); // Tiền điện
-                row.createCell(4, CellType.NUMERIC).setCellValue(bill.getWaterCost()); // Tiền nước
-                row.createCell(5, CellType.STRING).setCellValue(bill.getDateOfPayment().toString()); // Ngày thanh toán
+            row.createCell(1, CellType.NUMERIC).setCellValue(bill.getBillId()); // Mã hóa đơn
+            row.createCell(2, CellType.STRING).setCellValue(bill.getRoomName()); // Tên phòng
+             // Tiền điện
+            row.createCell(3, CellType.NUMERIC).setCellValue(bill.getElectricityCost());
+            row.createCell(4, CellType.NUMERIC).setCellValue(bill.getElectricityUnitPrice());// Tiền điện
+            row.createCell(5, CellType.NUMERIC).setCellValue(bill.getElectricityUsage());
+             // Tiền điện
+            row.createCell(6, CellType.NUMERIC).setCellValue(bill.getWaterCost()); 
+            row.createCell(7, CellType.NUMERIC).setCellValue(bill.getWaterUnitPrice()); 
+            row.createCell(8, CellType.NUMERIC).setCellValue(bill.getWaterUseage());
+            row.createCell(9, CellType.NUMERIC).setCellValue(bill.getElectricityCost() + bill.getWaterCost()); // Tổng tiền
+            row.createCell(10, CellType.STRING).setCellValue(bill.getStartDate().toString()); // Ngày tạo
+            row.createCell(11, CellType.STRING).setCellValue(bill.getEndDate().toString()); // Ngày hết hạn
+            row.createCell(12, CellType.STRING).setCellValue(bill.getStatus()); // Trạng thái
             }
 
             // Determine file name
@@ -505,7 +552,7 @@ exportExcelFile(utilityBills);
                 Date currentDate = new Date();
 
                 // Get date of the last bill payment
-                Date lastPaymentDate = utilityBills.get(utilityBills.size() - 1).getDateOfPayment();
+String lastPaymentDate = utilityBills.get(utilityBills.size() - 1).getEndDate() != null ? utilityBills.get(utilityBills.size() - 1).getEndDate().toString() : "";
 
                 // Format the date to add to the file name
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -532,48 +579,67 @@ exportExcelFile(utilityBills);
             System.out.println("Error exporting Excel file: " + e.getMessage());
         }
     }
-
-    private void loadTable(List<Model.UtilityBill> list) {
+    public void showListUtility(ArrayList<Model.UtilityBill> tmplist) {
+   
     cbRooms.removeAllItems();
     UtilityBillDAO utilityBillDAO = new UtilityBillDAO();
     List<Model.UtilityBill> bills = utilityBillDAO.getAllByRoom(student.getRoom());
     
-    double totalCost = 0; // Tổng tiền
+     cbRooms.addItem("ALL");
+     model.setRowCount(0);
 
-    // Add utility bill data to the combo box
-    for (Model.UtilityBill bill : bills) {
-        cbRooms.addItem(bill.getDateOfPayment().toString());
-    }
-    cbRooms.addItem("ALL");
-    
-    DefaultTableModel model = (DefaultTableModel) table.getModel();
-    model.setRowCount(0);
-    
-    int stt = 1;
-    if (list != null && !list.isEmpty()) {
-        for (Model.UtilityBill bill : list) {
-            // Check if the bill belongs to the room associated with the logged-in student
-            if (student.isHavingRoom() && bill.getRoomName().equals(student.getRoom())) {
-                totalCost += bill.getElectricityCost() + bill.getWaterCost(); // Cộng dồn tiền điện và tiền nước vào tổng tiền
-                Object[] rowData = {
-                    bill.getBillId(),
-                    bill.getRoomName(),
-                    bill.getElectricityCost(),
-                    bill.getWaterCost(),
-                    bill.getDateOfPayment().toString()
-                };
-                model.addRow(rowData);
-                stt++;
-            }
+    // Lấy tên phòng của sinh viên
+    String studentRoomName = student.getRoom(); // Thay "student" bằng đối tượng sinh viên của bạn
+    double totalCost = 0;
+    for (Model.UtilityBill bill : tmplist) {
+        // Kiểm tra nếu tên phòng của hóa đơn trùng với tên phòng của sinh viên
+        if (bill.getRoomName().equals(studentRoomName)) {
+            String statusText = (bill.getStatus() == 0) ? "Chưa thanh toán" : "Đã thanh toán";
+    DateFormat dateFormats = new SimpleDateFormat("dd/MM/yyyy");
+
+            // Lấy ngày tạo hóa đơn
+            Date dateOfBill = bill.getDateOfBill();
+
+            // Tạo một đối tượng Calendar và thiết lập ngày tạo hóa đơn
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(dateOfBill);
+            
+            calendar.add(Calendar.DATE, Integer.parseInt(tf_thoihan.getText()));
+
+            // Lấy ngày hết hạn sau khi thêm 10 ngày
+            Date expirationDate = calendar.getTime();
+
+            // Định dạng ngày tạo hóa đơn
+            String formattedDateOfBill = dateFormats.format(dateOfBill);
+
+            // Định dạng ngày hết hạn
+            String formattedExpirationDate = dateFormats.format(expirationDate);
+          
+
+            totalCost += bill.getElectricityCost() + bill.getWaterCost(); // Cộng dồn tiền điện và tiền nước vào tổng tiền
+
+            // Thêm hàng mới vào model
+            model.addRow(new Object[]{
+                bill.getBillId(),
+                bill.getRoomName(),
+                bill.getElectricityCost(),
+                bill.getElectricityUnitPrice(),
+                bill.getElectricityUsage(),
+                bill.getWaterCost(),
+                bill.getWaterUnitPrice(),
+                bill.getWaterUseage(),
+                bill.getElectricityCost() + bill.getWaterCost(),
+                formattedDateOfBill, // Ngày tạo hóa đơn đã được định dạng
+                formattedExpirationDate, // Ngày hết hạn đã được định dạng
+                statusText
+            });
         }
-    } else {
-        Object[] rowData = {"", "", "Danh sách trống", "", "", ""};
-        model.addRow(rowData);
     }
-    
-   
     lblSum.setText(String.valueOf(totalCost));
 }
+
+
+
 
 
 
@@ -616,6 +682,7 @@ public static void main(String args[]) {
     private javax.swing.JComboBox<String> cbRooms;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -644,5 +711,6 @@ public static void main(String args[]) {
     private Handle.PanelRound panelRound8;
     private Handle.PanelRound panelRound9;
     private javax.swing.JTable table;
+    private javax.swing.JLabel tf_thoihan;
     // End of variables declaration//GEN-END:variables
 }

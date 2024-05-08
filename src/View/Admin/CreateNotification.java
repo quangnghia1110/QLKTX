@@ -31,7 +31,9 @@ import javax.swing.JOptionPane;
  */
 public class CreateNotification extends javax.swing.JFrame {
     private Student student;
-
+    private ThongBaoChungDAO thongbaochung = new ThongBaoChungDAO();
+// Somewhere in your code, initialize the thongbaochung object
+    private ThongBaoCaNhanDAO thongbaocanhan = new ThongBaoCaNhanDAO();
     public void setStudent(Student student) {
         this.student = student;
     }
@@ -387,43 +389,80 @@ public class CreateNotification extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelButtonMouseClicked
 
     private void btnGuiMailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuiMailMouseClicked
-        if (!chung.isSelected()) {
-            if (!txtMaSinhVien.getText().isEmpty() && !txtMaThongBao.getText().isEmpty() && !txtNoiDung.getText().isEmpty()) {
-                String studentId = txtMaSinhVien.getText();
+        // Kiểm tra xem người dùng đã chọn gửi cho sinh viên cụ thể hay toàn bộ sinh viên chưa
+    if (!chung.isSelected()) {
+        // Kiểm tra xem các trường nhập liệu có trống không
+        if (!txtMaSinhVien.getText().isEmpty()) {
+            // Kiểm tra xem txtMaThongBao và txtNoiDung đã được nhập hay không
+            if (!txtMaThongBao.getText().isEmpty() && !txtNoiDung.getText().isEmpty()) {
                 String maThongBao = txtMaThongBao.getText();
                 String noiDung = txtNoiDung.getText();
                 String adminId = getAdminId(); 
-                int x;
-                x = ThongBaoCaNhanDAO.insertThongBao(maThongBao, noiDung, new Timestamp(System.currentTimeMillis()), adminId, studentId);
-                if (x == 1) {
-            SuccessfulExportAndImport showDialog = new SuccessfulExportAndImport(null, true, "Gửi Email Thành Công!");
-            showDialog.setVisible(true);
-        } else {
-            SuccessfulExportAndImport showDialog = new SuccessfulExportAndImport(null, true, "Gửi Email Thất Bại!");
-            showDialog.setVisible(true);        }                  
-            }
-            else {
-SuccessfulExportAndImport showDialog = new SuccessfulExportAndImport(null, true, "Nhập Đầy Đủ Thông Tin");
-            showDialog.setVisible(true);            }
-        }
-        else {
-            if(!txtMaThongBao.getText().equals("") && !txtNoiDung.getText().equals("")) {
-                String maThongBao = txtMaThongBao.getText();
-                String noiDung = txtNoiDung.getText();
-                String adminId = getAdminId(); 
-                int x = ThongBaoChungDAO.insertThongBaoToanBoSinhVien(maThongBao, noiDung, new Timestamp(System.currentTimeMillis()), adminId);
-                if (x > 0) {
-            SuccessfulExportAndImport showDialog = new SuccessfulExportAndImport(null, true, "Gửi Email Thành Công!");
-            showDialog.setVisible(true);
-        } else {
-            SuccessfulExportAndImport showDialog = new SuccessfulExportAndImport(null, true, "Gửi Email Thất Bại!");
-            showDialog.setVisible(true);        }   
+
+                // Kiểm tra xem mã thông báo đã tồn tại trước đó hay không
+                if (!thongbaocanhan.isMaThongBaoCaNhanExist(maThongBao)) {
+                    // Thực hiện việc chèn thông báo cá nhân vào cơ sở dữ liệu
+                    int x = ThongBaoCaNhanDAO.insertThongBao(maThongBao, noiDung, new Timestamp(System.currentTimeMillis()), adminId, txtMaSinhVien.getText());
+                    
+                    // Hiển thị thông báo kết quả
+                    if (x == 1) {
+                        SuccessfulExportAndImport showDialog = new SuccessfulExportAndImport(null, true, "Gửi Email Thành Công!");
+                        showDialog.setVisible(true);
+                    } else {
+                        SuccessfulExportAndImport showDialog = new SuccessfulExportAndImport(null, true, "Gửi Email Thất Bại!");
+                        showDialog.setVisible(true);
+                    } 
+                } else {
+                    // Hiển thị thông báo khi mã thông báo đã tồn tại
+                    String errorMessage = "Mã thông báo đã tồn tại. Vui lòng nhập mã khác.";
+                    showErrorMessage(errorMessage);
+                }                 
             } else {
-                SuccessfulExportAndImport showDialog = new SuccessfulExportAndImport(null, true, "Nhập Đầy Đủ Thông Tin");
-            showDialog.setVisible(true);
+                // Hiển thị thông báo khi thiếu thông tin
+                String errorMessage = "Nhập Đầy Đủ Thông Tin";
+                showErrorMessage(errorMessage);
             }
+        } else {
+            // Hiển thị thông báo khi cả hai trường đều trống
+            String errorMessage = "Chưa nhập mã sinh viên";
+            showErrorMessage(errorMessage);
         }
+    } else {
+        // Kiểm tra xem các trường nhập liệu có trống không
+        if (!txtMaThongBao.getText().isEmpty() && !txtNoiDung.getText().isEmpty()) {
+            String maThongBao = txtMaThongBao.getText();
+            String noiDung = txtNoiDung.getText();
+            String adminId = getAdminId(); 
+
+            // Kiểm tra xem mã thông báo đã tồn tại trước đó hay không
+            if (!thongbaochung.isMaThongBaoChungExist(maThongBao)) {
+                // Thực hiện việc chèn thông báo chung cho toàn bộ sinh viên vào cơ sở dữ liệu
+                int x = ThongBaoChungDAO.insertThongBaoToanBoSinhVien(maThongBao, noiDung, new Timestamp(System.currentTimeMillis()), adminId);
+                
+                // Hiển thị thông báo kết quả
+                if (x > 0) {
+                    SuccessfulExportAndImport showDialog = new SuccessfulExportAndImport(null, true, "Gửi Email Thành Công!");
+                    showDialog.setVisible(true);
+                } else {
+                    SuccessfulExportAndImport showDialog = new SuccessfulExportAndImport(null, true, "Gửi Email Thất Bại!");
+                    showDialog.setVisible(true);
+                } 
+            } else {
+                // Hiển thị thông báo khi mã thông báo đã tồn tại
+                String errorMessage = "Mã thông báo đã tồn tại. Vui lòng nhập mã khác.";
+                showErrorMessage(errorMessage);
+            }
+        } else {
+            // Hiển thị thông báo khi thiếu thông tin
+            String errorMessage = "Nhập Đầy Đủ Thông Tin";
+            showErrorMessage(errorMessage);
+        }
+    }
     }//GEN-LAST:event_btnGuiMailMouseClicked
+    private void showErrorMessage(String errorMessage) {
+    SuccessfulExportAndImport showDialog = new SuccessfulExportAndImport(null, true, errorMessage);
+    showDialog.setVisible(true);
+}
     private String getAdminId() {
         UserDAO userDAO = new UserDAO(); 
         User adminUser = userDAO.getAdminUser(); 

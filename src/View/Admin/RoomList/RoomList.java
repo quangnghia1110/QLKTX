@@ -340,29 +340,29 @@ public class RoomList extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addingRoomPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addingRoomPanelMouseClicked
-        // TODO add your handling code here:
-        animationClick(addingRoomPanel, "#ffffff");
-        CreateRoom dialog = new CreateRoom(null, true, this);
-        dialog.setVisible(true);
+//        // TODO add your handling code here:
+//        animationClick(addingRoomPanel, "#ffffff");
+//        CreateRoom dialog = new CreateRoom(null, true, this);
+//        dialog.setVisible(true);
     }//GEN-LAST:event_addingRoomPanelMouseClicked
 
-    public List<Room> getListFilter() {
-        List<Room> resultFilter = new ArrayList<>();
-        String selectedBlock = String.valueOf(comboBoxBlock.getSelectedItem());
-        String selectedType = String.valueOf(comboBoxType.getSelectedItem());
-        boolean type = "VIP".equals(selectedType);
-
-        for (Room room : lR) {
-            if ("Tất cả".equals(selectedBlock) && !"Tất cả".equals(selectedType) && room.getType() == type) {
-                resultFilter.add(room);
-            } else if (!"Tất cả".equals(selectedBlock) && "Tất cả".equals(selectedType) && room.getBlock().equalsIgnoreCase(selectedBlock)) {
-                resultFilter.add(room);
-            } else if (room.getBlock().equalsIgnoreCase(selectedBlock) && room.getType() == type) {
-                resultFilter.add(room);
-            }
-        }
-        return resultFilter;
-    }
+//    public List<Room> getListFilter() {
+//        List<Room> resultFilter = new ArrayList<>();
+//        String selectedBlock = String.valueOf(comboBoxBlock.getSelectedItem());
+//        String selectedType = String.valueOf(comboBoxType.getSelectedItem());
+//        boolean type = "VIP".equals(selectedType);
+//
+//        for (Room room : lR) {
+//            if ("Tất cả".equals(selectedBlock) && !"Tất cả".equals(selectedType) && room.getType() == type) {
+//                resultFilter.add(room);
+//            } else if (!"Tất cả".equals(selectedBlock) && "Tất cả".equals(selectedType) && room.getBlock().equalsIgnoreCase(selectedBlock)) {
+//                resultFilter.add(room);
+//            } else if (room.getBlock().equalsIgnoreCase(selectedBlock) && room.getType() == type) {
+//                resultFilter.add(room);
+//            }
+//        }
+//        return resultFilter;
+//    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel header;
     public javax.swing.JPanel roomContainer;
